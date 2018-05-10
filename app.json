@@ -1,12 +1,50 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/persona/personal",
+    "pages/car/cars",
+    "pages/issue/issue",
+    "pages/shop/shop"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "微信接口功能演示",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "backgroundColor":"#B3C5F5",
+    "borderStyle":"black",
+    "position":"bottom",
+    "list": [
+      {
+        "pagePath": "pages/car/cars",
+        "iconPath": "resource/image/tabBar_car_icon1.png",
+        "selectedIconPath": "resource/image/tabBar_car_icon1.png"
+        
+      },{
+        "pagePath": "pages/issue/issue",
+        "iconPath": "resource/image/tabBar_issue_icon.png",
+        "selectedIconPath": "resource/image/tabBar_issue_icon.png"
+        
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "resource/image/tabBar_index_icon1.png",
+        "selectedIconPath":"resource/image/tabBar_index_icon1.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "iconPath": "resource/image/tabBar_shop_icon.png",
+        "selectedIconPath": "resource/image/tabBar_shop_icon.png"
+      },{
+        "pagePath": "pages/persona/personal",
+        "iconPath": "resource/image/tabBar_person_icon2.png",
+        "selectedIconPath": "resource/image/tabBar_person_icon2.png"
+      }
+    ]
+  },
+  "debug": true
 }
