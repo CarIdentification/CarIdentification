@@ -14,7 +14,7 @@ App({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://192.168.1.102:8762/api-basicS/sendUserCode',
+            url: 'http://localhost:8762/api-basicS/sendUserCode',
             data: {
               code: res.code
             },

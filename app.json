@@ -9,13 +9,11 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "微信接口功能演示",
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light"
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "识车小程序"
   },
   "tabBar": {
-    "backgroundColor":"#B3C5F5",
+    "backgroundColor":"#C5D4FA",
     "borderStyle":"black",
     "position":"bottom",
     "list": [

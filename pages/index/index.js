@@ -3,36 +3,33 @@
 const app = getApp()
 
 Page({
+  data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    //input状态
+    inputShowed: false,
+    inputVal: "",
+    //历史记录
+    history:[]
+  },
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg)
   },
   onReady: function (e) {
     // 使用 wx.createContext 获取绘图上下文 context
-    var context = wx.createCanvasContext('firstCanvas')
+    const ctx = wx.createCanvasContext('myCanvas')
+    // Draw coordinates
+    ctx.arc(80, 80, 80, 0, 2 * Math.PI)
+    ctx.setFillStyle('#C5D4FA')
+    ctx.fill()
 
-    context.setStrokeStyle("#00ff00")
-    context.setLineWidth(5)
-    context.rect(0, 0, 200, 200)
-    context.stroke()
-    context.setStrokeStyle("#ff0000")
-    context.setLineWidth(2)
-    context.moveTo(160, 100)
-    context.arc(100, 100, 60, 0, 2 * Math.PI, true)
-    context.moveTo(140, 100)
-    context.arc(100, 100, 40, 0, Math.PI, false)
-    context.moveTo(85, 80)
-    context.arc(80, 80, 5, 0, 2 * Math.PI, true)
-    context.moveTo(125, 80)
-    context.arc(120, 80, 5, 0, 2 * Math.PI, true)
-    context.stroke()
-    context.draw()
+    //识别相机logo
+    ctx.drawImage("/resource/image/discern.png", 55,55, 55,55)
+    
+    ctx.draw()
   },
-  data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
+  
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
@@ -73,6 +70,73 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  getCarPhoto: function(e){
+    wx.chooseImage({
+      count:3,
+      success: function(res) {
+        var tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths)
+        wx.request({
+          url: '',
+          data:{},
+          success: function (res) {
+            console.log(res.data)
+
+          }
+        })
+      },
+    })
+  },
+  showInput: function () {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8762/api-basicS/search/textSearchHistory',
+      data:{
+        userId:1
+      },
+      success:function(e){
+        console.log(e)
+        that.setData({
+          history:e.data.entity
+        })
+      }
+    })
+    that.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputShowed: true,
+      inputVal: e.detail.value
+    });
+  },
+
+  //完成输出，开始搜索
+  confirmInput: function(e){
+    console.log(e.detail.value)
+    wx.request({
+      url: 'http://localhost:8762/api-basicS/search/textSearch',
+      data:{
+        searchContext: e.detail.value
+      },
+      success: function (res) {
+        console.log(res.data)
+        //获取返回结果，进入新页面展示
+        // wx.navigateTo()
+      }
     })
   }
 })

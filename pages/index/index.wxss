@@ -1,21 +1,22 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.searchbar-result{
+    margin-top: 0;
+    font-size:small
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 8px 15px 8px 35px;
+}
+.page-flex-row{
+  display:flex;
+  justify-content:center;
+  flex-flow: wrap row;
+}
+.page-flex-column{
+  height: 100%;
+  display:flex;
+  flex-flow: wrap column;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
