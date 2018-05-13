@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const util = require('../../utils/util.js');
 
 Page({
   data: {
@@ -36,17 +37,21 @@ Page({
       url: '../logs/logs'
     })
   },
+  
   onLoad: function () {
+    var that = this;
     if (app.globalData.userInfo) {
-      this.setData({
+      that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
+      util.sendlogin(app.globalData.userInfo)
     } else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        this.setData({
+        util.sendlogin(res.userInfo)
+        that.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
@@ -56,18 +61,20 @@ Page({
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo
-          this.setData({
+          that.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+          util.sendlogin(res.userInfo)
         }
       })
     }
   },
   getUserInfo: function(e) {
+    var that = this;
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
-    this.setData({
+    that.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })

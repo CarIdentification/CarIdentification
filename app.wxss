@@ -2,10 +2,29 @@
 @import 'weui.wxss';
 .container {
   height: 100%;
-  display: flex;
+ 
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  /* padding: 200rpx 0; */
   box-sizing: border-box;
 } 
+.page-flex-row{
+  display:flex;
+  justify-content:center;
+  flex-flow: wrap row;
+}
+.page-flex-column{
+  align-items: center;
+  padding-bottom: 10rpx;
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.gray-block{
+  background-color: gainsboro;
+  width: 100%;
+  height: 10rpx;
+  
+}

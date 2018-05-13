@@ -1,40 +1,19 @@
 //app.js
 App({
   onLaunch: function () {
-
+    console.log(2222)
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          //发起网络请求
-          wx.request({
-            url: 'http://localhost:8762/api-basicS/sendUserCode',
-            data: {
-              code: res.code
-            },
-            success: function (res) {
-              console.log(res.data)
-              
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
-            withCredentials:true,
+            withCredentials: true,
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
@@ -49,6 +28,9 @@ App({
         }
       }
     })
+
+   
+    
   },
   globalData: {
     userInfo: null

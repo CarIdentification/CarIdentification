@@ -28,7 +28,7 @@
             </block>
             <navigator url="" class="weui-cell" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
-                  <view style='color:blue'>删除历史记录</view>
+                  <view style='color:skyblue'>删除历史记录</view>
                 </view>
             </navigator>
           </view>

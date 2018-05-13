@@ -1,1 +1,61 @@
 /* pages/persona/personal.wxss */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 256rpx;
+  height: 256rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+navigator{
+  font-size: small;
+  color: skyblue;
+}
+
+.page-flex-row button{
+  margin: 5rpx;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  height: 40rpx;
+  font-size: 25rpx;
+  line-height: 150%;
+}
+.page-flex-row button text{
+  margin: 3rpx;
+  font-size: 25rpx;
+}
+.page-flex-row image{
+  margin-top: 4rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.pic-history{
+  
+  padding: 20rpx 15rpx 0rpx 15rpx;
+}
+.pic-history image{
+  border-radius: 15px;
+  width: 100%;
+  height: 222rpx;
+}
+.pic-history view{
+   position: relative; 
+   bottom: 60rpx;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 44rpx;
+  border-radius: 15px;
+  z-index: 2;
+}

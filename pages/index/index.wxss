@@ -9,14 +9,5 @@
 .weui-cell{
     padding: 8px 15px 8px 35px;
 }
-.page-flex-row{
-  display:flex;
-  justify-content:center;
-  flex-flow: wrap row;
-}
-.page-flex-column{
-  height: 100%;
-  display:flex;
-  flex-flow: wrap column;
-}
+
 
