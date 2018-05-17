@@ -1,2 +1,5 @@
 <!--pages/issue/issue.wxml-->
 <text>pages/issue/issue.wxml</text>
+<view wx:if="{{hasUserInfo}}"  style="height: 100%;">
+  <button>123</button>
+</view>

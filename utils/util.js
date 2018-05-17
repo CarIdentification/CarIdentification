@@ -14,6 +14,67 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+//获取个人信息并在后台登陆
+const reLogin = (that,app) =>{
+  wx.getUserInfo({
+    success: res => {
+      app.globalData.userInfo = res.userInfo
+      that.setData({
+        userInfo: res.userInfo,
+        hasUserInfo: true
+      })
+      sendlogin(res.userInfo)
+    }
+  })
+}
+//让用户设置个人信息权限（强盗系统）
+const getUserInfoScope = (that, app) =>{
+
+  wx.getUserInfo({
+    success: function (e) {
+      console.log(e.userInfo)
+    },
+    fail: function () {
+      console.log("util.js-没有权限")
+      app.globalData.getUserInfo = false
+      wx.showModal({
+        title: '您的操作需要授权',
+        content: '是否授权用户信息',
+        cancelText: '否',
+
+        confirmText: '是',
+        //用户点击授权
+        success: function (e) {
+          //点击确认按钮
+          if(e.confirm==true){
+            //打开授权页面
+            wx.openSetting({
+
+              success: function (e) {
+                //如果用户授权了个人信息权限，将个人信息记录在that与app的data中，并从后台登陆
+                if (e.authSetting['scope.userInfo'])
+                  reLogin(that, app)
+                else
+                  //强盗
+                  // getUserInfoScope(that, app)
+                  wx.switchTab({
+                    url: "/pages/persona/personal"
+                  })
+              }
+            })
+          }else{
+            //点击取消按钮
+            wx.switchTab({
+              url: "/pages/persona/personal"
+            })
+            //强盗
+          // getUserInfoScope(that,app)
+          }
+        }
+      })
+    }
+  })
+}
 const sendlogin = userInfo => {
   // 登录
   wx.login({
@@ -26,7 +87,7 @@ const sendlogin = userInfo => {
           url: 'http://localhost:8762/api-basicS/personal/sendUserCode',
           data: {
             code: res.code,
-            // nickname: userInfo.nickName,
+            nickname: userInfo.nickName,
             headimg: userInfo.avatarUrl,
             sex: userInfo.gender
           },
@@ -44,5 +105,7 @@ const sendlogin = userInfo => {
 
 module.exports = {
   formatTime: formatTime,
-  sendlogin:sendlogin
+  sendlogin:sendlogin,
+  reLogin: reLogin,
+  getUserInfoScope: getUserInfoScope
 }

@@ -37,7 +37,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  
+  onShow:function(){
+    var that = this
+    if (!app.globalData.userInfo){
+      util.getUserInfoScope(that, app)
+    }
+  }
+  ,
   onLoad: function () {
     var that = this;
     if (app.globalData.userInfo) {
@@ -45,29 +51,35 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-      util.sendlogin(app.globalData.userInfo)
+      
     } else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        util.sendlogin(res.userInfo)
+        
         that.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
       }
+      console.log("indexA.js-没有权限")
+      util.getUserInfoScope(that, app)
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          that.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-          util.sendlogin(res.userInfo)
-        }
-      })
+      // console.log("没有个人信息权限")
+      // wx.getUserInfo({
+      //   success: res => {
+      //     console.log("成功获取个人信息")
+      //     app.globalData.userInfo = res.userInfo
+      //     that.setData({
+      //       userInfo: res.userInfo,
+      //       hasUserInfo: true
+      //     })
+          
+      //   }
+      // })
+      console.log("indexB.js-没有权限")
+      util.getUserInfoScope(that, app)
     }
   },
   getUserInfo: function(e) {
