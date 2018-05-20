@@ -1,84 +1,106 @@
-//index.js
-//获取应用实例
-var app = getApp()
 Page({
   data: {
-    motto: 'Hello World111',
-    userInfo: {},
-    //默认未获取地址
-    hasLocation: false
+    Height: 0,
+    scale: 15,
+    latitude: "",
+    longitude: "",
+    markers: [],
+    controls: [{
+      id: 1,
+      iconPath: '../../resource/image/location.png',
+      position: {
+        left: 320,
+        top: 100 - 50,
+        width: 20,
+        height: 20
+      },
+      clickable: true
+    },
+    {
+      id: 2,
+      iconPath: '../../resource/image/location(1).png',
+      position: {
+        left: 340,
+        top: 100 - 50,
+        width: 20,
+        height: 20
+      },
+      clickable: true
+    }
+    ],
   },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+
   onLoad: function () {
-    console.log('onLoad')
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    })
-  },
-  //获取经纬度
-  getLocation: function (e) {
-    console.log(e)
-    var that = this
-    wx.getLocation({
+    var _this = this;
+    wx.getSystemInfo({
       success: function (res) {
-        // success
-        console.log(res)
-        that.setData({
-          hasLocation: true,
-          location: {
-            longitude: res.longitude,
-            latitude: res.latitude
+        //设置map高度，根据当前设备宽高满屏显示
+        _this.setData({
+          view: {
+            Height: res.windowHeight
           }
         })
-        //根据经纬度在地图上显示
-        wx.openLocation({
+      }
+    })
+
+    wx.getLocation({
+      type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+      success: function (res) {
+        _this.setData({
           latitude: res.latitude,
           longitude: res.longitude,
+          markers: [{
+            id: "1",
+            latitude: res.latitude,
+            longitude: res.longitude,
+            width: 50,
+            height: 50,
+            iconPath: "../../resource/image/location.png",
+            title: "店铺"
+          }],
         })
       }
     })
   },
-  // //根据经纬度在地图上显示
-  // openLocation: function (e) {
-  //   console.log("openLocation" + e)
-  //   var value = e.detail.value
-  //   wx.openLocation({
-  //     longitude: Number(value.longitude),
-  //     latitude: Number(value.latitude)
-  //   })
-  // },
-  // //选择位置位置
-  // chooseLocation: function (e) {
-  //   console.log(e)
-  //   var that = this
-  //   wx.chooseLocation({
-  //     success: function (res) {
-  //       // success
-  //       console.log(res)
-  //       that.setData({
-  //         hasLocation: true,
-  //         location: {
-  //           longitude: res.longitude,
-  //           latitude: res.latitude
-  //         }
-  //       })
-  //     },
-  //     fail: function () {
-  //       // fail
-  //     },
-  //     complete: function () {
-  //       // complete
-  //     }
-  //   })
-  // }
+
+  regionchange(e) {
+    console.log("regionchange===" + e.type)
+  },
+
+  //点击merkers
+  markertap(e) {
+    console.log(e.markerId)
+    wx.showActionSheet({
+      itemList: ["法拉利专卖店"],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+
+  //点击缩放按钮动态请求数据
+  controltap(e) {
+    var that = this;
+    console.log("scale===" + this.data.scale)
+    if (e.controlId === 1) {
+      // if (this.data.scale === 13) {
+      that.setData({
+        scale: --this.data.scale
+      })
+      // }
+    } else {
+      //  if (this.data.scale !== 13) {
+      that.setData({
+        scale: ++this.data.scale
+      })
+      // }
+    }
+
+
+  },
+
+
 })
