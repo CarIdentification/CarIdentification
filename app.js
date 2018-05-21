@@ -20,11 +20,13 @@ App({
             withCredentials: true,
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              that.globalData.userInfo = res.userInfo
-              that.globalData.getUserInfo = true
+              this.globalData.userInfo = res.userInfo
+              this.globalData.getUserInfo = true
+              this.globalData.signature = res.signature
               console.log(this.globalData.userInfo)
+              console.log(this.globalData.signature)
               //向服务器发送登陆请求
-              util.sendlogin(res.userInfo)
+              util.sendlogin(res.userInfo,res.signature,res.rawData)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -34,36 +36,13 @@ App({
           })
         }else{
           console.log("app.js-没有权限")
-          // wx.getUserInfo({
-          //   success:function(e){
-          //     console.log(e.userInfo)
-          //   },
-          //   fail: function () {
-          //     that.globalData.getUserInfo = false
-          //     wx.showModal({
-          //       title: '您的操作需要授权',
-          //       content: '是否授权用户信息',
-          //       cancelText: '否',
-               
-          //       confirmText: '是',
-          //       success: function () {
-          //         wx.openSetting({
-          //           // util.getUserInfoScope(that,)
-          //         })
-          //       },
-          //       fail: function () {
-                  
-          //       }
-          //     })
-          //     console.log("没有权限")
-          //   }
-          // })
         }
       }
     })
   },
   globalData: {
     userInfo: null,
-    getUserInfo:false
+    getUserInfo:false,
+    signature:null
   }
 })

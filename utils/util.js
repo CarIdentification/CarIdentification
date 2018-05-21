@@ -19,11 +19,13 @@ const reLogin = (that,app) =>{
   wx.getUserInfo({
     success: res => {
       app.globalData.userInfo = res.userInfo
+      app.globalData.getUserInfo = true
+      app.globalData.signature = res.signature
       that.setData({
         userInfo: res.userInfo,
         hasUserInfo: true
       })
-      sendlogin(res.userInfo)
+      sendlogin(res.userInfo,res.signature,res.rawData)
     }
   })
 }
@@ -31,8 +33,9 @@ const reLogin = (that,app) =>{
 const getUserInfoScope = (that, app) =>{
 
   wx.getUserInfo({
-    success: function (e) {
-      console.log(e.userInfo)
+    success: function (res) {
+      console.log("util.js-拥有权限")
+      
     },
     fail: function () {
       console.log("util.js-没有权限")
@@ -75,11 +78,11 @@ const getUserInfoScope = (that, app) =>{
     }
   })
 }
-const sendlogin = userInfo => {
+const sendlogin = (userInfo, signature, rawData) => {
   // 登录
   wx.login({
     success: res => {
-      console.log(2222)
+      console.log("服务端登陆请求：")
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
       if (res.code) {
         //发起网络请求
@@ -89,7 +92,9 @@ const sendlogin = userInfo => {
             code: res.code,
             nickname: userInfo.nickName,
             headimg: userInfo.avatarUrl,
-            sex: userInfo.gender
+            sex: userInfo.gender,
+            signature: signature,
+            rawData: rawData
           },
           success: function (res) {
             console.log(res.data)

@@ -110,16 +110,21 @@ Page({
   },
   showInput: function () {
     var that = this;
+    console.log("index_signature:            " + app.globalData.signature)
     wx.request({
       url: 'http://localhost:8762/api-basicS/search/textSearchHistory',
       data:{
-        userId:1
+        
+        signature:app.globalData.signature
       },
       success:function(e){
         console.log(e)
-        that.setData({
-          history:e.data.entity
-        })
+        if(e.data.stateInfo!="fail"){
+          that.setData({
+            history: e.data.entity
+          })
+        }
+        
       }
     })
     that.setData({
@@ -149,7 +154,8 @@ Page({
     wx.request({
       url: 'http://localhost:8762/api-basicS/search/textSearch',
       data:{
-        searchContext: e.detail.value
+        searchContext: e.detail.value,
+        signature: app.globalData.signature
       },
       success: function (res) {
         console.log(res.data)

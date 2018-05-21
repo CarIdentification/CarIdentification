@@ -59,23 +59,20 @@ Page({
       data:{
       },
       success:function(res){
-        console.log(res)
+        console.log(res)   //
         //小程序没授权登陆状态时
         if (res.data.stateInfo=="fail"){
-          util.reLogin(that, app)
+          // util.reLogin(that, app)
           console.log("fail")
         }
       },fail:function(){
-        util.reLogin(this,app)
+        // util.reLogin(this,app)
       }
     })
   },
   getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    console.log("personal.js :reLogin")
+    util.reLogin(this, app)
+    
   }
 })
