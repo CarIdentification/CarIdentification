@@ -52,8 +52,7 @@ Page({
       })
     }
 
-    
-    
+
   },
   onShow:function(){
     var that = this

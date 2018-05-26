@@ -1118,6 +1118,8 @@ icon {
 }
 
 .weui-search-bar {
+  z-index: 2;
+  width: 100%;
   position: relative;
   padding: 8px 10px;
   display: -webkit-box;
@@ -1198,4 +1200,5 @@ icon {
   line-height: 28px;
   color: #09bb07;
   white-space: nowrap;
+  font-size: 30rpx;
 }

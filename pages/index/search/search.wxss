@@ -1,0 +1,89 @@
+/* pages/index/search/search.wxss */
+.scroll_container{
+  background-color:#efeff4;
+  /* height: 200%; */
+  display:flex;
+  /* justify-content:center; */
+  flex-flow: wrap column;
+}
+
+.fixed{
+  position:fixed;
+  width:100%;
+
+}
+
+.searchbar-result{
+    width: 100%;
+    margin-top: 48px;
+    font-size:small
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    width: 100%;
+    padding: 8px 15px 8px 35px;
+}
+.weui-cells {
+  
+  position: relative; 
+  
+  background-color: #fff;
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
+.textModules {
+  width: 100%;
+  height: 100%;
+
+  
+}
+
+.text-cell{
+  margin-top: 20rpx;
+  background-color: #fff;
+  height: 500rpx;
+}
+
+.text-bg{
+  color:#888888;
+  text-align:center;
+  font-size:14px;
+
+}
+
+
+
+.text-title{
+  padding: 10rpx 30rpx 15rpx 30rpx;
+  letter-spacing:3rpx;
+  text-align:left;
+  font-size:16px;
+  font-weight:900;
+}
+.text-content{
+  padding: 10rpx 30rpx 15rpx 30rpx;
+  line-height: 40rpx;
+  font-size:14px;
+
+}
+
+.text-img{
+  width: 100%;
+  height: 222rpx;
+}
+
+.text-read image{
+  height: 40rpx;
+  width: 40rpx;
+  float: right
+}
+
+.text-read text{
+  font-size :10px; 
+  float: right;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}

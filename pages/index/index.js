@@ -151,17 +151,22 @@ Page({
   //完成输出，开始搜索
   confirmInput: function(e){
     console.log(e.detail.value)
-    wx.request({
-      url: 'http://localhost:8762/api-basicS/search/textSearch',
-      data:{
-        searchContext: e.detail.value,
-        signature: app.globalData.signature
-      },
-      success: function (res) {
-        console.log(res.data)
-        //获取返回结果，进入新页面展示
-        // wx.navigateTo()
-      }
+    // wx.request({
+    //   url: 'http://localhost:8762/api-basicS/search/textSearch',
+    //   data:{
+    //     searchContext: e.detail.value,
+    //     signature: app.globalData.signature
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     //获取返回结果，进入新页面展示
+    //     wx.navigateTo({
+    //       url: '/pages/index/search/search',
+    //     })
+    //   }
+    // })
+    wx.navigateTo({
+      url: '/pages/index/search/search',
     })
   }
 })
