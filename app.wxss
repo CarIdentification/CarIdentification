@@ -9,6 +9,7 @@
   /* padding: 200rpx 0; */
   box-sizing: border-box;
 } 
+
 .page-flex-row{
   display:flex;
   justify-content:center;

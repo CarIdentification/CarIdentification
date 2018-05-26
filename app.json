@@ -1,13 +1,18 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/index/search/search",
     "pages/logs/logs",
     "pages/persona/personal",
     "pages/car/cars",
     "pages/issue/issue",
     "pages/shop/shop",
     "pages/persona/edit_personal/edit_personal",
+<<<<<<< HEAD
     "pages/issue/text/text"
+=======
+    "pages/persona/add_tag/add_tag"
+>>>>>>> 024c5804d0d64ff52a96d081bd8998c2c148f1ff
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

@@ -1,0 +1,25 @@
+<!--pages/persona/add_tag/add_tag.wxml-->
+<view class='scroll_container'>
+  <scroll-view class='scroll_left' scroll-y  >
+    <view class='page-flex-row'>
+      <block wx:for="{{noHas}}">
+        <button class="{{mark[item.tagId-1]?'checked':'noChecked'}}" id='{{item.tagId}}' bindtap='addTag'>{{item.brandName}}</button>
+        <!-- <text>{{mark[item.tagId-1]}}</text> -->
+      </block>
+    </view>
+  </scroll-view>
+  <view class='operating'>
+    <button bindtap='adding'>新增标签</button>
+  </view>
+  <scroll-view class='scroll_right' scroll-y  >
+    <view class='page-flex-row'>
+      <block wx:for="{{Has}}">
+        <button class="{{markHas[item.tagId-1]?'checked':'noChecked'}}" id='{{item.tagId}}' bindtap='removeTag'>{{item.brandName}}</button>
+        <!-- <text>{{markHas[item.tagId-1]}}</text> -->
+      </block>
+    </view>
+  </scroll-view>
+  <view class='operating'>
+    <button bindtap='removing'>移除标签</button>
+  </view>
+</view>
