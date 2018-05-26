@@ -1,5 +1,33 @@
-<!--pages/issue/issue.wxml-->
-<text>pages/issue/issue.wxml</text>
-<view wx:if="{{hasUserInfo}}"  style="height: 100%;">
-  <button>123</button>
+<view class="container">
+  <view class="main">
+    <view class="navbar">
+        <view wx:for="{{text}}" wx:key="unique" class="item {{currentTab==index?'active':''}}" bindtap='change' data-idx="{{index}}">{{item}}</view>
+    </view>
+    <view hidden="{{currentTab!==0}}" >
+      <view wx:for="{{wenben}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
+        <view class="row-main">
+          <view class="flex-col">
+              <view class="main-title">{{item.title}}</view>
+          </view>
+          <image class="row-chevron" src="../../resource/image/chevron.png"></image>
+        </view>
+        <view class="row split card-img-big-detail-type">
+          <view class="row-main top">
+            <image class="big-rect-img" src="{{item.topicPic}}"></image>
+          </view>
+        </view>
+        <view class="row split">
+            <view class="row-main list">
+                {{item.introduce}}
+            </view>
+        </view>
+        <view class="card-footer">
+          <text>作者：{{item.author}}</text>
+          <text>阅读量：{{item.viewCount}}</text>
+        </view> 
+        <view class='line'></view>
+      </view>
+    </view>
+    <view hidden="{{currentTab!==1}}" class="text">World</view>
+  </view>
 </view>

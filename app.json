@@ -6,7 +6,8 @@
     "pages/car/cars",
     "pages/issue/issue",
     "pages/shop/shop",
-    "pages/persona/edit_personal/edit_personal"
+    "pages/persona/edit_personal/edit_personal",
+    "pages/issue/text/text"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

@@ -1,14 +1,14 @@
-// issue/issue.js
+var getdate = require("../../../utils/util.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    text: ["热门文章", "推荐文章"],
-    currentTab: 0,
-    wenben: []
-
+    id: 1,
+    wenben: [],
+    date:'',
+    pic:''
   },
 
   /**
@@ -16,32 +16,38 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    var id = options.id;
     wx.request({
-      url: 'http://127.0.0.1:8763/getHotIssue',
+      url: 'http://127.0.0.1:8763/getIssue?id=' + id,
       method: 'GET',
-      header: { 'content-type': 'application/json' },
       success: function (res) {
-        console.log(res.data);
+        var date = res.data.createTime.slice(0,10)
+        var pic =  "../"+ res.data.topicPic
         that.setData({
-          wenben: res.data
+          wenben: res.data,
+          date:date,
+          pic: pic
         })
       },
       fail: function () {
         console.log("失败")
       }
     })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
   },
 
   /**
@@ -77,17 +83,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  change: function (e) {
-    var idx = e.currentTarget.dataset.idx
-    this.setData({
-      currentTab: idx
-    });
-  },
-  looktext: function (e) {
-    var id = e.currentTarget.dataset.idx
-    wx.navigateTo({
-      url: './text/text?id=' + id,
-    })
   }
 })

@@ -1,1 +1,96 @@
-/* pages/issue/issue.wxss */
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%
+}
+.container{
+  background-color: #f4f4f4;
+  height: 100%;
+  overflow: visible;
+}
+
+.main {
+    margin:0;
+}
+.navbar{
+  flex: none;
+  display: flex;
+  background-color: white;
+  margin-bottom: 20rpx;
+
+}
+.navbar .item{
+  flex: auto;
+  text-align: center;
+  position: relative;
+  line-height: 50px;
+  border: 0px solid black;
+  margin: 1px;
+  font-size: 15px;
+}
+.navbar .item.active{
+  color: #FFCC00
+}
+.row-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20rpx;
+    padding-left: 20rpx;
+}
+.flex-col {
+    display: flex;
+    flex-flow: column;
+}
+.flex-col .main-title {
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    font-weight: bold;
+    font-size: 20px;
+}
+.row-chevron {
+    width: 16rpx;
+    height: 25rpx;
+}
+.content{
+
+    background-color: #ffffff;
+}
+.card-footer {
+    font-size:26rpx;
+    color:#888888;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20rpx;
+    line-height: 37rpx;
+    padding-top: 17rpx;
+    padding-bottom: 17rpx;
+    border-top: 2rpx dashed  #cfcfcf;
+    margin-top: 10rpx;
+    padding-right: 39rpx;
+}
+.row-main .top {
+    justify-content: center;
+    padding-top: 24rpx;
+    padding-bottom: 20rpx;
+}
+.row .split {
+    border-bottom: 2rpx solid #E5E5E5;
+}
+.row.card-text-type {
+    padding-top: 38rpx;
+    padding-bottom: 20rpx;
+}
+.big-rect-img {
+    width:100%;
+    height: 356rpx;
+}
+.row-main.list text {
+    max-width: 500rpx;
+    word-wrap: break-word;
+}
+.line{
+  height: 20rpx;
+  background-color: whitesmoke;
+}
