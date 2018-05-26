@@ -53,26 +53,47 @@ Page({
     }
 
     
-    //请求用户标签
-    wx.request({
-      url: 'http://localhost:8762/api-basicS/personal/tag',
-      data:{
-      },
-      success:function(res){
-        console.log(res)   //
-        //小程序没授权登陆状态时
-        if (res.data.stateInfo=="fail"){
-          // util.reLogin(that, app)
-          console.log("fail")
-        }
-      },fail:function(){
-        // util.reLogin(this,app)
-      }
-    })
+    
   },
+  onShow:function(){
+    var that = this
+    if (app.globalData.getUserInfo==true){
+
+      //请求用户标签
+      wx.request({
+        url: 'http://localhost:8762/api-basicS/personal/tag',
+        data: {
+          signature: app.globalData.signature
+        },
+        method: "GET"
+        ,
+        success: function (res) {
+          console.log(res)   //
+          //小程序没授权登陆状态时
+          if (res.data.stateInfo == "fail") {
+            // util.reLogin(that, app)
+            console.log(res.data.entity)
+          } else {
+            that.setData({
+              tag: res.data.entity
+            })
+            console.log(res.data.entity)
+          }
+        }, fail: function () {
+          // util.reLogin(this,app)
+        }
+      })
+    }
+  }
+  ,
   getUserInfo: function (e) {
     console.log("personal.js :reLogin")
     util.reLogin(this, app)
     
+  }
+  ,navigateTag:function(){
+    wx.navigateTo({
+      url: '/pages/persona/add_tag/add_tag',
+    })
   }
 })

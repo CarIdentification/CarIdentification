@@ -9,14 +9,14 @@
       <navigator open-type='navigate'>编辑个人信息</navigator>
       <view class='page-flex-row'>
         <image src='/resource/image/tip_icon.png'></image>
-        <block wx:for="{{tip}}">
-          <button size='mini'></button>
+        <block wx:for="{{tag}}">
+          <button size='mini'>{{item.brandName}}</button>
         </block>
-        <button size='mini'><text>大众</text></button>
+        <!-- <button size='mini'><text>大众</text></button>
         <button size='mini'>奥迪</button>
         <button size='mini'>奥迪奥迪奥迪</button>
-        <button size='mini'>奥迪</button>
-        <image src='/resource/image/tip_add_icon.png'></image>
+        <button size='mini'>奥迪</button> -->
+        <image src='/resource/image/tip_add_icon.png' bindtap='navigateTag'></image>
       </view>
     </block>
     <!-- 设置 -->
