@@ -1,0 +1,166 @@
+<!--pages/car/advanced_search/advanced_search.wxml-->
+
+<!-- <button bindtap='submit'>search</button> -->
+<view class='container'>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view  style=' padding-bottom: 10rpx;width: 100%;display:flex;flex-direction: column;'>
+
+    <view class='text-title-view'>
+      <view class='text-title'>价格</view>
+    </view>
+    <view class='page-flex-row'>
+      <input name="be_price" class='price-input' type='number' ></input>
+      <view class='text'>万  —  </view>
+      <input name="en_price" class='price-input' type='number'></input>
+      <view class='text'>万</view>
+    </view>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+    <view class='text-title-view'>
+      <view class='text-title'>级别</view>
+    </view>
+    <checkbox-group id="level" name="level" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{level}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group>  
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+    <view class='text-title-view'>
+      <view class='text-title'>结构</view>
+    </view>
+    <checkbox-group id="structure" name="structure" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{structure}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+    <view class='text-title-view'>
+      <view class='text-title'>排量</view>
+    </view>
+    <checkbox-group id="displacement" name="displacement" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{displacement}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+    <view class='text-title-view'>
+      <view class='text-title'>变速箱</view>
+    </view>
+    <checkbox-group id="Transmission" name="Transmission" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{Transmission}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+    <view class='text-title-view'>
+      <view class='text-title'>国家</view>
+    </view>
+    <checkbox-group id="city" name="city" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{city}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+  <view class='text-title-view'>
+      <view class='text-title'>属性</view>
+    </view>
+    <checkbox-group id="attribute" name="attribute" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{attribute}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+  <view class='text-title-view'>
+      <view class='text-title'>座位数</view>
+    </view>
+    <checkbox-group id="seat" name="seat" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{seat}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+  <view class='text-title-view'>
+      <view class='text-title'>能源</view>
+    </view>
+    <checkbox-group id="energy" name="energy" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{energy}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+<view class='text-title-view'>
+      <view class='text-title'>驱动方式</view>
+    </view>
+    <checkbox-group id="driving_method" name="driving_method" bindchange="serviceValChange">  
+        <view class="page-flex-row">  
+          <block wx:for="{{driving_method}}">  
+            
+              <label class="square {{item.isCheck?'is_checked':''}}">  
+                <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
+              </label>  
+
+          </block>  
+        </view>  
+    </checkbox-group> 
+
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+    <view style='height:10vh'></view>
+    <button class='search' formType="submit">高级搜索</button>
+  </view>
+  
+</form>
+</view>

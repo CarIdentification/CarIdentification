@@ -9,7 +9,8 @@
     "pages/shop/shop",
     "pages/persona/edit_personal/edit_personal",
     "pages/issue/text/text",
-    "pages/persona/add_tag/add_tag"
+    "pages/persona/add_tag/add_tag",
+    "pages/car/advanced_search/advanced_search"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

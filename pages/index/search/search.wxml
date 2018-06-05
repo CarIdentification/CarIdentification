@@ -33,9 +33,9 @@
     </view>
   </view>
   <view class='scroll_container' >
-    <view class='text-bg' style='margin-top: 48px;'>文章</view>
-    <!-- 搜索车辆板块 -->
-    <view class='textModules'>
+     <!-- <view class='text-bg' style='margin-top: 48px;'>文章</view>  -->
+    <!-- 搜索文章板块 -->
+    <view class='textModules' style='margin-top: 48px;'>
       <!-- <block wx:for="{{text}}"> -->
         <view class='text-cell'>
           <view class='text-title'>
@@ -43,7 +43,7 @@
           </view>
           <image class='text-img' mode='aspectFill' src='/resource/image/car-pic/pic1.jpg'></image>
           <view class='text-content'>
-            <text>margin不起作用多出现在Firefox浏览器下，最常见的原因就是浮动影响，还是就是margin重叠，或者是padding与margin的重叠</text>
+            <text>margin不起作用多出现在Firefox浏览器下，最常见的原因就是浮动影响，还是就是margin重叠，或者是padding与margin的重叠，还是就是margin重叠，或者是padding与margin的重叠</text>
           </view>
           <view class='text-read'>
             <text>200</text>
@@ -51,39 +51,52 @@
             
           </view>
         </view>
-
-        <view class='text-cell'>
-          <view class='text-title'>
-            <text >如何评价大众</text>
-          </view>
-          <image class='text-img' mode='aspectFill' src='/resource/image/car-pic/pic1.jpg'></image>
-          <view class='text-content'>
-            <text>margin不起作用多出现在Firefox浏览器下，最常见的原因就是浮动影响，还是就是margin重叠，或者是padding与margin的重叠</text>
-          </view>
-          <view class='text-read'>
-            <text>200</text>
-            <image src='/resource/image/read_icon.png'></image>
-            
-          </view>
-        </view>
-
-        <view class='text-cell'>
-          <view class='text-title'>
-            <text >如何评价大众</text>
-          </view>
-          <image class='text-img' mode='aspectFill' src='/resource/image/car-pic/pic1.jpg'></image>
-          <view class='text-content'>
-            <text>margin不起作用多出现在Firefox浏览器下，最常见的原因就是浮动影响，还是就是margin重叠，或者是padding与margin的重叠</text>
-          </view>
-          <view class='text-read'>
-            <text>200</text>
-            <image src='/resource/image/read_icon.png'></image>
-            
-          </view>
-        </view>
-
       <!-- </block> -->
     </view>
-    <!-- 搜索文章板块 -->
+    <view>
+      <button class='text-button'>更多文章...</button>
+    </view>
+    <!-- 搜索汽车板块 -->
+    <!-- <view class='text-bg'>汽车</view> -->
+    <view class='carModules'>
+      <!-- <block wx:for="{{text}}"> -->
+        <view class='car-cell page-flex-row'>
+          <image mode='aspectFill' class='car-pic' src='/resource/image/car-pic/pic2.jpg'></image>
+          <view class='page-flex-column car-text'>
+            <text>大众</text>
+            <text>55.5-70.3万</text>
+          </view>
+        </view>
+        <view class='car-cell page-flex-row'>
+          <image mode='aspectFill' class='car-pic' src='/resource/image/car-pic/pic2.jpg'></image>
+          <view class='page-flex-column car-text'>
+            <text>大众</text>
+            <text>55.5-70.3万</text>
+          </view>
+        </view>
+        <view class='car-cell page-flex-row'>
+          <image mode='aspectFill' class='car-pic' src='/resource/image/car-pic/pic2.jpg'></image>
+          <view class='page-flex-column car-text'>
+            <text>大众</text>
+            <text>55.5-70.3万</text>
+          </view>
+        </view>
+        <view class='car-cell page-flex-row'>
+          <image mode='aspectFill' class='car-pic' src='/resource/image/car-pic/pic2.jpg'></image>
+          <view class='page-flex-column car-text'>
+            <text>大众</text>
+            <text>55.5-70.3万</text>
+          </view>
+        </view>
+        <view class='car-cell page-flex-row'>
+          <image mode='aspectFill' class='car-pic' src='/resource/image/car-pic/pic2.jpg'></image>
+          <view class='page-flex-column car-text'>
+            <text>大众</text>
+            <text>55.5-70.3万</text>
+          </view>
+        </view>
+      <!-- </block> -->
+        
+    </view>
   </view>
 </view>

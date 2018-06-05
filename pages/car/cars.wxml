@@ -1,2 +1,59 @@
 <!--pages/car/cars.wxml-->
-<text>pages/car/cars.wxml</text>
+<view class='container'>
+  
+  <!-- 列表 -->
+  <view class='brand-list'>
+    <!-- <view style="word-wrap: break-word; margin: 0px; padding: 0px;" class="title">
+      <input style="word-wrap: break-word; margin: 0px; padding: 0px;" class="title_list" value="{{cityName}}" placeholder="城市名称" />
+    </view> -->
+    <scroll-view bindscroll="scroll" style="word-wrap: break-word; margin: 0px; padding: 0px;" scroll-y="true" style="height: {{winHeight}}px;" scroll-into-view="{{scrollTopId}}" class="city_list">
+
+      <view class="pri">
+        <view class="text-title-view">
+          <view class="text-title">价格 :</view>
+        </view>
+        <view class='page-flex-row' >
+          <block wx:for="{{price}}">
+            <button class="pri-but" id="{{index}}">{{item.text}}</button>
+          </block>
+          <view class='grey-text' bindtap='advancedSearch'>高级搜索 >></view>
+        </view>
+      </view>
+      <view class="brand">
+        <view class="text-title-view">
+          <view class="text-title">热门品牌 :</view>
+        </view>
+        <view class='page-flex-row' >
+          <block wx:for="{{brand}}">
+            <image class='brand-pic' src='{{item.src}}'></image>
+          </block>
+        </view>
+      </view>
+      <view id='123' class="brand-list" >
+        <block style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{city}}" wx:for-index="idx" wx:for-item="cityName">
+          <text span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{idx}}" class="list_tit">{{idx}}</text>
+          <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{cityName}}">
+            <view class='brand-flex'>
+              <image class="brand-pic" src='/resource/image/car-pic/pic2.jpg'></image>
+              <view span="" style="word-wrap: break-word;" class="list_con" data-city="{{item.name}}" bindtap="bindCity">{{item.name}}</view>
+            </view>
+            
+            
+          </block>
+        </block>
+        <view wx:if="{{hidden>300}}" style="word-wrap: break-word; margin: 0px; padding: 0px;" class="scroll_list"
+              bindtouchstart="chStart"
+              bindtouchend="chEnd"
+              catchtouchmove="chMove"
+              style="background: rgba(0,0,0,{{trans}});">
+          <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{city}}" wx:for-index="idx" wx:for-item="cityName">
+            <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:if="{{idx != '热门城市'}}">
+              <view span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{idx}}" class="scroll_list_chi" style="line-height:{{lineHeight}}px ; height:{{lineHeight}}px ;font-size:{{lineHeight/1.5}}px;" bindtouchstart="getWords" bindtouchend="setWords" >{{idx}}</view>
+              <!-- <view span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" hidden="{{hidden}}" class="showwords">{{showwords}}</view> -->
+            </block>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
