@@ -8,7 +8,17 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-
+const property = {
+  level: { "0": "轿车", "1": "SUV", "2": "MPV", "3": "跑车", "4": "微面", "5": "微卡", "6": "轻客", "7": "皮卡"},
+  structure: { "0": "两厢", "1": "三厢", "2": "掀背", "3": "旅行版", "4": "硬顶敞篷车", "5": "软顶敞篷车", "6": "货车", "7": "客车" },
+  displacement: { "0": "1.0L及以下", "1": "1.1-1.6L", "2": "1.7-2.0L", "3": "2.1-2.5L", "4": "2.6-3.0L", "5": "2.1-4.0L", "6": "4.0L以上"},
+  Transmission: { "0":"手动","1":"自动"},
+  city: { "0": "中国", "1": "德国", "2": "日本", "3": "美国", "4": "韩国", "5": "法国", "6": "英国", "7": "其他" },
+  attribute: { "0": "国产", "1": "进口" },
+  seat: { "0": "2座", "1": "4座", "2": "5座", "3": "6座", "4": "7座", "5": "7以上" },
+  energy: { "0": "汽油", "1": "柴油", "2": "油电混合", "3": "纯电动" },
+  driving_method: { "0": "前驱", "1": "后驱", "2": "四驱" },
+}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -18,6 +28,7 @@ const formatNumber = n => {
 const reLogin = (that,app) =>{
   wx.getUserInfo({
     success: res => {
+      console.log("=========================================================================change")
       app.globalData.userInfo = res.userInfo
       app.globalData.getUserInfo = true
       app.globalData.signature = res.signature
@@ -112,5 +123,6 @@ module.exports = {
   formatTime: formatTime,
   sendlogin:sendlogin,
   reLogin: reLogin,
-  getUserInfoScope: getUserInfoScope
+  getUserInfoScope: getUserInfoScope,
+  property: property
 }

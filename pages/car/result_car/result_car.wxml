@@ -1,0 +1,20 @@
+<!--pages/car/result_car/result_car.wxml-->
+<view class='container'>
+  <view class='page-flex-column'>
+    <swiper indicator-dots="true" autoplay="ture" circular="{{circular}}" style="width: 100vw;">
+      <block wx:for="{{result.carPic}}">
+        <swiper-item>
+          <image mode='aspectFill' src="/resource/image/car-pic/{{item.imgSrc}}" class="slide-image"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='car_name' >{{result.carName}}</view>
+    <view class='car_price' >{{result.price}}</view>
+    <!-- 下拉栏 -->
+    <view class='page-flex-row'>
+      <view class='car_property' style='float: left'>级别：</view>
+      <view class='car_property' style='float: right'>{{property.level[0]}}</view>
+    </view>
+    <!-- 图片下拉栏 -->
+  </view>
+</view>

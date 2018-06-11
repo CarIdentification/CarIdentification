@@ -43,6 +43,7 @@ App({
   globalData: {
     userInfo: null,
     getUserInfo:false,
-    signature:null
+    signature:null,
+    advanced_mess:null
   }
 })

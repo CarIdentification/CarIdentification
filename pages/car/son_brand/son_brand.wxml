@@ -1,0 +1,41 @@
+<!--pages/car/son_brand/son_brand.wxml-->
+<view class='container'>
+  <scroll-view bindscroll="scroll" style="word-wrap: break-word; margin: 0px; padding: 0px;" scroll-y="true" style="height: 100%;"  class="city_list">
+    <view class='brand'>
+      <image class='father_brand_pic' src='/resource/image/brand_pic/{{father_brand.imgUrl}}'></image>
+      <view class="father_title">{{father_brand.name}}</view>
+    </view>
+    <view id='123' class="brand-list" >
+        <block style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brands}}" wx:for-index="idx" wx:for-item="brandName">
+          <text span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{brandName.name}}" class="list_tit">{{brandName.name}}</text>
+          <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brandName.sonBrands}}">
+          <!-- <view class="list_tit_second">
+            <text span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{item.name}}" >{{item.name}}</text>
+          </view> -->
+            <view id="{{item.id}}" data-idx="{{idx}}" data-index='{{index}}' class='brand-flex' bindtap='sonBrand'>
+              <image class="brand-pic" src='/resource/image/brand_pic/{{item.imgUrl}}'></image>
+              <view span="" style="word-wrap: break-word;" class="list_con" data-city="{{item.name}}" >{{item.name}}</view>
+            </view>
+          <!-- 下拉栏 -->
+            <view id="xialalan" hidden="{{hidden[idx][index]}}">
+              <block wx:for="{{cars[idx][index]}}" >
+                <view  id='{{item.id}}' class='list_tit_second' bindtap='getCarMess'>
+                  <image class='son_brand_pic' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+                  <view class='text-flex-column'>
+                    <view>{{item.carName}}</view>
+                    <view>{{item.beginPrice}} — {{item.endPrice}} 万</view>
+                  </view>
+                </view>
+              </block> 
+            </view>
+            <!-- <view id="{{item.id}}" class='brand-flex'>
+              <image class="brand-pic" src='/resource/image/car-pic/{{item.coverPic}}'></image>
+              <view span="" style="word-wrap: break-word;" class="list_con"  >{{item.carName}}</view>
+            </view> -->
+          </block>
+        </block>
+      </view>
+
+      
+  </scroll-view>
+</view>

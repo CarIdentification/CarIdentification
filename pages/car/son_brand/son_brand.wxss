@@ -1,0 +1,73 @@
+/* pages/car/son_brand/son_brand.wxss */
+.brand-list{
+  position: absolute;
+  width: 100%
+}
+
+.list_tit {
+display: block;
+/* line-height: 40px; */
+height: 50rpx;
+/* padding-left: 15px; */
+font-size: 34rpx;
+background: #efeff4;
+color: #666;
+}
+
+.list_tit_second {
+display: flex;
+padding-left: 15px; 
+font-size: 34rpx;
+background:  #efeff4;
+color: #666;
+flex-flow: wrap row;
+margin:10rpx 10rpx
+
+}
+
+.brand-pic{
+  width: 20vw;
+  height: 20vw;
+  background-color: yellow;
+}
+
+.list_con {
+height: 40px;
+/* border-top: 1px #f5f5f5 solid ; */
+line-height:150rpx;
+font-size:38rpx;
+margin:0rpx 30rpx;
+
+}
+.city_list {
+position: relative;
+}
+
+.brand-flex{
+  display:flex;
+  /* justify-content:center; */
+  flex-flow: wrap row;
+}
+.brand{
+  display:flex;
+  /* justify-content:center; */
+  flex-flow: wrap row;
+}
+
+.father_brand_pic{
+  width: 10vw;
+  height: 10vw;
+}
+
+.father_title{
+  font-size: 28rpx;
+  margin: 10rpx 20rpx;
+  line-height:50rpx;
+
+}
+.son_brand_pic{
+  width: 15vw;
+  height: 15vw;
+  margin:5rpx 5rpx;
+
+}

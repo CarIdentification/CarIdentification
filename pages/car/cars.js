@@ -1,8 +1,10 @@
 //先引用城市数据文件
-var city = require('../../utils/test/test.js')
+
 var lineHeight = 0;
 var endWords = "";
 var isNum;
+const app = getApp()
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -13,8 +15,9 @@ Page({
     brand: [{ brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }],
 
     hidden: 0,
-    cityName: "", //获取选中的城市名
-
+    // 是否已经拥有品牌
+    hasBrand: false
+  
   },
 
   /**
@@ -28,15 +31,33 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // 生命周期函数--监听页面初次渲染完成
-    var cityChild = city.City[0];
-    var that = this;
+    var that = this
+
+    
+    //在拥有权限的前提下，动态获取品牌信息
+    wx.request({
+      url: 'http://localhost:8762/api-basicS/search/getBrands',
+      data: { signature: app.globalData.signature },
+      success: function (e) {
+        // wx.setStorageSync("brand",e.entity)
+        if (e.data.stateInfo == "success") {
+          that.setData({
+            brands: e.data.entity,
+            hasBrand: true
+          })
+        }
+      }
+    })
+    
+    
+    //设置字母导航条
+    // var cityChild = city.City[0];
     wx.getSystemInfo({
       success: function (res) {
         lineHeight = (res.windowHeight - 100) / 22;
         console.log(res.windowHeight - 100)
         that.setData({
-          city: cityChild,
+          // city: cityChild,
           winHeight: res.windowHeight,
           lineHeight: lineHeight
         })
@@ -48,7 +69,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    
+    if (!that.data.hasBrand) {
+      console.log(that.data.hasBrand + "*******************************************")
+      //动态获取品牌信息
+      wx.request({
+        url: 'http://localhost:8762/api-basicS/search/getBrands',
+        data: { signature: app.globalData.signature },
+        success: function (e) {
+          // wx.setStorageSync("brand",e.entity)
+          if (e.data.entity.stateInfo == "success") {
+            that.setData({
+              brands: e.data.entity,
+              hasBrand: true
+            })
+          }
+        }
+      })
+    }
+    
   },
 
   /**
@@ -158,19 +198,19 @@ Page({
       })
     }
   },
-  //选择城市，并让选中的值显示在文本框里
-  bindCity: function (e) {
-    console.log(e);
-    var cityName = e.currentTarget.dataset.city;
-    this.setData({ cityName: cityName })
-  },
   //滑动条显示事件
   scroll:function(e){
     var that = this
-    console.log(e.detail.scrollTop)
+    // console.log(e.detail.scrollTop)
     that.setData({
       hidden: e.detail.scrollTop
     })
-    
+  },
+  // 查找子商标
+  sonBrand:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/car/son_brand/son_brand?id='+e.currentTarget.id,
+    })
   }
 })

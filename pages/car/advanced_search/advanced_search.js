@@ -1,4 +1,5 @@
 // pages/car/advanced_search/advanced_search.js
+const app = getApp()
 Page({
 
   /**
@@ -131,22 +132,14 @@ Page({
   },
   formSubmit:function(e){
     console.log(e)
-    var param = { titles: ['col1', 'col2', 'col3'],price:[1,2] }
+    // var param = { titles: ['col1', 'col2', 'col3'],price:[1,2] }
     var that = this
-
-    wx.request({
-      method: 'POST',
-      dataType: "json",
-      url: 'http://localhost:8762/api-basicS/search/advancedSearch',
-      data:e.detail.value,
-      header:{
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"
-      },
-      success: function (res) {
-        
-      }
+    app.globalData.advanced_mess = e.detail.value
+    
+    wx.navigateTo({
+      url: '../result_list/result_list',
     })
+      
   },
   serviceValChange: function (e) {
     console.log(e)

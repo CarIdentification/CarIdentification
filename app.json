@@ -10,7 +10,10 @@
     "pages/persona/edit_personal/edit_personal",
     "pages/issue/text/text",
     "pages/persona/add_tag/add_tag",
-    "pages/car/advanced_search/advanced_search"
+    "pages/car/advanced_search/advanced_search",
+    "pages/car/result_list/result_list",
+    "pages/car/son_brand/son_brand",
+    "pages/car/result_car/result_car"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

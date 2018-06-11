@@ -6,7 +6,6 @@ const util = require('../../utils/util.js');
 Page({
   data: {
     userInfo: {},
-    hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input状态
     inputShowed: false,
@@ -49,7 +48,6 @@ Page({
     if (app.globalData.userInfo) {
       that.setData({
         userInfo: app.globalData.userInfo,
-        hasUserInfo: true
       })
       
     } else if (this.data.canIUse){
@@ -59,25 +57,11 @@ Page({
         
         that.setData({
           userInfo: res.userInfo,
-          hasUserInfo: true
         })
       }
       console.log("indexA.js-没有权限")
       util.getUserInfoScope(that, app)
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      // console.log("没有个人信息权限")
-      // wx.getUserInfo({
-      //   success: res => {
-      //     console.log("成功获取个人信息")
-      //     app.globalData.userInfo = res.userInfo
-      //     that.setData({
-      //       userInfo: res.userInfo,
-      //       hasUserInfo: true
-      //     })
-          
-      //   }
-      // })
       console.log("indexB.js-没有权限")
       util.getUserInfoScope(that, app)
     }
@@ -88,7 +72,6 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     that.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
   },
   getCarPhoto: function(e){

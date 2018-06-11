@@ -84,11 +84,11 @@ position: relative;
 /*城市选择头部*/
 .list_tit {
 display: block;
-line-height: 40px;
-height: 40px;
+/* line-height: 40px; */
+height: 50rpx;
 padding-left: 15px;
-font-size: 38rpx;
-background: #f5f5f5;
+font-size: 34rpx;
+background: #efeff4;
 color: #666;
 }
 .list_con {
