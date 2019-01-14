@@ -81,9 +81,9 @@
     <view class='text-title-view'>
       <view class='text-title'>国家</view>
     </view>
-    <checkbox-group id="city" name="city" bindchange="serviceValChange">  
+    <checkbox-group id="country" name="country" bindchange="serviceValChange">  
         <view class="page-flex-row">  
-          <block wx:for="{{city}}">  
+          <block wx:for="{{country}}">  
             
               <label class="square {{item.isCheck?'is_checked':''}}">  
                 <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  
@@ -97,9 +97,9 @@
   <view class='text-title-view'>
       <view class='text-title'>属性</view>
     </view>
-    <checkbox-group id="attribute" name="attribute" bindchange="serviceValChange">  
+    <checkbox-group id="production_methods" name="production_methods" bindchange="serviceValChange">  
         <view class="page-flex-row">  
-          <block wx:for="{{attribute}}">  
+          <block wx:for="{{production_methods}}">  
             
               <label class="square {{item.isCheck?'is_checked':''}}">  
                 <checkbox value="{{item.value}}" checked="{{item.isCheck}}" hidden="false" />{{item.name}}  

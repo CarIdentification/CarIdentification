@@ -15,6 +15,13 @@
   justify-content:center;
   flex-flow: wrap row;
 }
+
+.page-flex-row-noCenter{
+  display:flex;
+  /* justify-content:center; */
+  flex-flow: wrap row;
+}
+
 .page-flex-column{
   align-items: center;
   padding-bottom: 10rpx;
@@ -23,10 +30,11 @@
   flex-direction: column;
 }
 .text-flex-column{
- padding-left:20rpx;
-
+  padding-left:20rpx;
   display:flex;
   flex-direction: column;
+  padding:7rpx 0rpx 0rpx 30rpx;
+
 }
 
 .gray-block{

@@ -13,7 +13,7 @@
             <text span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{item.name}}" >{{item.name}}</text>
           </view> -->
             <view id="{{item.id}}" data-idx="{{idx}}" data-index='{{index}}' class='brand-flex' bindtap='sonBrand'>
-              <image class="brand-pic" src='/resource/image/brand_pic/{{item.imgUrl}}'></image>
+              <image lazy-load="true" class="brand-pic" src='/resource/image/brand_pic/{{item.imgUrl}}'></image>
               <view span="" style="word-wrap: break-word;" class="list_con" data-city="{{item.name}}" >{{item.name}}</view>
             </view>
           <!-- 下拉栏 -->

@@ -15,7 +15,60 @@
  color: red;
 }
 
-.car_property{
-  width: 50vw;
+.car_property_title{
+  width:50%;
+color:rgba(0,0,0,0.6);
+font-size:35rpx;
+
   
+}
+
+.car_property_content{
+  width:40%;
+text-align:right;
+color:rgba(0,0,0,0.6);
+font-size:35rpx;
+
+}
+
+.pic_list{
+  display:flex;
+  flex-flow: wrap row;
+  width:100%;
+  margin:10rpx 0rpx;
+
+
+}
+.pic_cell{
+ width: 30vw;
+ height: 30vw;
+ padding:0rpx 11rpx 0rpx 15rpx;
+
+}
+.salesman_cell{
+  display:flex;
+  flex-flow: wrap column;
+  width:100%;
+  margin:10rpx 0rpx;
+}
+.title{
+  font-size:35rpx;
+  font-weight:bold;
+}
+.salesman_cell{
+  background-color: rgba(197,212,250,0.5);
+  border-radius: 10rpx;
+  width:94vw;
+  margin:5rpx 15rpx 15rpx 15rpx;
+  padding:20rpx 0rpx 20rpx 20rpx;
+
+
+
+}
+
+.personal_icon{
+  width: 15vw;
+  height: 15vw;
+  border-radius:10rpx;
+
 }

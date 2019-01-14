@@ -8,6 +8,8 @@ Page({
   data: {
     property:util.property,
     result:{},
+    pics:[],
+    salesmans:[]
   },
 
   /**
@@ -25,9 +27,26 @@ Page({
       url: 'http://localhost:8762/api-basicS/search/getCar',
       data:{id:id},
       success:function(res){
+        var pics = new Array()
+        for (var i = 0; i < res.data.entity.carPic.length; i++) {
+          pics[i] = "../../../resource/image/car-pic/" + res.data.entity.carPic[i].imgSrc
+        }
+        console.log(pics)
         that.setData({
-          result:res.data.entity
+          result:res.data.entity,
+          pics:pics
         })
+        wx.request({
+          url: 'http://localhost:8762/api-basicS/search/getSalesman',
+          data:{brandId:res.data.entity.carBrand},
+          success:function(e){
+            that.setData({
+              salesmans:e.data.entity
+            })
+          }
+        })
+        
+
       }
     })
   },
@@ -79,5 +98,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  showPic:function(e){
+    // console.log(e)
+    var that = this
+    wx.previewImage({
+      current: e.currentTarget.dataset.src,// 当前显示图片的http链接
+      urls: that.data.pics // 需要预览的图片http链接列表
+    })
   }
 })

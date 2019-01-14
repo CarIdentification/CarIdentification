@@ -86,8 +86,13 @@ Page({
   }
   ,
   getUserInfo: function (e) {
+    //获取用户信息后重新登陆
     console.log("personal.js :reLogin")
     util.reLogin(this, app)
+    //跳转到识别页面
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
     
   }
   ,navigateTag:function(){

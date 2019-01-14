@@ -2,7 +2,7 @@
 <view class='container' >
   <!-- 个人资料 -->
   <view class="page-flex-column" style='padding-top:50rpx;background-color:rgba(197, 212, 250, 0.5);'>
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 开启图像识别 </button>
     <block wx:else>
       <image  class="userinfo-avatar page-flex-row" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname page-flex-row">{{userInfo.nickName}}</text>

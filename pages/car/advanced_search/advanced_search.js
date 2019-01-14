@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     level:[
       { name: "轿车",value:'0',isCheck:false},
       { name: "SUV", value: '1', isCheck: true },
@@ -39,7 +40,7 @@ Page({
       { name: "手动", value: '0', isCheck: false },
       { name: "自动", value: '1', isCheck: false },
     ],
-    city:[
+    country:[
       { name: "中国", value: '0', isCheck: false },
       { name: "德国", value: '1', isCheck: false },
       { name: "日本", value: '2', isCheck: false },
@@ -49,7 +50,7 @@ Page({
       { name: "英国", value: '6', isCheck: false },
       { name: "其他", value: '7', isCheck: false },
     ],
-    attribute:[
+    production_methods:[
       { name: "国产", value: '0', isCheck: false },
       { name: "进口", value: '1', isCheck: false },
     ],
@@ -154,10 +155,10 @@ Page({
       array = that.data.displacement
     } else if (id =="Transmission"){
       array = that.data.Transmission
-    } else if (id =="city"){
-      array = that.data.city
-    } else if (id =="attribute"){
-      array = that.data.attribute
+    } else if (id =="country"){
+      array = that.data.country
+    } else if (id =="production_methods"){
+      array = that.data.production_methods
     } else if (id =="seat"){
       array = that.data.seat
     } else if (id =="energy"){

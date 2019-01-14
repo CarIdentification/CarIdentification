@@ -28,7 +28,7 @@ margin:10rpx 10rpx
 .brand-pic{
   width: 20vw;
   height: 20vw;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .list_con {
@@ -47,6 +47,8 @@ position: relative;
   display:flex;
   /* justify-content:center; */
   flex-flow: wrap row;
+  border-bottom-style:inset;
+  border-bottom-width:5rpx;
 }
 .brand{
   display:flex;

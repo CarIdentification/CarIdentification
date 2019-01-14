@@ -11,7 +11,8 @@ Page({
     inputShowed: false,
     inputVal: "",
     //历史记录
-    history:[]
+    history:[],
+    discernResult:[{}]
   },
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg)
@@ -74,23 +75,49 @@ Page({
       userInfo: e.detail.userInfo,
     })
   },
-  getCarPhoto: function(e){
-    wx.chooseImage({
-      count:3,
-      success: function(res) {
-        var tempFilePaths = res.tempFilePaths;
-        console.log(tempFilePaths)
-        wx.request({
-          url: '',
-          data:{},
-          success: function (res) {
-            console.log(res.data)
-
-          }
-        })
+  uploadImg: function (i, tempFilePaths,size,last){
+    var that = this;
+    if (i == size - 1) {
+      last = 1;
+    }
+    wx.uploadFile({
+      url: 'http://localhost:8762/api-basicS/search/pictureDiscern',
+      filePath: tempFilePaths[i],
+      name: 'file',
+      formData: {
+        signature: app.globalData.signature,
+        serial: i,
+        last: last
       },
+      success(res) {
+        if(last==0){
+          that.uploadImg(++i,tempFilePaths,size,last);
+        }else{
+          
+          wx.setStorageSync('discernResult', JSON.parse(res.data))
+          console.log(wx.getStorageSync('discernResult'))
+
+          wx.navigateTo({
+            url: 'discern/discern',
+          })
+        }
+      }
     })
   },
+  getCarPhoto: function(e){
+    var that = this;
+    wx.chooseImage({
+      count:3,
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        var size = tempFilePaths.length
+        console.log(tempFilePaths)
+        var last = 0;
+        that.uploadImg(0, tempFilePaths,size,last);
+      }
+    })
+  },
+
   showInput: function () {
     var that = this;
     console.log("index_signature:            " + app.globalData.signature)
@@ -149,7 +176,7 @@ Page({
     //   }
     // })
     wx.navigateTo({
-      url: '/pages/index/search/search',
+      url: '/pages/index/search/search?msg=' + e.detail.value,
     })
   }
 })

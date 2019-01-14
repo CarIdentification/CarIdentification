@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/index/search/search",
     "pages/logs/logs",
@@ -13,7 +13,8 @@
     "pages/car/advanced_search/advanced_search",
     "pages/car/result_list/result_list",
     "pages/car/son_brand/son_brand",
-    "pages/car/result_car/result_car"
+    "pages/car/result_car/result_car",
+    "pages/index/discern/discern"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -21,31 +22,31 @@
     "navigationBarTitleText": "识车小程序"
   },
   "tabBar": {
-    "backgroundColor":"#C5D4FA",
-    "borderStyle":"black",
-    "position":"bottom",
+    "backgroundColor": "#C5D4FA",
+    "borderStyle": "black",
+    "position": "bottom",
     "list": [
       {
         "pagePath": "pages/car/cars",
         "iconPath": "resource/image/tabBar_car_icon1.png",
         "selectedIconPath": "resource/image/tabBar_car_icon1.png"
-        
-      },{
+      },
+      {
         "pagePath": "pages/issue/issue",
         "iconPath": "resource/image/tabBar_issue_icon.png",
         "selectedIconPath": "resource/image/tabBar_issue_icon.png"
-        
       },
       {
         "pagePath": "pages/index/index",
         "iconPath": "resource/image/tabBar_index_icon1.png",
-        "selectedIconPath":"resource/image/tabBar_index_icon1.png"
+        "selectedIconPath": "resource/image/tabBar_index_icon1.png"
       },
       {
         "pagePath": "pages/shop/shop",
         "iconPath": "resource/image/tabBar_shop_icon.png",
         "selectedIconPath": "resource/image/tabBar_shop_icon.png"
-      },{
+      },
+      {
         "pagePath": "pages/persona/personal",
         "iconPath": "resource/image/tabBar_person_icon2.png",
         "selectedIconPath": "resource/image/tabBar_person_icon2.png"

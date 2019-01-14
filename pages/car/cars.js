@@ -11,9 +11,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    price: [{ from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }, { from: 0, to: 5, text: "5万以下" }],
-    brand: [{ brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }, { brandName: "123", src: "/resource/image/car-pic/pic2.jpg" }],
-
+    price: [
+      { from: 0, to: 5, text: "5万以下" },
+      { from: 5, to: 8, text: "5-8万" }, 
+      { from: 8, to: 10, text: "8-10万" }, 
+      { from: 10, to: 15, text: "10-15万" }, 
+      { from: 15, to: 20, text: "15-20万" }, 
+      { from: 20, to: 25, text: "20-25万" }, 
+      { from: 25, to: 35, text: "25-35万" }, 
+      { from: 35, to: 50, text: "35-50万" }],
+    brand: [
+      { brandName: "123", src: "/resource/image/brand_pic/1.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/2.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/3.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/4.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/5.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/6.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/7.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/8.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/9.jpg" },
+      { brandName: "123", src: "/resource/image/brand_pic/10.jpg" },
+    ],
     hidden: 0,
     // 是否已经拥有品牌
     hasBrand: false
@@ -24,7 +42,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    if (app.globalData.userInfo) {
+      that.setData({
+        userInfo: app.globalData.userInfo,
+      })
+      
+    } else if (this.data.canIUse){
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        
+        that.setData({
+          userInfo: res.userInfo,
+        })
+      }
+      console.log("indexA.js-没有权限")
+      util.getUserInfoScope(that, app)
+    } else {
+      console.log("indexB.js-没有权限")
+      util.getUserInfoScope(that, app)
+    }
   },
 
   /**
@@ -70,7 +108,9 @@ Page({
    */
   onShow: function () {
     var that = this
-    
+    if (!app.globalData.userInfo) {
+      util.getUserInfoScope(that, app)
+    }
     if (!that.data.hasBrand) {
       console.log(that.data.hasBrand + "*******************************************")
       //动态获取品牌信息
@@ -211,6 +251,17 @@ Page({
     console.log(e)
     wx.navigateTo({
       url: '/pages/car/son_brand/son_brand?id='+e.currentTarget.id,
+    })
+  },
+  priceSubmit:function(e){
+    console.log(e)
+    var param = {
+      be_price: e.currentTarget.dataset.from,
+      en_price: e.currentTarget.dataset.to,
+    }
+    app.globalData.advanced_mess = param
+    wx.navigateTo({
+      url: 'result_list/result_list',
     })
   }
 })

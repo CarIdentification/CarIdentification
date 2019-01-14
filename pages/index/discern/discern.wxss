@@ -1,0 +1,134 @@
+/* pages/index/discern/discern.wxss */
+.dis_container{
+  display: flex;
+  justify-content: flex-start;
+  background-color: #DCE0F4;
+  height:100%;
+  flex-direction:column;
+  align-items:center;
+  box-sizing:border-box;
+
+}
+.rediscern_but_view{
+  display: flex;
+  justify-content: center;
+  height: 7%;
+  margin-bottom:20rpx;
+  margin-top:40rpx;
+
+}
+.swiper_{
+  width: 100%;
+  margin-top:35rpx;
+  height:970px;
+
+}
+.swiper_cell{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  flex-direction:column;
+
+}
+.car_pic_list{
+  width: 100%
+}
+.car_pic{
+  height:172.5rpx;
+  width: 30%;
+  margin:20rpx 10rpx;
+
+}
+.car_list_cell{
+  background-color: white;
+  border-radius:6px 6px 0px 0px;
+  /* width: 90%; */
+  flex-direction:column;
+  display: flex;
+  justify-content:flex-start;
+  align-items:center;
+  height:100%;
+
+}
+.car_img{
+  width:614.4rpx;
+  height:460.8rpx;
+  margin-top:30rpx;
+
+
+}
+.rediscern_but{
+  width: 40%;
+  height: 100%;
+  border-radius:6px;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background-color: white;
+
+}
+.icon_img{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx
+  
+}
+.text{
+  font-size: 36rpx
+}
+.car_config{
+  width: 100%;
+  background-color:#F4F6FF;
+  margin:0rpx 0rpx;
+  padding-top:10rpx;
+  padding-bottom:10rpx;
+
+}
+
+.car_property_title{
+  width:50%;
+color:black;
+font-size:35rpx;
+
+  
+}
+
+.car_property_content{
+  width:40%;
+text-align:right;
+color:black;
+font-size:35rpx;
+
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.salesman_list{
+  display:flex;
+  flex-flow: wrap column;
+  width:100%;
+  margin:10rpx 0rpx;
+}
+.title{
+  font-size:35rpx;
+  font-weight:bold;
+}
+.salesman_cell{
+  background-color: #F4F6FF;
+  border-radius: 10rpx;
+  width:94vw;
+  margin:5rpx 15rpx 15rpx 15rpx;
+  padding:20rpx 0rpx 20rpx 20rpx;
+
+
+
+}
+.personal_icon{
+  width: 15vw;
+  height: 15vw;
+  border-radius:10rpx;
+
+}

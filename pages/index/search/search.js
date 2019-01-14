@@ -34,8 +34,19 @@ Page({
     }
   }
   ,
-  onLoad: function () {
+  onLoad: function (option) {
     var that = this;
+    var msg = option.msg;
+    wx.request({
+      url: 'http://localhost:8762/api-basicS/search/textSearch',
+      data:{
+        searchContext: msg,
+        signature: app.globalData.signature
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
   },
   
   showInput: function () {
@@ -89,10 +100,6 @@ Page({
       },
       success: function (res) {
         console.log(res.data)
-        //获取返回结果，进入新页面展示
-        wx.navigateTo({
-          url: '/pages/index/search/search',
-        })
       }
     })
   }

@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view style="height: 100%;" >
+  <view style=''></view>
   <view class="page__bd" style="height: 45%;">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">

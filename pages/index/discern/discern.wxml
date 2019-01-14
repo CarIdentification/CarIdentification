@@ -1,0 +1,73 @@
+<scroll-view scroll-y='true' class='dis_container' bindscroll='scroll_' style="height: {{winHeight}}px;">
+  <view class='rediscern_but_view'>
+    <view class='rediscern_but' bindtap='abc'><image class='icon_img' src='{{iconImg}}'></image><text class='text'>重新识别</text></view>
+  </view>
+  
+  <swiper
+  indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}"
+  current="{{current}}"
+  circular="{{circular}}"
+  class='swiper_'
+>
+  <block wx:for="{{discernResult}}">
+    <swiper-item class='swiper_cell'>
+      <view class='car_list_cell' style='width:{{750*widthSize}}rpx'>
+        <view class='car_pic_list page-flex-row'>
+          <image  mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+        </view>
+        <!-- <image class='car_img' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image> -->
+        <view class='car_name'>{{item.carName}}</view>
+        <view class='car_price'>{{item.beginPrice}} - {{item.endPrice}} 万</view>
+        <!-- <view class='title'>基本参数：</view> -->
+        <view class='page-flex-row car_config' >
+          <view class='car_property_title'>级别：</view>
+          <view class='car_property_content'>{{property.level[item.level]}}</view>
+          <view class='car_property_title'>结构：</view>
+          <view class='car_property_content'>{{property.structure[item.structure]}}</view>
+          <view class='car_property_title'>排量：</view>
+          <view class='car_property_content'>{{item.displacement}}</view>
+          <view class='car_property_title'>座位数：</view>
+          <view class='car_property_content'>{{item.seat}}</view>
+          <view class='car_property_title'>进气形式：</view>
+          <view class='car_property_content'>{{property.air_intake[item.airIntake]}}</view>
+          <view class='car_property_title'>能源：</view>
+          <view class='car_property_content'>{{property.energy[item.energy]}}</view>
+          <view class='car_property_title'>驱动方式：</view>
+          <view class='car_property_content'>{{property.driving_method[item.drivingMethod]}}</view>
+          <view class='car_property_title'>变速箱</view>
+          <view class='car_property_content'>{{property.Transmission[item.transmission]}}</view>
+        </view>
+        <view class='car_pic_list page-flex-row'>
+          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+        </view>
+        <view class='car_pic_list page-flex-row'>
+          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+        </view>
+        <!-- 4s店 -->
+        <view class='salesman_list'>
+          <block wx:for="{{item.salesman}}">
+            <view class='salesman_cell'>
+              <view class='title'>店名：{{item.sellShopInfo.shopName}}</view>
+              <view class='title'>地址：{{item.sellShopInfo.locationDetail}}</view>
+              <view class='title'>销售人员:</view>
+              <view class='page-flex-row-noCenter'>
+                <image mode='aspectFill' class='personal_icon' src='/resource/image/person-pic/{{item.personalPic}}'></image>
+                <view class='text-flex-column'>
+                  <view>姓名：{{item.name}}</view>
+                  <view>联系方式：{{item.tel}}</view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+</scroll-view>
+

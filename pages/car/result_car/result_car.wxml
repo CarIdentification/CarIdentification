@@ -9,12 +9,54 @@
       </block>
     </swiper>
     <view class='car_name' >{{result.carName}}</view>
-    <view class='car_price' >{{result.price}}</view>
+    <view class='car_price' >{{result.beginPrice}}-{{result.endPrice}}万</view>
     <!-- 下拉栏 -->
-    <view class='page-flex-row'>
-      <view class='car_property' style='float: left'>级别：</view>
-      <view class='car_property' style='float: right'>{{property.level[0]}}</view>
+    <!-- <view class='car_property' hidden='false'>
+
+    </view> -->
+    <!-- <view class='title'>基本参数：</view> -->
+    <view class='page-flex-row' style='background-color:rgba(239,239,244,0.4);margin:0rpx 10rpx;' >
+      <view class='car_property_title'>级别：</view>
+      <view class='car_property_content'>{{property.level[result.level]}}</view>
+      <view class='car_property_title'>结构：</view>
+      <view class='car_property_content'>{{property.structure[result.structure]}}</view>
+      <view class='car_property_title'>排量：</view>
+      <view class='car_property_content'>{{result.displacement}}</view>
+      <view class='car_property_title'>座位数：</view>
+      <view class='car_property_content'>{{result.seat}}</view>
+      <view class='car_property_title'>进气形式：</view>
+      <view class='car_property_content'>{{property.air_intake[result.airIntake]}}</view>
+      <view class='car_property_title'>能源：</view>
+      <view class='car_property_content'>{{property.energy[result.energy]}}</view>
+      <view class='car_property_title'>驱动方式：</view>
+      <view class='car_property_content'>{{property.driving_method[result.drivingMethod]}}</view>
+      <view class='car_property_title'>变速箱</view>
+      <view class='car_property_content'>{{property.Transmission[result.transmission]}}</view>
     </view>
     <!-- 图片下拉栏 -->
+    <view class='pic_list'>
+      <block wx:for="{{result.carPic}}">
+        <view class='pic_cell'>
+          <image mode='aspectFill' src="/resource/image/car-pic/{{item.imgSrc}}"  data-src='/resource/image/car-pic/{{item.imgSrc}}' class="slide-image" bindtap='showPic'/>
+        </view>
+      </block>
+    </view>
+    <!-- 4s店 -->
+    <view class='salesman_list'>
+      <block wx:for="{{salesmans}}">
+        <view class='salesman_cell'>
+          <view class='title'>店名：{{item.sellShopInfo.shopName}}</view>
+          <view class='title'>地址：{{item.sellShopInfo.locationDetail}}</view>
+          <view class='title'>销售人员:</view>
+          <view class='page-flex-row-noCenter'>
+            <image mode='aspectFill' class='personal_icon' src='/resource/image/person-pic/{{item.personalPic}}'></image>
+            <view class='text-flex-column'>
+              <view>姓名：{{item.name}}</view>
+              <view>联系方式：{{item.tel}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
   </view>
 </view>
