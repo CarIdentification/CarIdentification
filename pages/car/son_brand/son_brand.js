@@ -130,7 +130,7 @@ Page({
       //如果没有获取过数据
       if(that.data.cars[idx][index]==undefined){
         wx.request({
-          url: 'http://localhost:8763/search/getCars',
+          url: 'http://' + app.globalData.localhost +'/api-basicS/search/getCars',
           data: {
             id: id,
             pageNum: load_index
@@ -182,7 +182,7 @@ Page({
       var car_Index = "carIndex[" + idx + "][" + index + "]";
       var cars = "cars[" + idx + "][" + index + "]";
       wx.request({
-        url: 'http://localhost:8763/search/getCars',
+        url: 'http://' + app.globalData.localhost +'/api-basicS/search/getCars',
         data: {
           id: id,
           pageNum: load_index
@@ -194,6 +194,7 @@ Page({
             var carList = that.data.cars[idx][index]
             for(var i = 0 ; i < e.data.entity.cars.length ; i++){
               carList.push(e.data.entity.cars[i])
+              
             }
             param[car_Index] = e.data.entity.pageNum;
             param[cars] = carList;
