@@ -44,6 +44,7 @@ App({
     userInfo: null,
     getUserInfo:false,
     signature:null,
-    advanced_mess:null
+    advanced_mess:null,
+    localhost : "119.29.208.119:8762"
   }
 })

@@ -4,7 +4,7 @@
     <swiper indicator-dots="true" autoplay="ture" circular="{{circular}}" style="width: 100vw;">
       <block wx:for="{{result.carPic}}">
         <swiper-item>
-          <image mode='aspectFill' src="/resource/image/car-pic/{{item.imgSrc}}" class="slide-image"/>
+          <image mode='aspectFill' src="http:{{item.imgSrc}}" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
@@ -37,7 +37,7 @@
     <view class='pic_list'>
       <block wx:for="{{result.carPic}}">
         <view class='pic_cell'>
-          <image mode='aspectFill' src="/resource/image/car-pic/{{item.imgSrc}}"  data-src='/resource/image/car-pic/{{item.imgSrc}}' class="slide-image" bindtap='showPic'/>
+          <image mode='aspectFill' src="http:{{item.imgSrc}}"  data-src='/resource/image/car-pic/{{item.imgSrc}}' class="slide-image" bindtap='showPic'/>
         </view>
       </block>
     </view>

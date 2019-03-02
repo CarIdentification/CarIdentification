@@ -3,7 +3,7 @@
   <scroll-view bindscroll="scroll" style="word-wrap: break-word; margin: 0px; padding: 0px;" scroll-y="true" style="height: 100%;"  class="city_list">
     <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{cars}}">
       <view id="{{item.id}}" class='brand-flex' bindtap='showCarMess'>
-        <image lazy-load="true" class="brand-pic" src='/resource/image/car-pic/{{item.coverPic}}'></image>
+        <image lazy-load="true" class="brand-pic" src='http:{{item.coverPic}}'></image>
         <view span="" style="word-wrap: break-word;" class="list_con" >{{item.carName}}</view>
       </view>
     </block>

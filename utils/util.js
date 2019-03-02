@@ -1,3 +1,4 @@
+const localhost = "119.29.208.119:8762"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -87,7 +88,7 @@ const sendlogin = (userInfo, signature, rawData) => {
       if (res.code) {
         //发起网络请求
         wx.request({
-          url: 'http://localhost:8762/api-basicS/personal/sendUserCode',
+          url: 'http://' + localhost +'/api-basicS/personal/sendUserCode',
           data: {
             code: res.code,
             nickname: userInfo.nickName,
@@ -97,7 +98,8 @@ const sendlogin = (userInfo, signature, rawData) => {
             rawData: rawData
           },
           success: function (res) {
-            console.log(res.data)
+            console.log("登陆成功："+res.data)
+            console.log( res.data)
 
           }
         })
@@ -113,5 +115,6 @@ module.exports = {
   sendlogin:sendlogin,
   reLogin: reLogin,
   getUserInfoScope: getUserInfoScope,
-  property: property
+  property: property,
+  localhost:localhost
 }

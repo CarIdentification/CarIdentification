@@ -1,5 +1,6 @@
 // pages/car/result_car/result_car.js
 const util = require('../../../utils/util.js');
+const app = getApp();
 Page({
 
   /**
@@ -24,7 +25,7 @@ Page({
     // })
     var id = options.id
     wx.request({
-      url: 'http://localhost:8762/api-basicS/search/getCar',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/search/getCar',
       data:{id:id},
       success:function(res){
         var pics = new Array()
@@ -37,7 +38,7 @@ Page({
           pics:pics
         })
         wx.request({
-          url: 'http://localhost:8762/api-basicS/search/getSalesman',
+          url: 'http://' + app.globalData.localhost +'/api-basicS/search/getSalesman',
           data:{brandId:res.data.entity.carBrand},
           success:function(e){
             that.setData({

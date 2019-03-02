@@ -153,7 +153,7 @@ Page({
     wx.request({
       
       method:'POST',
-      url: 'http://localhost:8762/api-basicS/personal/addTag',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/personal/addTag',
       data:  add,
       success: function (res) {
         that.setData({
@@ -177,7 +177,7 @@ Page({
     wx.request({
 
       method: 'POST',
-      url: 'http://localhost:8762/api-basicS/personal/removeTag',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/personal/removeTag',
       data: remove,
       success: function (res) {
         that.setData({
@@ -196,7 +196,7 @@ Page({
 
     //请求未选择的标签
     wx.request({
-      url: 'http://localhost:8762/api-basicS/personal/noTags',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/personal/noTags',
       data: {
         signature: app.globalData.signature
       },
@@ -212,7 +212,7 @@ Page({
 
     //请求已使用的标签
     wx.request({
-      url: 'http://localhost:8762/api-basicS/personal/tags',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/personal/tags',
       data: {
         signature: app.globalData.signature
       },

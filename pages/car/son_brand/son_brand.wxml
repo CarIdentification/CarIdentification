@@ -8,19 +8,19 @@
     <view id='123' class="brand-list" >
         <block style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brands}}" wx:for-index="idx" wx:for-item="brandName">
           <text span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{brandName.name}}" class="list_tit">{{brandName.name}}</text>
-          <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brandName.sonBrands}}">
+          <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brandName.sonBrands}}" wx:for-item="secondBrand">
           <!-- <view class="list_tit_second">
             <text span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" id="{{item.name}}" >{{item.name}}</text>
           </view> -->
-            <view id="{{item.id}}" data-idx="{{idx}}" data-index='{{index}}' class='brand-flex' bindtap='sonBrand'>
-              <image lazy-load="true" class="brand-pic" src='/resource/image/brand_pic/{{item.imgUrl}}'></image>
-              <view span="" style="word-wrap: break-word;" class="list_con" data-city="{{item.name}}" >{{item.name}}</view>
+            <view id="{{secondBrand.id}}" data-idx="{{idx}}" data-index='{{index}}' class='brand-flex' bindtap='sonBrand'>
+              <image lazy-load="true" class="brand-pic" src='/resource/image/brand_pic/{{secondBrand.imgUrl}}'></image>
+              <view span="" style="word-wrap: break-word;" class="list_con" data-city="{{secondBrand.name}}" >{{secondBrand.name}}</view>
             </view>
           <!-- 下拉栏 -->
             <view id="xialalan" hidden="{{hidden[idx][index]}}">
-              <block wx:for="{{cars[idx][index]}}" >
-                <view  id='{{item.id}}' class='list_tit_second' bindtap='getCarMess'>
-                  <image class='son_brand_pic' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+              <block wx:for="{{cars[idx][index]}}" wx:for-index="thirdIndex" >
+                <view  id='{{item.id}}' data-fatherId="{{secondBrand.id}}" data-idx="{{idx}}" data-index='{{index}}' class='list_tit_second' bindtap='getCarMess' bindtouchstart='downCar'>
+                  <image class='son_brand_pic' src='http:{{item.coverPic}}'></image>
                   <view class='text-flex-column'>
                     <view>{{item.carName}}</view>
                     <view>{{item.beginPrice}} — {{item.endPrice}} 万</view>

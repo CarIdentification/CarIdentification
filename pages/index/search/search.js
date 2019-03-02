@@ -38,7 +38,7 @@ Page({
     var that = this;
     var msg = option.msg;
     wx.request({
-      url: 'http://localhost:8762/api-basicS/search/textSearch',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/search/textSearch',
       data:{
         searchContext: msg,
         signature: app.globalData.signature
@@ -53,7 +53,7 @@ Page({
     var that = this;
     console.log("index_signature:            " + app.globalData.signature)
     wx.request({
-      url: 'http://localhost:8762/api-basicS/search/textSearchHistory',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/search/textSearchHistory',
       data: {
 
         signature: app.globalData.signature
@@ -93,7 +93,7 @@ Page({
   confirmInput: function (e) {
     console.log(e.detail.value)
     wx.request({
-      url: 'http://localhost:8762/api-basicS/search/textSearch',
+      url: 'http://' + app.globalData.localhost +'/api-basicS/search/textSearch',
       data: {
         searchContext: e.detail.value,
         signature: app.globalData.signature
