@@ -48,3 +48,23 @@
   margin-top:20px;
   line-height: 2;
 } */
+
+.left_botton{
+
+width:80rpx;
+height:150rpx;
+position:fixed;
+top:500rpx;
+text-align: center;
+
+}
+.text{ 
+  margin:0 auto;writing-mode: vertical-rl;margin-top: 20rpx;adding-bottom:10rpx;
+}
+.choose{
+  background-color:#C5D4FA;
+}
+.unchoose{
+  background-color:white;
+
+}

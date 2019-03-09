@@ -1,4 +1,5 @@
 /* pages/issue/text/text.wxss */
+@import "/wxParse/wxParse.wxss";
 .container.doc {
     background: #ffffff;
 }

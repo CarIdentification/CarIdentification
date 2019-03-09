@@ -1,13 +1,24 @@
+
  <map 
   id="map" 
   longitude="{{longitude}}" 
   latitude="{{latitude}}" 
   scale="{{scale}}" 
-  controls="{{controls}}" 
   bindcontroltap="controltap" 
   markers="{{markers}}" 
   bindmarkertap="markertap" 
   polyline="{{polyline}}" 
-  bindregionchange="regionchange" 
+  bindregionchange="regionchange"
+  bindtap="clicktap"
+  bindcallouttap="callouttap"
   show-location style="width: 100%; height: {{view.Height}}px;">
+
+  <cover-view class='left_botton choose'>
+    <cover-view class='text'>销售点</cover-view>
+
+  </cover-view>
+  <!-- <cover-view class='left_botton {{}}'>
+    <view class='text'>服务点</view>
+
+  </cover-view> -->
  </map>

@@ -1,4 +1,5 @@
 <!--pages/issue/text/text.wxml-->
+<import src="/wxParse/wxParse.wxml"/>
 <view class="container doc">
     <view class="main">
         <view class="content">
@@ -14,11 +15,13 @@
                     <image src="{{pic}}" ></image>
                 </view>
             </view>
-            <view class="a-body">
+            <!-- <view class="a-body">
                 <view class="section"> 
                     <text>{{wenben.content}}</text>
                 </view>
-            </view>
+            </view> -->
+            <!-- //这里data中article为bindName -->
+            <template is="wxParse" data="{{wxParseData:articleContent.nodes}}"/>
         </view>
     </view>
 </view>

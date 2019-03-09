@@ -10,13 +10,22 @@
 .fixed{
   position:fixed;
   width:100%;
+  height:96rpx;
+  z-index:100;
 
 }
-
+.history_fixed{
+  position:fixed;
+  width:100%;
+  height:96rpx;
+  z-index:99;
+}
 .searchbar-result{
     width: 100%;
-    margin-top: 48px;
-    font-size:small
+    margin-top: 0rpx;
+    font-size:small;
+    z-index:100;
+
 }
 .searchbar-result:before{
     display: none;

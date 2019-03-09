@@ -1,7 +1,8 @@
 /**index.wxss**/
 .searchbar-result{
     margin-top: 0;
-    font-size:small
+    font-size:small;
+    z-index: 1
 }
 .searchbar-result:before{
     display: none;

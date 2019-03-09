@@ -1,4 +1,5 @@
 // issue/issue.js
+const app = getApp()
 Page({
 
   /**
@@ -28,21 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    var that = this
-    wx.request({
-      url: 'http://127.0.0.1:8763/getHotIssue',
-      method: 'GET',
-      header: { 'content-type': 'application/json' },
-      success: function (res) {
-        console.log(res.data);
-        that.setData({
-          wenben: res.data
-        })
-      },
-      fail: function () {
-        console.log("失败")
-      }
-    })
+    this.getHot(0)
   },
 
   /**
@@ -80,15 +67,58 @@ Page({
 
   },
   change: function (e) {
+    console.log(app.globalData.signature)
     var idx = e.currentTarget.dataset.idx
-    this.setData({
-      currentTab: idx
-    });
+    if(idx==0){
+      this.getHot(idx)
+    }else{
+      this.getRecommend(idx)
+    }
+    // this.setData({
+    //   currentTab: idx
+    // });
   },
   looktext: function (e) {
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
       url: './text/text?id=' + id,
+    })
+  },
+  getHot:function(idx){
+    var that = this
+    wx.request({
+      url: 'http://' + app.globalData.localhost + '/api-basicS/getHotIssue',
+      method: 'GET',
+      header: { 'content-type': 'application/json' },
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          wenben: res.data,
+          currentTab: idx
+        })
+      },
+      fail: function () {
+        console.log("失败")
+      }
+    })
+  },
+  getRecommend:function(idx){
+    var that = this
+    wx.request({
+      url: 'http://' + app.globalData.localhost + '/api-basicS/getRecommendIssue',
+      data: { signature: app.globalData.signature },
+      method: 'GET',
+      header: { 'content-type': 'application/json' },
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          wenben: res.data,
+          currentTab: idx
+        })
+      },
+      fail: function () {
+        console.log("失败")
+      }
     })
   }
 })

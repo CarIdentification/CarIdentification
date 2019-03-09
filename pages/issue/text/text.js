@@ -1,4 +1,6 @@
 var getdate = require("../../../utils/util.js")
+var WxParse = require('../../../wxParse/wxParse.js')
+const app = getApp()
 Page({
 
   /**
@@ -8,7 +10,8 @@ Page({
     id: 1,
     wenben: [],
     date:'',
-    pic:''
+    pic:'',
+    articleContent:""
   },
 
   /**
@@ -18,11 +21,12 @@ Page({
     var that = this
     var id = options.id;
     wx.request({
-      url: 'http://127.0.0.1:8763/getIssue?id=' + id,
+      url: 'http://' + app.globalData.localhost +'/api-basicS/getIssue?id=' + id,
       method: 'GET',
       success: function (res) {
         var date = res.data.createTime.slice(0,10)
         var pic =  "../"+ res.data.topicPic
+        WxParse.wxParse('articleContent', 'html', res.data.content, that, 5);
         that.setData({
           wenben: res.data,
           date:date,

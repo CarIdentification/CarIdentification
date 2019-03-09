@@ -28,6 +28,30 @@
         <view class='line'></view>
       </view>
     </view>
-    <view hidden="{{currentTab!==1}}" class="text">World</view>
+    <view hidden="{{currentTab!==1}}" class="text">
+      <view wx:for="{{wenben}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
+        <view class="row-main">
+          <view class="flex-col">
+              <view class="main-title">{{item.title}}</view>
+          </view>
+          <image class="row-chevron" src="../../resource/image/chevron.png"></image>
+        </view>
+        <view class="row split card-img-big-detail-type">
+          <view class="row-main top">
+            <image class="big-rect-img" src="{{item.topicPic}}"></image>
+          </view>
+        </view>
+        <view class="row split">
+            <view class="row-main list">
+                {{item.introduce}}
+            </view>
+        </view>
+        <view class="card-footer">
+          <text>作者：{{item.author}}</text>
+          <text>阅读量：{{item.viewCount}}</text>
+        </view> 
+        <view class='line'></view>
+      </view>
+    </view>
   </view>
 </view>

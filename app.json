@@ -14,7 +14,8 @@
     "pages/car/result_list/result_list",
     "pages/car/son_brand/son_brand",
     "pages/car/result_car/result_car",
-    "pages/index/discern/discern"
+    "pages/index/discern/discern",
+    "pages/shop/shop_info/shop_info"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -53,5 +54,10 @@
       }
     ]
   },
-  "debug": true
+  "debug": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置将只用于小程序内展示"
+    }
+  }
 }

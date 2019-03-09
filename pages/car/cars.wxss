@@ -14,10 +14,11 @@
 }
 
 .pri-but{
-  width:22%;
+  width:23.5%;
   height: 25%;
   font-size: 28rpx;
-  margin: 15rpx 10rpx 0rpx 10rpx;
+  margin: 8rpx 5rpx;
+
 }
 
 .text-title-view{
@@ -41,8 +42,9 @@
 }
 
 .brand-pic{
-  width: 20vw;
-  height: 20vw;
+  width: 15vw;
+  height: 15vw;
+  margin:2.5vw;
   /* background-color: yellow; */
 }
 
