@@ -20,7 +20,7 @@
 .swiper_{
   width: 100%;
   margin-top:35rpx;
-  height:970px;
+  height:1200px;
 
 }
 .swiper_cell{
@@ -119,7 +119,6 @@ font-size:35rpx;
 .salesman_cell{
   background-color: #F4F6FF;
   border-radius: 10rpx;
-  width:94vw;
   margin:5rpx 15rpx 15rpx 15rpx;
   padding:20rpx 0rpx 20rpx 20rpx;
 
@@ -130,5 +129,27 @@ font-size:35rpx;
   width: 15vw;
   height: 15vw;
   border-radius:10rpx;
+
+}
+
+.slide-image{
+  width:100%;
+  height:100%;
+  /* border-radius:30rpx; */
+
+}
+.pic_list{
+  display:flex;
+  flex-flow: wrap row;
+  width:100%;
+  margin:10rpx 0rpx;
+  justify-content:center;
+
+
+}
+.pic_cell{
+ width: 27vw;
+ height: 30vw;
+ padding:5rpx 11rpx 0rpx 15rpx;
 
 }

@@ -1,6 +1,8 @@
-<scroll-view scroll-y='true' class='dis_container' bindscroll='scroll_' style="height: {{winHeight}}px;">
+<scroll-view scroll-y='true' class='dis_container' 
+bindscroll='scroll_' 
+style="height: {{winHeight}}px;">
   <view class='rediscern_but_view'>
-    <view class='rediscern_but' bindtap='abc'><image class='icon_img' src='{{iconImg}}'></image><text class='text'>重新识别</text></view>
+    <view class='rediscern_but' bindtap='reDiscern'><image class='icon_img' src='{{iconImg}}'></image><text class='text'>重新识别</text></view>
   </view>
   
   <swiper
@@ -12,10 +14,19 @@
 >
   <block wx:for="{{discernResult}}">
     <swiper-item class='swiper_cell'>
-      <view class='car_list_cell' style='width:{{750*widthSize}}rpx'>
-        <view class='car_pic_list page-flex-row'>
+      <view class='car_list_cell' style='width:{{width-30}}px' animation="{{animationData}}">
+        <!-- <view class='car_pic_list page-flex-row'>
           <image  mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
-        </view>
+        </view> -->
+
+        <swiper indicator-dots="true" autoplay="ture" circular="{{circular}}" style='width:{{width-30}}px' animation="{{animationData}}">
+          <block wx:for="{{item.carPic}}" wx:for-item="pic" >
+            <swiper-item>
+              <image mode='aspectFill' src="http:{{pic.imgSrc}}" class="slide-image"/>
+            </swiper-item>
+          </block>
+        </swiper>
+
         <!-- <image class='car_img' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image> -->
         <view class='car_name'>{{item.carName}}</view>
         <view class='car_price'>{{item.beginPrice}} - {{item.endPrice}} 万</view>
@@ -38,16 +49,14 @@
           <view class='car_property_title'>变速箱</view>
           <view class='car_property_content'>{{property.Transmission[item.transmission]}}</view>
         </view>
-        <view class='car_pic_list page-flex-row'>
-          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
-          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
-          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+        <!-- 图片下拉栏 -->
+    <view class='pic_list'>
+      <block wx:for="{{item.carPic}}">
+        <view class='pic_cell' animation="{{picsAnimationData}}" >
+          <image mode='aspectFill' src="http:{{item.imgSrc}}"  data-src='/resource/image/car-pic/{{item.imgSrc}}' class="slide-image" bindtap='showPic'/>
         </view>
-        <view class='car_pic_list page-flex-row'>
-          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
-          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
-          <image class='car_pic' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
-        </view>
+      </block>
+    </view>
         <!-- 4s店 -->
         <view class='salesman_list'>
           <block wx:for="{{item.salesman}}">
