@@ -10,6 +10,7 @@ Page({
     widthSize: 0.9,
     animationData: {},
     picsAnimationData:{},
+    saleAnimationData:{},
     property: util.property,
     iconImg:"/resource/image/discern.png",
     indicatorDots: false,
@@ -26,28 +27,30 @@ Page({
       // 放大
         this.animation.width(that.data.width + 30).step()
         this.picAnimation.width('30vw').step()
+        this.saleAnimation.width('750rpx').step()
         console.log("放大")
         that.setData({
           expand:true,
-          reduce:false
+          reduce:false,
+          animationData: this.animation.export(),
+          picsAnimationData: this.picAnimation.export(),
+          saleAnimationData: this.saleAnimation.export()
+          
         })
     } else if (e.detail.scrollTop < 150 && that.data.reduce==false){
       
         this.animation.width(that.data.width - 30).step()
         this.picAnimation.width('27vw').step()
+      this.saleAnimation.width('690rpx').step()
       that.setData({
         reduce: true,
-        expand:false
+        expand:false,
+        animationData: this.animation.export(),
+        picsAnimationData: this.picAnimation.export(),
+        saleAnimationData: this.saleAnimation.export()
       })
         console.log("缩小")
-      
-      
     }
-    this.setData({
-      animationData: this.animation.export(),
-      picsAnimationData: this.picAnimation.export()
-    })
-    
   },
 
   /**
@@ -68,12 +71,19 @@ Page({
       duration: 500,
       timingFunction: 'linear',
     })
+
+    const saleAnimation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear',
+    })
     this.animation = animation
     this.picAnimation = picAnimation
+    this.saleAnimation = saleAnimation
     that.setData({
       discernResult:result.entity,
       animationData: animation.export(),
-      picsAnimationData: picAnimation.export()
+      picsAnimationData: picAnimation.export(),
+      saleAnimationData: saleAnimation.export()
     })
   
     wx.getSystemInfo({
@@ -86,8 +96,47 @@ Page({
       },
     })
   },
-  reDiscern(e){
-    
+  uploadImg: function (i, tempFilePaths, size, last) {
+    var that = this;
+    if (i == size - 1) {
+      last = 1;
+    }
+    wx.uploadFile({
+      url: 'http://' + app.globalData.localhost + '/api-basicS/search/pictureDiscern',
+      filePath: tempFilePaths[i],
+      name: 'file',
+      formData: {
+        signature: app.globalData.signature,
+        serial: i,
+        last: last
+      },
+      success(res) {
+        if (last == 0) {
+          that.uploadImg(++i, tempFilePaths, size, last);
+        } else {
+
+          wx.setStorageSync('discernResult', JSON.parse(res.data))
+          console.log(wx.getStorageSync('discernResult'))
+
+          wx.navigateTo({
+            url: 'discern/discern',
+          })
+        }
+      }
+    })
+  },
+  getCarPhoto: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 3,
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        var size = tempFilePaths.length
+        console.log(tempFilePaths)
+        var last = 0;
+        that.uploadImg(0, tempFilePaths, size, last);
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

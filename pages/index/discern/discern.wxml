@@ -2,7 +2,7 @@
 bindscroll='scroll_' 
 style="height: {{winHeight}}px;">
   <view class='rediscern_but_view'>
-    <view class='rediscern_but' bindtap='reDiscern'><image class='icon_img' src='{{iconImg}}'></image><text class='text'>重新识别</text></view>
+    <view class='rediscern_but' bindtap='getCarPhoto'><image class='icon_img' src='{{iconImg}}'></image><text class='text'>重新识别</text></view>
   </view>
   
   <swiper
@@ -58,7 +58,7 @@ style="height: {{winHeight}}px;">
       </block>
     </view>
         <!-- 4s店 -->
-        <view class='salesman_list'>
+        <view class='salesman_list' animation="{{saleAnimationData}}">
           <block wx:for="{{item.salesman}}">
             <view class='salesman_cell'>
               <view class='title'>店名：{{item.sellShopInfo.shopName}}</view>
