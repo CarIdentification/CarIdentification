@@ -49,7 +49,7 @@ Page({
     var that = this;
     console.log("index_signature:            " + app.globalData.signature)
     wx.request({
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/textSearchHistory',
+      url: app.globalData.localhost +'/api-basicS/search/textSearchHistory',
       data: {
 
         signature: app.globalData.signature
@@ -97,7 +97,7 @@ Page({
       title: 'loading',
     })
     wx.request({
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/textSearch',
+      url: app.globalData.localhost +'/api-basicS/search/textSearch',
       data: {
         searchContext: value,
         signature: app.globalData.signature

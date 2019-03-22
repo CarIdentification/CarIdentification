@@ -74,7 +74,7 @@ Page({
     
     //在拥有权限的前提下，动态获取品牌信息
     wx.request({
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/getBrands',
+      url: app.globalData.localhost +'/api-basicS/search/getBrands',
       data: { signature: app.globalData.signature },
       success: function (e) {
         // wx.setStorageSync("brand",e.entity)
@@ -115,7 +115,7 @@ Page({
       console.log(that.data.hasBrand + "*******************************************")
       //动态获取品牌信息
       wx.request({
-        url: 'http://'+app.globalData.localhost +'/api-basicS/search/getBrands',
+        url: app.globalData.localhost +'/api-basicS/search/getBrands',
         data: { signature: app.globalData.signature },
         success: function (e) {
           // wx.setStorageSync("brand",e.entity)

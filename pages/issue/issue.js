@@ -87,7 +87,7 @@ Page({
   getHot:function(idx){
     var that = this
     wx.request({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/getHotIssue',
+      url: app.globalData.localhost + '/api-basicS/getHotIssue',
       method: 'GET',
       header: { 'content-type': 'application/json' },
       success: function (res) {
@@ -105,7 +105,7 @@ Page({
   getRecommend:function(idx){
     var that = this
     wx.request({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/getRecommendIssue',
+      url: app.globalData.localhost + '/api-basicS/getRecommendIssue',
       data: { signature: app.globalData.signature },
       method: 'GET',
       header: { 'content-type': 'application/json' },

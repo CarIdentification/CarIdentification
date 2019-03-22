@@ -17,7 +17,7 @@ Page({
     wx.request({
       method: 'POST',
       dataType: "json",
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/advancedSearch',
+      url: app.globalData.localhost +'/api-basicS/search/advancedSearch',
       data: 
 
         app.globalData.advanced_mess

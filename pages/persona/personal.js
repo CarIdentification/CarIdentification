@@ -59,7 +59,7 @@ Page({
 
       //请求用户标签
       wx.request({
-        url: 'http://' + app.globalData.localhost +'/api-basicS/personal/tag',
+        url: app.globalData.localhost +'/api-basicS/personal/tag',
         data: {
           signature: app.globalData.signature
         },

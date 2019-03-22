@@ -25,7 +25,7 @@ Page({
     // })
     var id = options.id
     wx.request({
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/getCar',
+      url: app.globalData.localhost +'/api-basicS/search/getCar',
       data:{id:id},
       success:function(res){
         var pics = new Array()
@@ -38,7 +38,7 @@ Page({
           pics:pics
         })
         wx.request({
-          url: 'http://' + app.globalData.localhost +'/api-basicS/search/getSalesman',
+          url: app.globalData.localhost +'/api-basicS/search/getSalesman',
           data:{brandId:res.data.entity.carBrand},
           success:function(e){
             that.setData({

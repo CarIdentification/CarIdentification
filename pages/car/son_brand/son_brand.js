@@ -23,7 +23,7 @@ Page({
 
     //获得父品牌
     wx.request({
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/getBrand',
+      url: app.globalData.localhost +'/api-basicS/search/getBrand',
       data:{
         id: options.id
       },
@@ -35,7 +35,7 @@ Page({
     })
     //获取子品牌
     wx.request({
-      url: 'http://' + app.globalData.localhost +'/api-basicS/search/getSonBrands',
+      url: app.globalData.localhost +'/api-basicS/search/getSonBrands',
       data: { signature: app.globalData.signature, 
               id:options.id
       },
@@ -130,7 +130,7 @@ Page({
       //如果没有获取过数据
       if(that.data.cars[idx][index]==undefined){
         wx.request({
-          url: 'http://' + app.globalData.localhost +'/api-basicS/search/getCars',
+          url: app.globalData.localhost +'/api-basicS/search/getCars',
           data: {
             id: id,
             pageNum: load_index
@@ -182,7 +182,7 @@ Page({
       var car_Index = "carIndex[" + idx + "][" + index + "]";
       var cars = "cars[" + idx + "][" + index + "]";
       wx.request({
-        url: 'http://' + app.globalData.localhost +'/api-basicS/search/getCars',
+        url: app.globalData.localhost +'/api-basicS/search/getCars',
         data: {
           id: id,
           pageNum: load_index

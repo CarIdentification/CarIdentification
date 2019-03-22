@@ -24,7 +24,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/search/getSalesman',
+      url: app.globalData.localhost + '/api-basicS/search/getSalesman',
       data: { brandId: 9 },
       success: function (e) {
         that.setData({

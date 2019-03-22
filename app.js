@@ -45,6 +45,6 @@ App({
     getUserInfo:false,
     signature:null,
     advanced_mess:null,
-    localhost : "119.29.208.119:8762"
+    localhost: "https://www.kebencool.cn:8762"
   }
 })

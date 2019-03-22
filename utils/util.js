@@ -1,4 +1,4 @@
-const localhost = "119.29.208.119:8762"
+const localhost = "https://www.kebencool.cn:8762"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -88,7 +88,7 @@ const sendlogin = (userInfo, signature, rawData) => {
       if (res.code) {
         //发起网络请求
         wx.request({
-          url: 'http://' + localhost +'/api-basicS/personal/sendUserCode',
+          url: localhost +'/api-basicS/personal/sendUserCode',
           data: {
             code: res.code,
             nickname: userInfo.nickName,
