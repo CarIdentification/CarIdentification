@@ -24,13 +24,10 @@ Page({
     ctx.arc(80, 80, 80, 0, 2 * Math.PI)
     ctx.setFillStyle('#C5D4FA')
     ctx.fill()
-
     //识别相机logo
     ctx.drawImage("/resource/image/discern.png", 55,55, 55,55)
-    
     ctx.draw()
   },
-  
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
@@ -81,22 +78,18 @@ Page({
       last = 1;
     }
     wx.uploadFile({
-      url: app.globalData.localhost +'/api-basicS/search/pictureDiscern',
+      url: app.globalData.localhost +'/classify-service/classify/car',
       filePath: tempFilePaths[i],
-      name: 'file',
+      name: 'carImg',
       formData: {
-        signature: app.globalData.signature,
-        serial: i,
-        last: last
+        signature: app.globalData.signature
       },
       success(res) {
         if(last==0){
           that.uploadImg(++i,tempFilePaths,size,last);
         }else{
-          
           wx.setStorageSync('discernResult', JSON.parse(res.data))
           console.log(wx.getStorageSync('discernResult'))
-
           wx.navigateTo({
             url: 'discern/discern',
           })
@@ -107,7 +100,7 @@ Page({
   getCarPhoto: function(e){
     var that = this;
     wx.chooseImage({
-      count:3,
+      count:1,
       success(res) {
         const tempFilePaths = res.tempFilePaths
         var size = tempFilePaths.length
@@ -117,14 +110,12 @@ Page({
       }
     })
   },
-
   showInput: function () {
     var that = this;
-    console.log("index_signature:            " + app.globalData.signature)
+    console.log("index_signature: " + app.globalData.signature)
     wx.request({
       url: app.globalData.localhost +'/api-basicS/search/textSearchHistory',
       data:{
-        
         signature:app.globalData.signature
       },
       success:function(e){

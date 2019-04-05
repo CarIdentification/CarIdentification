@@ -35,7 +35,6 @@ Page({
           animationData: this.animation.export(),
           picsAnimationData: this.picAnimation.export(),
           saleAnimationData: this.saleAnimation.export()
-          
         })
     } else if (e.detail.scrollTop < 150 && that.data.reduce==false){
       
@@ -79,6 +78,9 @@ Page({
     this.animation = animation
     this.picAnimation = picAnimation
     this.saleAnimation = saleAnimation
+
+
+
     that.setData({
       discernResult:result.entity,
       animationData: animation.export(),
@@ -128,7 +130,7 @@ Page({
   getCarPhoto: function (e) {
     var that = this;
     wx.chooseImage({
-      count: 3,
+      count: 1,
       success(res) {
         const tempFilePaths = res.tempFilePaths
         var size = tempFilePaths.length
