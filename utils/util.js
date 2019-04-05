@@ -100,7 +100,7 @@ const sendlogin = (userInfo, signature, rawData) => {
           success: function (res) {
             console.log("登陆成功："+res.data)
             console.log( res.data)
-
+            wx.setStorageSync("uid", res.uid)
           }
         })
       } else {

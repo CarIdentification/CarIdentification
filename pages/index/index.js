@@ -82,7 +82,7 @@ Page({
       filePath: tempFilePaths[i],
       name: 'carImg',
       formData: {
-        signature: app.globalData.signature
+        userId: wx.getStorageSync('uid')
       },
       success(res) {
         if(last==0){

@@ -79,13 +79,26 @@ Page({
     this.picAnimation = picAnimation
     this.saleAnimation = saleAnimation
 
-
-
     that.setData({
-      discernResult:result.entity,
       animationData: animation.export(),
       picsAnimationData: picAnimation.export(),
       saleAnimationData: saleAnimation.export()
+    })
+    //显示加载框
+    wx.showLoading({
+      title: '识别中，请稍等',
+      mask: true,
+    })
+    //异步请求识别数据
+    wx.request({
+      url: 'http://' + app.globalData.localhost + '/api-basicS/search/getCar',
+      data: { ids: result },
+      success: function (res) {
+        that.setData({discernResult : res.entity})
+      },
+      complete: function(){
+        wx.hideLoading()
+      }
     })
   
     wx.getSystemInfo({
@@ -104,22 +117,18 @@ Page({
       last = 1;
     }
     wx.uploadFile({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/search/pictureDiscern',
+      url: app.globalData.localhost + '/classify-service/classify/car',
       filePath: tempFilePaths[i],
-      name: 'file',
+      name: 'carImg',
       formData: {
-        signature: app.globalData.signature,
-        serial: i,
-        last: last
+        userId: wx.getStorageSync('uid')
       },
       success(res) {
         if (last == 0) {
           that.uploadImg(++i, tempFilePaths, size, last);
         } else {
-
           wx.setStorageSync('discernResult', JSON.parse(res.data))
           console.log(wx.getStorageSync('discernResult'))
-
           wx.navigateTo({
             url: 'discern/discern',
           })
