@@ -1,4 +1,6 @@
 // pages/index/discern/discern.js
+//获取应用实例
+const app = getApp()
 const util = require('../../../utils/util.js');
 Page({
 
@@ -102,7 +104,7 @@ Page({
       last = 1;
     }
     wx.uploadFile({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/search/pictureDiscern',
+      url: app.globalData.localhost + '/api-basicS/search/pictureDiscern',
       filePath: tempFilePaths[i],
       name: 'file',
       formData: {
@@ -111,15 +113,15 @@ Page({
         last: last
       },
       success(res) {
+        console.log("发送第"+i+"张照片成功!");
         if (last == 0) {
           that.uploadImg(++i, tempFilePaths, size, last);
         } else {
-
+   
           wx.setStorageSync('discernResult', JSON.parse(res.data))
           console.log(wx.getStorageSync('discernResult'))
-
-          wx.navigateTo({
-            url: 'discern/discern',
+          that.setData({
+            discernResult: wx.getStorageSync('discernResult').entity,
           })
         }
       }

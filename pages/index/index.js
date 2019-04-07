@@ -90,6 +90,7 @@ Page({
         last: last
       },
       success(res) {
+        console.log("发送第" + i + "张照片成功!");
         if(last==0){
           that.uploadImg(++i,tempFilePaths,size,last);
         }else{
