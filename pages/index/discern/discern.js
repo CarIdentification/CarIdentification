@@ -119,11 +119,7 @@ Page({
       last = 1;
     }
     wx.uploadFile({
-<<<<<<< HEAD
-      url: app.globalData.localhost + '/api-basicS/search/pictureDiscern',
-=======
       url: app.globalData.localhost + '/classify-service/classify/car',
->>>>>>> 2a67f985d836731f527a584579523a27c26cc2c5
       filePath: tempFilePaths[i],
       name: 'carImg',
       formData: {
@@ -134,18 +130,10 @@ Page({
         if (last == 0) {
           that.uploadImg(++i, tempFilePaths, size, last);
         } else {
-<<<<<<< HEAD
-   
-          wx.setStorageSync('discernResult', JSON.parse(res.data))
-          console.log(wx.getStorageSync('discernResult'))
-          that.setData({
-            discernResult: wx.getStorageSync('discernResult').entity,
-=======
           wx.setStorageSync('discernResult', JSON.parse(res.data))
           console.log(wx.getStorageSync('discernResult'))
           wx.navigateTo({
-            url: 'discern/discern',
->>>>>>> 2a67f985d836731f527a584579523a27c26cc2c5
+            url: 'discern/discern'
           })
         }
       }
