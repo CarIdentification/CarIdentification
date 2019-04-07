@@ -93,7 +93,7 @@ Page({
     })
     //异步请求识别数据
     wx.request({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/search/getCar',
+      url: app.globalData.localhost + '/api-basicS/search/getCar',
       data: { ids: result },
       success: function (res) {
         that.setData({discernResult : res.entity})
@@ -132,8 +132,8 @@ Page({
         } else {
           wx.setStorageSync('discernResult', JSON.parse(res.data))
           console.log(wx.getStorageSync('discernResult'))
-          wx.navigateTo({
-            url: 'discern/discern'
+          that.setData({
+            discernResult: wx.getStorageSync('discernResult').entity
           })
         }
       }
