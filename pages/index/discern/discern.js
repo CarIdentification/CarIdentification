@@ -37,7 +37,6 @@ Page({
           animationData: this.animation.export(),
           picsAnimationData: this.picAnimation.export(),
           saleAnimationData: this.saleAnimation.export()
-          
         })
     } else if (e.detail.scrollTop < 150 && that.data.reduce==false){
       
@@ -81,11 +80,27 @@ Page({
     this.animation = animation
     this.picAnimation = picAnimation
     this.saleAnimation = saleAnimation
+
     that.setData({
-      discernResult:result.entity,
       animationData: animation.export(),
       picsAnimationData: picAnimation.export(),
       saleAnimationData: saleAnimation.export()
+    })
+    //显示加载框
+    wx.showLoading({
+      title: '识别中，请稍等',
+      mask: true,
+    })
+    //异步请求识别数据
+    wx.request({
+      url: 'http://' + app.globalData.localhost + '/api-basicS/search/getCar',
+      data: { ids: result },
+      success: function (res) {
+        that.setData({discernResult : res.entity})
+      },
+      complete: function(){
+        wx.hideLoading()
+      }
     })
   
     wx.getSystemInfo({
@@ -104,24 +119,33 @@ Page({
       last = 1;
     }
     wx.uploadFile({
+<<<<<<< HEAD
       url: app.globalData.localhost + '/api-basicS/search/pictureDiscern',
+=======
+      url: app.globalData.localhost + '/classify-service/classify/car',
+>>>>>>> 2a67f985d836731f527a584579523a27c26cc2c5
       filePath: tempFilePaths[i],
-      name: 'file',
+      name: 'carImg',
       formData: {
-        signature: app.globalData.signature,
-        serial: i,
-        last: last
+        userId: wx.getStorageSync('uid')
       },
       success(res) {
         console.log("发送第"+i+"张照片成功!");
         if (last == 0) {
           that.uploadImg(++i, tempFilePaths, size, last);
         } else {
+<<<<<<< HEAD
    
           wx.setStorageSync('discernResult', JSON.parse(res.data))
           console.log(wx.getStorageSync('discernResult'))
           that.setData({
             discernResult: wx.getStorageSync('discernResult').entity,
+=======
+          wx.setStorageSync('discernResult', JSON.parse(res.data))
+          console.log(wx.getStorageSync('discernResult'))
+          wx.navigateTo({
+            url: 'discern/discern',
+>>>>>>> 2a67f985d836731f527a584579523a27c26cc2c5
           })
         }
       }
@@ -130,7 +154,7 @@ Page({
   getCarPhoto: function (e) {
     var that = this;
     wx.chooseImage({
-      count: 3,
+      count: 1,
       success(res) {
         const tempFilePaths = res.tempFilePaths
         var size = tempFilePaths.length
