@@ -39,7 +39,7 @@ Page({
           saleAnimationData: this.saleAnimation.export()
         })
     } else if (e.detail.scrollTop < 150 && that.data.reduce==false){
-      
+
         this.animation.width(that.data.width - 30).step()
         this.picAnimation.width('27vw').step()
       this.saleAnimation.width('690rpx').step()
@@ -96,13 +96,13 @@ Page({
       url: app.globalData.localhost + '/api-basicS/search/getCar',
       data: { ids: result },
       success: function (res) {
-        that.setData({discernResult : res.entity})
+        that.setData({discernResult : res.data.entity})
       },
       complete: function(){
         wx.hideLoading()
       }
     })
-  
+
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -130,7 +130,8 @@ Page({
         if (last == 0) {
           that.uploadImg(++i, tempFilePaths, size, last);
         } else {
-          wx.setStorageSync('discernResult', JSON.parse(res.data))
+        
+          wx.setStorageSync('discernResult', JSON.parse(res.data.data))
           console.log(wx.getStorageSync('discernResult'))
           that.setData({
             discernResult: wx.getStorageSync('discernResult').entity
@@ -163,7 +164,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**

@@ -89,7 +89,7 @@ Page({
         if(last==0){
           that.uploadImg(++i,tempFilePaths,size,last);
         }else{
-          wx.setStorageSync('discernResult', JSON.parse(res.data))
+          wx.setStorageSync('discernResult', JSON.parse(res.data).data)
           console.log(wx.getStorageSync('discernResult'))
           wx.navigateTo({
             url: 'discern/discern',
