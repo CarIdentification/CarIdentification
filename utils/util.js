@@ -47,7 +47,7 @@ const getUserInfoScope = (that, app) =>{
   wx.getUserInfo({
     success: function (res) {
       console.log("util.js-拥有权限")
-      
+
     },
     fail: function () {
       console.log("util.js-没有权限")
@@ -71,7 +71,7 @@ const getUserInfoScope = (that, app) =>{
             wx.switchTab({
               url: "/pages/persona/personal"
             })
-            
+
           }
         }
       })
@@ -100,7 +100,7 @@ const sendlogin = (userInfo, signature, rawData) => {
           success: function (res) {
             console.log("登陆成功："+res.data)
             console.log( res.data)
-            wx.setStorageSync("uid", res.uid)
+            wx.setStorageSync("uid", res.data.uid)
           }
         })
       } else {
