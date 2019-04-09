@@ -15,7 +15,8 @@
     "pages/car/son_brand/son_brand",
     "pages/car/result_car/result_car",
     "pages/index/discern/discern",
-    "pages/shop/shop_info/shop_info"
+    "pages/shop/shop_info/shop_info",
+    "pages/persona/own_car/own_car"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

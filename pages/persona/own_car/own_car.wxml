@@ -1,0 +1,17 @@
+<!--pages/persona/own_car/own_car.wxml-->
+<!--pages/issue/text/text.wxml-->
+<view class="">
+  <view wx:for="{{ownCarInfos}}">
+    <!-- 跳到对应车型的详情 -->
+    <view class='car-info-item'>
+      <navigator url=''>
+        <view>{{item.carName}}</view>
+        <view class="a-neck-img">
+          <image src="{{item.coverPic}}"></image>
+        </view>
+  </navigator>
+        <button data-carId="{{item.id}}" bindtap="delOwnCar">删除</button>
+      
+    </view>
+  </view>
+</view>
