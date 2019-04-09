@@ -1,5 +1,6 @@
 // 引用百度地图微信小程序JSAPI模块 
 var bmap = require('../../libs/bmap-wx.min.js'); 
+const app = getApp();
 Page({
   data: {
     Height: 0,
@@ -23,28 +24,77 @@ Page({
       }
     })
 
+    wx.getLocation({
+      type: 'wgs84',
+      success(ress) {
+
+        wx.request({
+          url: app.globalData.localhost + '/api-basicS/search/getAroundShop',
+          data: {
+            latitude : ress.latitude,
+            longitude: ress.longitude
+          },
+          success:function(res){
+          
+            var length = res.data.entity.length;
+            var mar = [];
+            for (var i = 0; i < length ; i++){
+              // for (var i = 0; i < 1; i++) {
+              mar[i] = {
+                iconPath: '../../resource/image/location_4.png',
+                id: res.data.entity[i].id,
+                latitude: res.data.entity[i].latitute,
+                longitude: res.data.entity[i].longitude,
+                // id: 5,
+                // latitude: ress.latitude,
+                // longitude: ress.longitude,
+                width: 30,
+                height: 30,
+                callout: {
+                  content: res.data.entity[i].locationDetail,
+                  // content: "aaa",
+                  padding: 5
+                },
+                label: {
+                  content: res.data.entity[i].shopName
+                  // content: "bbb"
+                }
+              }
+            }
+            that.setData({
+              markers : mar,
+              latitude : ress.latitude,
+              longitude : ress.longitude
+            })
+          }
+
+        })
+      }
+    })
+
+    
     // 新建百度地图对象 
     var BMap = new bmap.BMapWX({
       ak: '6uQBsdD4q2Qa1VBr37pXhLfxcoGg7B43'
     });
     // 发起POI检索请求 
-    BMap.search({
-      "query": '汽车销售',
-      "radius": 2000,
-      success: function (res){
-        that.setData({
-          markers: res.wxMarkerData,
-          latitude: res.wxMarkerData[0].latitude,
-          longitude: res.wxMarkerData[0].longitude,
-        })
-      },
-      // 此处需要在相应路径放置图片文件 
-      iconPath: '../../resource/image/location_4.png',
-      // 此处需要在相应路径放置图片文件 
-      iconTapPath: '../../resource/image/shop_location.png',
-      width: 30,
-      height: 30,
-    }); 
+    // BMap.search({
+    //   "query": '汽车销售',
+    //   "radius": 2000,
+    //   success: function (res){
+    //     that.setData({
+    //       markers: res.wxMarkerData,
+    //       latitude: res.wxMarkerData[0].latitude,
+    //       longitude: res.wxMarkerData[0].longitude,
+    //     })
+    //   },
+    //   // 此处需要在相应路径放置图片文件 
+    //   iconPath: '../../resource/image/location_4.png',
+    //   // 此处需要在相应路径放置图片文件 
+    //   iconTapPath: '../../resource/image/shop_location.png',
+    //   width: 30,
+    //   height: 30,
+    // }); 
   },
 
   // regionchange(e) {
@@ -83,7 +133,7 @@ Page({
     console.log(e)
     var marker = that.data.markers[e.markerId];
     wx.navigateTo({
-      url: 'shop_info/shop_info?latitude=' + marker.latitude + '&longitude='+marker.longitude+'&title='+marker.title+'&address='+marker.address+'&telephone='+marker.telephone,
+      url: 'shop_info/shop_info?id='+e.markerId,
     })
   }
 

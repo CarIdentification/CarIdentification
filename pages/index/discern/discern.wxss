@@ -20,7 +20,8 @@
 .swiper_{
   width: 100%;
   margin-top:35rpx;
-  height:1200px;
+  height:2500px;
+
 
 }
 .swiper_cell{

@@ -10,7 +10,9 @@ Page({
     property:util.property,
     result:{},
     pics:[],
-    salesmans:[]
+    salesmans:[],
+    latitude:"",
+    longitude:""
   },
 
   /**
@@ -24,9 +26,22 @@ Page({
     //   property:
     // })
     var id = options.id
+    wx.getLocation({
+      type: 'wgs84',
+      success: function(res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      },
+    })
     wx.request({
       url: app.globalData.localhost +'/api-basicS/search/getCar',
-      data:{id:id},
+      data:{
+        id:id,
+        latitude: that.data.latitude,
+        longitude: that.data.longitude
+        },
       success:function(res){
         var pics = new Array()
         for (var i = 0; i < res.data.entity.carPic.length; i++) {
@@ -106,6 +121,12 @@ Page({
     wx.previewImage({
       current: e.currentTarget.dataset.src,// 当前显示图片的http链接
       urls: that.data.pics // 需要预览的图片http链接列表
+    })
+  },
+  navigateToSellShop:function(e){
+    var id = e.currentTarget.dataset.idx
+    wx.navigateTo({
+      url: '../../shop/shop_info/shop_info?id=' + id ,
     })
   }
 })

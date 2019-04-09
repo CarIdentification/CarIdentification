@@ -21,7 +21,9 @@ Page({
     circular: false,
     discernResult:[{},{}],
     expand:false,
-    reduce:true
+    reduce:true,
+    latitude: "",
+    longitude: ""
   },
   scroll_:function(e){
     var that = this;
@@ -58,10 +60,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    
     console.log("*****************************:  "+wx.getStorageSync('discernResult'))
     var result = wx.getStorageSync('discernResult')
     //车辆信息
-    var that = this
+    
     //动画
     const animation = wx.createAnimation({
       duration: 500,
@@ -92,16 +96,32 @@ Page({
       mask: true,
     })
     //异步请求识别数据
-    wx.request({
-      url: app.globalData.localhost + '/api-basicS/search/getCar',
-      data: { ids: result },
+    //获取坐标
+    wx.getLocation({
+      type: 'wgs84',
       success: function (res) {
-        that.setData({discernResult : res.data.entity})
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+
+        wx.request({
+          url: app.globalData.localhost + '/api-basicS/search/getCar',
+          data: {
+            ids: result,
+            latitude: that.data.latitude,
+            longitude: that.data.longitude
+          },
+          success: function (res) {
+            that.setData({ discernResult: res.data.entity })
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+        })
       },
-      complete: function(){
-        wx.hideLoading()
-      }
     })
+    
 
     wx.getSystemInfo({
       success: function (res) {
@@ -229,5 +249,11 @@ Page({
       }
     })
     that.setData(param)
+  },
+  navigateToSellShop: function (e) {
+    var id = e.currentTarget.dataset.idx
+    wx.navigateTo({
+      url: '../../shop/shop_info/shop_info?id=' + id,
+    })
   }
 })

@@ -21,7 +21,7 @@
       <view class='car_property_title'>结构：</view>
       <view class='car_property_content'>{{property.structure[result.structure]}}</view>
       <view class='car_property_title'>排量：</view>
-      <view class='car_property_content'>{{result.displacement}}</view>
+      <view class='car_property_content'>{{property.displacement[item.displacement]}}</view>
       <view class='car_property_title'>座位数：</view>
       <view class='car_property_content'>{{result.seat}}</view>
       <view class='car_property_title'>进气形式：</view>
@@ -43,18 +43,19 @@
     </view>
     <!-- 4s店 -->
     <view class='salesman_list'>
-      <block wx:for="{{salesmans}}">
-        <view class='salesman_cell'>
-          <view class='title'>店名：{{item.sellShopInfo.shopName}}</view>
-          <view class='title'>地址：{{item.sellShopInfo.locationDetail}}</view>
-          <view class='title'>销售人员:</view>
-          <view class='page-flex-row-noCenter'>
+      <block wx:for="{{result.saleShops}}">
+        <view class='salesman_cell' bindtap='navigateToSellShop' data-idx="{{item.id}}">
+          <view class='title'>店名：{{item.shopName}}</view>
+          <view class='title'>地址：{{item.locationDetail}}</view>
+          <view class='title'>经营品牌: {{item.brand}}</view>
+          <view class='title'>tel: {{item.tel}}</view>
+          <!-- <view class='page-flex-row-noCenter'>
             <image mode='aspectFill' class='personal_icon' src='/resource/image/person-pic/{{item.personalPic}}'></image>
             <view class='text-flex-column'>
               <view>姓名：{{item.name}}</view>
               <view>联系方式：{{item.tel}}</view>
             </view>
-          </view>
+          </view> -->
         </view>
       </block>
     </view>

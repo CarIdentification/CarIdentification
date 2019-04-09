@@ -14,6 +14,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    wx.request({
+      url: app.globalData.localhost + '/api-basicS/search/getSalesman',
+      data: { id:options.id },
+      success: function (e) {
+        that.setData({
+          shop_info:e.data.entity,
+          salesmans: e.data.entity.salesmans
+        })
+      }
+    })
     that.setData({
       shop_info:{
         latitude: options.latitude,
@@ -23,15 +33,7 @@ Page({
         telephone: options.telephone
       }
     })
-    wx.request({
-      url: app.globalData.localhost + '/api-basicS/search/getSalesman',
-      data: { brandId: 9 },
-      success: function (e) {
-        that.setData({
-          salesmans: e.data.entity
-        })
-      }
-    })
+    
   },
 
   /**
