@@ -3,7 +3,7 @@
   <view class='page-flex-column'>
     <image mode='aspectFill' src="{{shop_info.shopPic==null?'/resource/image/sell-shop/sell_shop_1.jpg':shop_info.shopPic}}" class="slide-image"/>
     <view class='row'>
-      <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image>
+      <!-- <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image> -->
       <view class='column'>
         <view class='car_name' >{{shop_info.shopName}}</view>
         <view class='address'>{{shop_info.locationDetail}}</view>
@@ -22,8 +22,8 @@
           <view class='page-flex-row-noCenter'>
             <image mode='aspectFill' class='personal_icon' src='{{item.personalPic}}'></image>
             <view class='text-flex-column'>
-              <view>姓名：{{item.name}}</view>
-              <view>联系方式：{{item.tel}}</view>
+              <view style='font-size:15px;'>姓名：{{item.name}}</view>
+              <view style='font-size:15px;'>联系方式：{{item.tel}}</view>
             </view>
           </view>
         </view>

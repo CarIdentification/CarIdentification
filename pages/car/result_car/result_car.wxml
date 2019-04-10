@@ -1,3 +1,4 @@
+
 <!--pages/car/result_car/result_car.wxml-->
 <view class='container'>
   <view class='page-flex-column'>
@@ -15,10 +16,9 @@
 
     </view> -->
     <!-- <view class='title'>基本参数：</view> -->
-    <view class='page-flex-row' style='background-color:rgba(239,239,244,0.4);margin:0rpx 10rpx;' >
+    <view class='page-flex-row car_config'  >
       <view class='car_property_title'>级别：</view>
-      <view hidden='{{property.level[result.level] == undefine}}' class='car_property_content'>{{property.level[result.level]}}</view>
-      <view hidden='{{property.level[result.level] != undefine}}' class='car_property_content'>暂无数据</view>
+      <view class='car_property_content'>{{property.level[result.level]}}</view>
       <view class='car_property_title'>结构：</view>
       <view class='car_property_content'>{{property.structure[result.structure]}}</view>
       <view class='car_property_title'>排量：</view>

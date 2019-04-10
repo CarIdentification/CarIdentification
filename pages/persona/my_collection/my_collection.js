@@ -1,31 +1,18 @@
-// pages/shop/shop_info/shop_info.js
-const app = getApp();
+// pages/persona/my_collection/my_collection.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    shop_info:{}
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    wx.request({
-      url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
-      data: { id:options.id },
-      success: function (e) {
-        that.setData({
-          shop_info:e.data.entity,
-          salesmans: e.data.entity.salesMan
-        })
-      }
-    })
-    
-    
+
   },
 
   /**
@@ -75,11 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  callPhone(e){
-    var that = this
-    wx.makePhoneCall({
-      phoneNumber: that.data.shop_info.telephone
-    })
   }
 })

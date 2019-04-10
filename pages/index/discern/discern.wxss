@@ -89,7 +89,7 @@
 .car_property_title{
   width:50%;
 color:black;
-font-size:35rpx;
+font-size:30rpx;
 
   
 }
@@ -98,7 +98,7 @@ font-size:35rpx;
   width:40%;
 text-align:right;
 color:black;
-font-size:35rpx;
+font-size:30rpx;
 
 }
 
@@ -114,8 +114,8 @@ font-size:35rpx;
   margin:10rpx 0rpx;
 }
 .title{
-  font-size:35rpx;
-  font-weight:bold;
+  font-size:30rpx;
+  /* font-weight:bold; */
 }
 .salesman_cell{
   background-color: #F4F6FF;
