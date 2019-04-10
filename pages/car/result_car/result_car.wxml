@@ -15,7 +15,7 @@
 
     </view> -->
     <!-- <view class='title'>基本参数：</view> -->
-    <view class='page-flex-row' style='background-color:rgba(239,239,244,0.4);margin:0rpx 10rpx;' >
+    <view class='page-flex-row car_config'  >
       <view class='car_property_title'>级别：</view>
       <view class='car_property_content'>{{property.level[result.level]}}</view>
       <view class='car_property_title'>结构：</view>

@@ -48,19 +48,25 @@ Page({
           pics[i] = "../../../resource/image/car-pic/" + res.data.entity.carPic[i].imgSrc
         }
         console.log(pics)
+        if (res.data.entity.carPic.length>6){
+          for (var i = 6; i < res.data.entity.carPic.length ; i++ ){
+            res.data.entity.carPic[i] = null
+          }
+        }
+        res.data.entity.carPic.length = 6;
         that.setData({
           result:res.data.entity,
           pics:pics
         })
-        wx.request({
-          url: app.globalData.localhost +'/api-basicS/search/getSalesman',
-          data:{brandId:res.data.entity.carBrand},
-          success:function(e){
-            that.setData({
-              salesmans:e.data.entity
-            })
-          }
-        })
+        // wx.request({
+        //   url: app.globalData.localhost +'/api-basicS/search/getSalesman',
+        //   data:{brandId:res.data.entity.carBrand},
+        //   success:function(e){
+        //     that.setData({
+        //       salesmans:e.data.entity
+        //     })
+        //   }
+        // })
         
 
       }

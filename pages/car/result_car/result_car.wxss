@@ -5,20 +5,20 @@
   /* border-radius:30rpx; */
 
 }
-.car_name{
+/* .car_name{
  font-size: 38rpx;
  font-weight:bold;
 
-}
+} */
 
-.car_price{
+/* .car_price{
  color: red;
-}
+} */
 
 .car_property_title{
   width:50%;
 color:rgba(0,0,0,0.6);
-font-size:35rpx;
+font-size:30rpx;
 
   
 }
@@ -27,7 +27,7 @@ font-size:35rpx;
   width:40%;
 text-align:right;
 color:rgba(0,0,0,0.6);
-font-size:35rpx;
+font-size:30rpx;
 
 }
 
@@ -45,17 +45,17 @@ font-size:35rpx;
  padding:0rpx 11rpx 0rpx 15rpx;
 
 }
-.salesman_cell{
+/* .salesman_cell{
   display:flex;
   flex-flow: wrap column;
   width:100%;
   margin:10rpx 0rpx;
-}
-.title{
+} */
+/* .title{
   font-size:35rpx;
   font-weight:bold;
-}
-.salesman_cell{
+} */
+/* .salesman_cell{
   background-color: rgba(197,212,250,0.5);
   border-radius: 10rpx;
   width:94vw;
@@ -64,11 +64,38 @@ font-size:35rpx;
 
 
 
-}
+} */
 
 .personal_icon{
   width: 15vw;
   height: 15vw;
   border-radius:10rpx;
 
+}
+.car_config{
+  width: 100%;
+  background-color:#F4F6FF;
+  margin:0rpx 0rpx;
+  padding-top:10rpx;
+  padding-bottom:10rpx;
+
+}
+.salesman_list{
+  display:flex;
+  flex-flow: wrap column;
+  /* width:690rpx; */
+  margin:10rpx 0rpx;
+}
+.salesman_cell{
+  background-color: #F4F6FF;
+  border-radius: 10rpx;
+  margin:5rpx 15rpx 15rpx 15rpx;
+  padding:20rpx 0rpx 20rpx 20rpx;
+
+
+
+}
+.title{
+  font-size:30rpx;
+  /* font-weight:bold; */
 }

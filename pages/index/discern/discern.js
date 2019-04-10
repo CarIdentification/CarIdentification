@@ -135,6 +135,11 @@ Page({
     })
   },
   uploadImg: function (i, tempFilePaths, size, last) {
+    //显示加载框
+    wx.showLoading({
+      title: '识别中，请稍等',
+      mask: true,
+    })
     var that = this;
     if (i == size - 1) {
       last = 1;
@@ -147,15 +152,28 @@ Page({
         userId: wx.getStorageSync('uid')
       },
       success(res) {
-        console.log("发送第"+i+"张照片成功!");
+        console.log("发送第" + i + "张照片成功!");
         if (last == 0) {
           that.uploadImg(++i, tempFilePaths, size, last);
         } else {
-        
-          wx.setStorageSync('discernResult', JSON.parse(res.data.data))
+          wx.setStorageSync('discernResult', JSON.parse(res.data).data)
           console.log(wx.getStorageSync('discernResult'))
-          that.setData({
-            discernResult: wx.getStorageSync('discernResult').entity
+          
+          //更新数据
+          wx.request({
+            url: app.globalData.localhost + '/api-basicS/search/getCar',
+            // url: 'http://localhost:8763/search/getCar',
+            data: {
+              ids: wx.getStorageSync('discernResult'),
+              latitude: that.data.latitude,
+              longitude: that.data.longitude
+            },
+            success: function (res) {
+              that.setData({ discernResult: res.data.entity })
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
           })
         }
       }
