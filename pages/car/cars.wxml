@@ -25,7 +25,7 @@
         </view>
         <view class='page-flex-row' >
           <block wx:for="{{brand}}">
-            <image class='brand-pic' src='{{item.src}}'></image>
+            <image id='{{item.id}}' class='brand-pic' src='{{item.src}}' bindtap='sonBrand'></image>
           </block>
         </view>
       <!-- </view> -->

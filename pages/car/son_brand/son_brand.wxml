@@ -23,7 +23,8 @@
                   <image class='son_brand_pic' src='http:{{item.coverPic}}'></image>
                   <view class='text-flex-column'>
                     <view>{{item.carName}}</view>
-                    <view>{{item.beginPrice}} — {{item.endPrice}} 万</view>
+                    <view hidden='{{item.beginPrice + item.endPrice == 0}}'>{{item.beginPrice}} — {{item.endPrice}} 万</view>
+                    <view hidden='{{item.beginPrice + item.endPrice != 0}}'>暂无报价</view>
                   </view>
                 </view>
               </block> 
