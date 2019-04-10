@@ -15,12 +15,12 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: app.globalData.localhost + '/api-basicS/search/getSalesman',
+      url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
       data: { id:options.id },
       success: function (e) {
         that.setData({
           shop_info:e.data.entity,
-          salesmans: e.data.entity.salesmans
+          salesmans: e.data.entity.salesMan
         })
       }
     })

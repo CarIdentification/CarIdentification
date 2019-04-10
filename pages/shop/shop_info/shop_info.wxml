@@ -5,8 +5,9 @@
     <view class='row'>
       <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image>
       <view class='column'>
-        <view class='car_name' >{{shop_info.title}}</view>
-        <view class='address'>{{shop_info.address}}</view>
+        <view class='car_name' >{{shop_info.shopName}}</view>
+        <view class='address'>{{shop_info.locationDetail}}</view>
+        <view class='address'>联系电话：{{shop_info.tel}}</view>
       </view>
     </view>
     
