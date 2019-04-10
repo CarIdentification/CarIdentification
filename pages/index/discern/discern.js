@@ -107,6 +107,7 @@ Page({
 
         wx.request({
           url: app.globalData.localhost + '/api-basicS/search/getCar',
+          // url: 'http://localhost:8763/search/getCar',
           data: {
             ids: result,
             latitude: that.data.latitude,

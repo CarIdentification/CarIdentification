@@ -70,7 +70,10 @@ Page({
    */
   onReady: function () {
     var that = this
-
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     
     //在拥有权限的前提下，动态获取品牌信息
     wx.request({
@@ -84,6 +87,9 @@ Page({
             hasBrand: true
           })
         }
+      },
+      complete:function(e){
+        wx.hideLoading()
       }
     })
     
@@ -114,19 +120,19 @@ Page({
     if (!that.data.hasBrand) {
       console.log(that.data.hasBrand + "*******************************************")
       //动态获取品牌信息
-      wx.request({
-        url: app.globalData.localhost +'/api-basicS/search/getBrands',
-        data: { signature: app.globalData.signature },
-        success: function (e) {
-          // wx.setStorageSync("brand",e.entity)
-          if (e.data.entity.stateInfo == "success") {
-            that.setData({
-              brands: e.data.entity,
-              hasBrand: true
-            })
-          }
-        }
-      })
+      // wx.request({
+      //   url: app.globalData.localhost +'/api-basicS/search/getBrands',
+      //   data: { signature: app.globalData.signature },
+      //   success: function (e) {
+      //     // wx.setStorageSync("brand",e.entity)
+      //     if (e.data.entity.stateInfo == "success") {
+      //       that.setData({
+      //         brands: e.data.entity,
+      //         hasBrand: true
+      //       })
+      //     }
+      //   }
+      // })
     }
     
   },
