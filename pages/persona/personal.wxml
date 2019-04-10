@@ -44,7 +44,7 @@
           <view class="weui-cell__bd">安全中心</view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
-      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/persona/my_collection/my_collection" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
               <image src="/resource/image/setting_collection_icon.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
           </view>
