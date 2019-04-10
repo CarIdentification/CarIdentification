@@ -2,7 +2,7 @@
 <view class='container'>
   <scroll-view bindscroll="scroll" style="word-wrap: break-word; margin: 0px; padding: 0px;" scroll-y="true" style="height: 100%;"  class="city_list">
     <view class='brand'>
-      <image class='father_brand_pic' src='/resource/image/brand_pic/{{father_brand.imgUrl}}'></image>
+      <image class='father_brand_pic' src='{{father_brand.imgUrl}}'></image>
       <view class="father_title">{{father_brand.name}}</view>
     </view>
     <view id='123' class="brand-list" >
