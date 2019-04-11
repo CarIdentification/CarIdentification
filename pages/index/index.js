@@ -77,6 +77,9 @@ Page({
     if (i == size - 1) {
       last = 1;
     }
+    wx.showLoading({
+      title: '识别中，请稍候',
+    })
     wx.uploadFile({
       url: app.globalData.localhost +'/classify-service/classify/car',
       filePath: tempFilePaths[i],

@@ -61,11 +61,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    
-    console.log("*****************************:  "+wx.getStorageSync('discernResult'))
-    var result = wx.getStorageSync('discernResult')
     //车辆信息
     
+    that.displayResult()
+
     //动画
     const animation = wx.createAnimation({
       duration: 500,
@@ -90,38 +89,7 @@ Page({
       picsAnimationData: picAnimation.export(),
       saleAnimationData: saleAnimation.export()
     })
-    //显示加载框
-    wx.showLoading({
-      title: '识别中，请稍等',
-      mask: true,
-    })
-    //异步请求识别数据
-    //获取坐标
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
-        })
-
-        wx.request({
-          url: app.globalData.localhost + '/api-basicS/search/getCar',
-          // url: 'http://localhost:8763/search/getCar',
-          data: {
-            ids: result,
-            latitude: that.data.latitude,
-            longitude: that.data.longitude
-          },
-          success: function (res) {
-            that.setData({ discernResult: res.data.entity })
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-        })
-      },
-    })
+    
     
 
     wx.getSystemInfo({
@@ -170,6 +138,7 @@ Page({
             },
             success: function (res) {
               that.setData({ discernResult: res.data.entity })
+              that.displayResult()
             },
             complete: function () {
               wx.hideLoading()
@@ -177,6 +146,50 @@ Page({
           })
         }
       }
+    })
+  },
+  displayResult:function(){
+    const that = this
+    var result = wx.getStorageSync('discernResult')
+    //显示加载框
+    wx.showLoading({
+      title: '识别中，请稍等',
+      mask: true,
+    })
+    //异步请求识别数据
+    //获取坐标
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+
+        wx.request({
+          url: app.globalData.localhost + '/api-basicS/search/getCar',
+          // url: 'http://localhost:8763/search/getCar',
+          data: {
+            ids: result,
+            latitude: that.data.latitude,
+            longitude: that.data.longitude
+          },
+          success: function (res) {
+            const ent = res.data.entity
+            //为了显示大图手动处理出需要的url数组
+            for(let i = 0;i < ent.length;i++){
+              ent[i].picArr = []
+              for(let j = 0;j < ent[i].carPic.length;j++){
+                ent[i].picArr[j] = "http:" + ent[i].carPic[j].imgSrc
+              }
+            }
+            that.setData({ discernResult: ent })
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+        })
+      },
     })
   },
   getCarPhoto: function (e) {
@@ -274,5 +287,13 @@ Page({
     wx.navigateTo({
       url: '../../shop/shop_info/shop_info?id=' + id,
     })
-  }
+  },
+  showPic: function (e) {
+    // console.log(e)
+    var that = this
+    wx.previewImage({
+      current: "http:" + e.currentTarget.dataset.src,// 当前显示图片的http链接
+      urls: that.data.discernResult[that.data.current].picArr // 需要预览的图片http链接列表
+    })
+  },
 })
