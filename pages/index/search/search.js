@@ -98,6 +98,7 @@ Page({
     })
     wx.request({
       url: app.globalData.localhost +'/api-basicS/search/textSearch',
+      // url: 'http://localhost:8763/search/textSearch',
       data: {
         searchContext: value,
         signature: app.globalData.signature
@@ -108,7 +109,9 @@ Page({
           issues: res.data.entity.issue,
           cars: res.data.entity.carList
         })
-        WxParse.wxParse('issues[0].content', 'html', that.data.issues[0].content, that, 5);
+        if(that.data.issues!=null){
+          WxParse.wxParse('issues[0].content', 'html', that.data.issues[0].content, that, 5);
+        }
         wx.hideLoading()
       }
     })
