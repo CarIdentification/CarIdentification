@@ -29,7 +29,8 @@ style="height: {{winHeight}}px;">
 
         <!-- <image class='car_img' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image> -->
         <view class='car_name'>{{item.carName}}</view>
-        <view class='car_price'>{{item.beginPrice}} - {{item.endPrice}} 万</view>
+        <view class='car_price' hidden='{{item.beginPrice == 0 && item.endPrice == 0}}'>{{item.beginPrice}} - {{item.endPrice}} 万</view>
+        <view class='car_price' hidden='{{item.beginPrice != 0 || item.endPrice != 0}}'>暂无报价</view>
         <!-- <view class='title'>基本参数：</view> -->
         <view class='page-flex-row car_config' >
           <view class='car_property_title'>级别：</view>
