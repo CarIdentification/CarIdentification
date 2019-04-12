@@ -1,17 +1,24 @@
 <!--pages/persona/own_car/own_car.wxml-->
 <!--pages/issue/text/text.wxml-->
-<view class="">
+<view class='navigation {{pageVariable.isFloat == true ? "float-navigation":""}}"'>拥有车型</view>
+<view class="owncar-container">
   <view wx:for="{{ownCarInfos}}">
     <!-- 跳到对应车型的详情 -->
     <view class='car-info-item'>
-      <navigator url=''>
-        <view>{{item.carName}}</view>
-        <view class="a-neck-img">
-          <image src="{{item.coverPic}}"></image>
+
+      <view class="title-row">
+        <view class="car-title">{{item.carName}}</view>
+        <view>
+          <image class="delOwnCar" src="/resource/image/person-pic/own-car-icon/close-circle.png" data-carId="{{item.id}}" bindtap="delOwnCar"></image>
         </view>
-  </navigator>
-        <button data-carId="{{item.id}}" bindtap="delOwnCar">删除</button>
-      
+      </view>
+      <navigator url='../../car/result_car/result_car?id={{item.id}}'>
+        <view class="a-neck-img">
+          <image class="cover-pic" src="{{item.coverPic}}"></image>
+        </view>
+      </navigator>
+
+
     </view>
   </view>
 </view>

@@ -11,24 +11,35 @@ Page({
   delOwnCar: function(e) {
     let that = this
     console.log(wx.getStorageSync('uid'))
-    wx.request({
-      url: app.globalData.localhost + '/api-basicS/personal/delOwnCar',
-      // url: "http://127.0.0.1:8763/personal/delOwnCar",
-      method: 'POST',
-      header: {
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-      },
-      data: {
-        carId: e.currentTarget.dataset.carid,
-        userId: wx.getStorageSync('uid')
-      },
-      success: function(res) {
-        console.log(res)
-        // 更新成功则刷新页面
-        that.onLoad()
+    wx.showModal({
+      title: '提示',
+      content: '确定要移除该车型吗？',
+      success: function(sm) {
+        if (sm.confirm) {
+          wx.request({
+            url: app.globalData.localhost + '/api-basicS/personal/delOwnCar',
+            // url: "http://127.0.0.1:8763/personal/delOwnCar",
+            method: 'POST',
+            header: {
+              "Accept": "application/json, text/javascript, */*; q=0.01",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            data: {
+              carId: e.currentTarget.dataset.carid,
+              userId: wx.getStorageSync('uid')
+            },
+            success: function(res) {
+              console.log(res)
+              // 更新成功则刷新页面
+              that.onLoad()
+            }
+          })
+        }else if (sm.cancel){
+          console.log('用于取消点击')
+        }
       }
     })
+
   },
 
   /**
