@@ -17,8 +17,6 @@
 
 .owncar-container{
   margin: 5px;
-
-
 }
 .car-info-item {
   background: #ffffff;
@@ -29,8 +27,6 @@
 }
 .cover-pic{
   width : 100%;
-  margin-top: 3px;
-  margin-bottom: 3px;
 }
 
 .delOwnCar{
@@ -45,27 +41,4 @@
   font-size: 16px;
   margin: 5px;
   float: left;
-}
-
-.a-neck {
-    margin-top: 30rpx;
-}
-
-.a-neck-text text {
-    margin-right: 10rpx;
-}
-
-
- /* 汽车图片样式 */
-.car-img {
-    display: flex;
-    justify-content: center;
-    margin-top: 50rpx;
-    
-}
-
-.car-img image {
-    width: 700rpx;
-    height: 390rpx;
-  
 }

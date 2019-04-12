@@ -1,25 +1,27 @@
 <!--pages/persona/add_tag/add_tag.wxml-->
-<view class='scroll_container'>
-  <scroll-view class='scroll_left' scroll-y  >
-    <view class='page-flex-row'>
-      <block wx:for="{{noHas}}">
-        <button class="{{mark[item.tagId-1]?'checked':'noChecked'}}" id='{{item.tagId}}' bindtap='addTag'>{{item.brandName}}</button>
-        <!-- <text>{{mark[item.tagId-1]}}</text> -->
-      </block>
-    </view>
-  </scroll-view>
-  <view class='operating'>
-    <button bindtap='adding'>新增标签</button>
+<view class="body">
+  <view class="nav bc_white">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">全部标签</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">我的标签</view>
   </view>
-  <scroll-view class='scroll_right' scroll-y  >
-    <view class='page-flex-row'>
-      <block wx:for="{{Has}}">
-        <button class="{{markHas[item.tagId-1]?'checked':'noChecked'}}" id='{{item.tagId}}' bindtap='removeTag'>{{item.brandName}}</button>
-        <!-- <text>{{markHas[item.tagId-1]}}</text> -->
-      </block>
-    </view>
-  </scroll-view>
-  <view class='operating'>
-    <button bindtap='removing'>移除标签</button>
+  <view class=" {{selected?'show':'hidden'}}">
+
+    <block wx:for="{{noHas}}">
+      <!-- <view class="tag-container {{mark[item.tagId-1]?'checked':'noChecked'}}" id='{{item.tagId}}' bindtap='addTag'>{{item.brandName}}</view> -->
+      <view class='tag-container'>
+        <view class='tag-name'>{{item.brandName}}</view>
+        <view class='add-tag' id='{{item.tagId}}' bindtap="addTag">添加</view>
+      </view>
+    </block>
+  </view>
+  <view class="{{selected1?'show':'hidden'}}">
+    <block wx:for="{{Has}}">
+      <!-- <button class="tag-button {{markHas[item.tagId-1]?'checked':'noChecked'}}" id='{{item.tagId}}' bindtap='removeTag'>{{item.brandName}}</button> -->
+      <!-- <text>{{markHas[item.tagId-1]}}</text> -->
+      <view class='tag-container'>
+        <view class='tag-name'>{{item.brandName}}</view>
+        <view class='add-tag' id='{{item.tagId}}' bindtap="removeTag">删除</view>
+      </view>
+    </block>
   </view>
 </view>
