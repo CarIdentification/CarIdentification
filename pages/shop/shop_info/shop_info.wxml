@@ -1,32 +1,29 @@
 <!--pages/shop/shop_info/shop_info.wxml-->
 <view class='container'>
   <view class='page-flex-column'>
-    <image mode='aspectFill' src="{{shop_info.shopPic==null?'/resource/image/sell-shop/sell_shop_1.jpg':shop_info.shopPic}}" class="slide-image"/>
+    <image mode='aspectFill' src="{{shop_info.shopPic==null?'/resource/image/sell-shop/sell_shop_1.jpg':shop_info.shopPic}}" class="slide-image" />
     <view class='row'>
       <!-- <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image> -->
       <view class='column'>
-        <view class='car_name' >{{shop_info.shopName}}</view>
+        <view class='car_name'>{{shop_info.shopName}}</view>
         <view class='address'>{{shop_info.locationDetail}}</view>
         <view class='address'>联系电话：{{shop_info.tel}}</view>
       </view>
     </view>
-    
+
 
   </view>
   <view class='salesman_list'>
-      <block wx:for="{{salesmans}}">
-        <view class='salesman_cell'>
-          <!-- <view class='title'>店名：{{item.sellShopInfo.shopName}}</view>
-          <view class='title'>地址：{{item.sellShopInfo.locationDetail}}</view> -->
-          <view class='title'>销售人员:</view>
-          <view class='page-flex-row-noCenter'>
-            <image mode='aspectFill' class='personal_icon' src='{{item.personalPic}}'></image>
-            <view class='text-flex-column'>
-              <view style='font-size:15px;'>姓名：{{item.name}}</view>
-              <view style='font-size:15px;'>联系方式：{{item.tel}}</view>
-            </view>
-          </view>
+    <block wx:for="{{salesmans}}">
+      <view class='weui-cell'>
+        <view class='weui-cell__hd' style='position: relative;margin-right: 10px;'>
+          <image mode='aspectFill' class='personal_icon' style='width: 50px;display: block' src='{{item.personalPic}}'></image>
         </view>
-      </block>
-    </view>
+        <view class='weui-cell__bd'>
+          <view style='font-size:15px;'>{{item.name}}</view>
+          <view style='font-size: 13px;color: #888888;'>{{item.tel}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
 </view>
