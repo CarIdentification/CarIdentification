@@ -1,62 +1,66 @@
 /* pages/car/advanced_search/advanced_search.wxss */
- /* .title{
+
+/* .title{
    background-color:#efeff4; 
   width: 100%;  
   font-size: 16px; 
   padding: 10rpx 25rpx 10rpx 50rpx; 
  } */
-.price-input{
-  border:  1px solid #efeff4;
+
+.price-input {
+  border: 1px solid #efeff4;
   /* width: 15%; */
   width: 20vw;
   border-radius: 5px;
   margin: 20rpx 20rpx 20rpx 20rpx;
 }
-.text{
+
+.text {
   font-size: 14px;
-  line-height: 350%
+  line-height: 350%;
 }
 
-.text-title-view{
+.text-title-view {
   font-size: 15px;
-  
   border-bottom-width: 2rpx;
   border-bottom-style: solid;
   border-bottom-color: #efeff4;
-  
 }
 
-.text-title{
+.text-title {
   margin: 15rpx 25rpx 15rpx 25rpx;
   font-size: 16px;
   color: black;
+  align-items: center;
+  justify-content: center;
 }
-.square{
-font-size: 12px;  
-  border-radius: 4px;  
-  padding: 2vw 0vw; 
+
+.square_label {
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 2vw 0vw;
   margin: 1px;
   border: 1px solid;
-  border-color:  rgba(197,212,250,0);
+  border-color: rgba(197, 212, 250, 0);
   width: 23vw;
   text-align: center;
-  
 }
 
-.is_checked{
-
-  border: 1px solid rgba(197,212,250,1);
-  
-  color: white;  
-  background: rgba(197,212,250,1); 
-
+.square {
+  border-color: rgba(197, 212, 250, 0);
+  text-align: center;
 }
 
-view{
+.is_checked {
+  color: white;
+  background: rgba(197, 212, 250, 1);
+}
+
+view {
   font-size: 12px;
   color: grey;
 }
- 
+
 /* .page-flex-row label {  
   padding: 6px 7px;  
   font-size: 12px;  
@@ -70,10 +74,29 @@ view{
   background: #fff;  
 } */
 
-.search{
+.search {
   width: 100vw;
-  background-color: rgba(197,212,250,1);
+  background-color: rgba(197, 212, 250, 1);
   position: fixed;
   color: white;
   top: 91vh;
+}
+
+.weui-grid__icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+}
+
+.weui-grids_level {
+  overflow: hidden;
+}
+
+.weui-grid_level {
+  position: relative;
+  float: left;
+  padding: 20px 10px;
+  width: 33.33333333%;
+  box-sizing: border-box;
 }
