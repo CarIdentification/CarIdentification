@@ -45,7 +45,7 @@ Page({
       success:function(res){
         var pics = new Array()
         for (var i = 0; i < res.data.entity.carPic.length; i++) {
-          pics[i] = "../../../resource/image/car-pic/" + res.data.entity.carPic[i].imgSrc
+          pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
         }
         console.log(pics)
         if (res.data.entity.carPic.length>6){
@@ -125,7 +125,7 @@ Page({
     // console.log(e)
     var that = this
     wx.previewImage({
-      current: e.currentTarget.dataset.src,// 当前显示图片的http链接
+      current: "http:" + e.currentTarget.dataset.src,// 当前显示图片的http链接
       urls: that.data.pics // 需要预览的图片http链接列表
     })
   },

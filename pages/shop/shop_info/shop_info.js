@@ -16,6 +16,7 @@ Page({
     var that = this
     wx.request({
       url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
+      // url: 'http://localhost:8763/search/getShopInfo',
       data: { id:options.id },
       success: function (e) {
         that.setData({
