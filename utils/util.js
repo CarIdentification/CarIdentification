@@ -110,11 +110,28 @@ const sendlogin = (userInfo, signature, rawData) => {
   })
 }
 
+function wxPromisify(fn) {
+  return function (obj = {}) {
+    return new Promise((resolve, reject) => {
+      obj.success = function (res) {
+        resolve(res)
+      }
+
+      obj.fail = function (res) {
+        reject(res)
+      }
+
+      fn(obj)
+    })
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   sendlogin:sendlogin,
   reLogin: reLogin,
   getUserInfoScope: getUserInfoScope,
   property: property,
-  localhost:localhost
+  localhost: localhost,
+  wxPromisify: wxPromisify
 }

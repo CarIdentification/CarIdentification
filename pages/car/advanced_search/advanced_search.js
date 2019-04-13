@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    low: 0,
+    heigh: 100,
     level: [{
         name: "小型车",
         value: '0',
@@ -233,7 +235,7 @@ Page({
         isCheck: false
       },
       {
-        name: "7以上",
+        name: "7座以上",
         value: '5',
         isCheck: false
       },
@@ -278,11 +280,41 @@ Page({
     price: [0, 0],
   },
 
+  hideSlider: function (e) {
+    this.selectComponent("#zy-slider").hide()
+    this.selectComponent("#zy-slider1").hide()
+  },
+
+  showSlider: function (e) {
+    this.selectComponent("#zy-slider").show()
+    this.selectComponent("#zy-slider1").show()
+  },
+
+  resetSlider: function (e) {
+    this.selectComponent("#zy-slider").reset()
+    this.selectComponent("#zy-slider1").reset()
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
 
+  },
+
+  lowValueChangeAction: function (e) {
+    var that = this
+    that.setData({
+      low: e.detail.lowValue
+    })
+  },
+
+  heighValueChangeAction: function (e) {
+    var that = this
+    that.setData({
+      heigh: e.detail.heighValue
+    })
   },
 
   /**
@@ -338,7 +370,8 @@ Page({
     // var param = { titles: ['col1', 'col2', 'col3'],price:[1,2] }
     var that = this
     app.globalData.advanced_mess = e.detail.value
-
+    app.globalData.advanced_mess.be_price=that.data.low;
+    app.globalData.advanced_mess.en_price = that.data.heigh;
     wx.navigateTo({
       url: '../result_list/result_list',
     })
