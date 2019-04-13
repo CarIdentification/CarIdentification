@@ -1,30 +1,44 @@
 /* pages/persona/own_car/own_car.wxss */
 @import "/wxParse/wxParse.wxss";
+.navigation{
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.float-navigation {    /*导航浮动起来的css*/
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.owncar-container{
+  margin: 5px;
+}
 .car-info-item {
   background: #ffffff;
-  border: solid 1px;
-  margin: 1px;
+  margin: 10px;
+  padding: 5px;
+  box-shadow:2px 2px 5px 5px #DADCDB;
+  border-radius: 5px;
+}
+.cover-pic{
+  width : 100%;
 }
 
-.a-neck {
-    margin-top: 30rpx;
+.delOwnCar{
+  width: 18px;
+  height: 18px;
+  float: right;
+  margin: 10px;
 }
 
-.a-neck-text text {
-    margin-right: 10rpx;
-}
-
-
- /* 汽车图片样式 */
-.car-img {
-    display: flex;
-    justify-content: center;
-    margin-top: 50rpx;
-    
-}
-
-.car-img image {
-    width: 700rpx;
-    height: 390rpx;
-  
+.car-title{
+  font-weight: bold;
+  font-size: 16px;
+  margin: 5px;
+  float: left;
 }

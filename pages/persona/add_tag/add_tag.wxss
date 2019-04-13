@@ -1,47 +1,103 @@
 /* pages/persona/add_tag/add_tag.wxss */
-.scroll_container{
-  height: 100%;
-  display:flex;
-  justify-content:center;
-  flex-flow: wrap column;
+
+/* tab栏样式 */
+
+page {
+  background-color: #f9f8f9;
 }
 
-button{
-  margin: 10rpx;
+.body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav {
+  width: 95%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.default {
+  line-height: 100rpx;
+  text-align: center;
+  flex: 1;
+  border-right: none;
+  color: #5d5d5d;
+  font-size: 28rpx;
+}
+
+.red {
+  line-height: 100rpx;
+  text-align: center;
+  color: #d1c5fe;
+  flex: 1;
+  border-right: none;
+  border-bottom: 4rpx solid #d1c5fe;
+  font-size: 28rpx;
+}
+
+.show {
+  display: block;
+  text-align: center;
+  /* line-height: 200rpx; */
+}
+
+.hidden {
+  display: none;
+  text-align: center;
+  /* line-height: 200px; */
+}
+
+/* 标签内容样式 */
+
+.tag-container {
+  width: 100%;
+  height: 40px;
+  padding-bottom: 10rpx;
+  color: #393e46;
+  align-items: center;
+  justify-content: center;
+}
+
+.checked {
+  background-color: #aec3f8;
+  /* background-color: #d1c5fa; */
+}
+
+.noChecked {
+  /* background-color: white; */
+  background-color: white;
+}
+
+.tag-name {
+  float: left;
+  margin-left: 40px;
+}
+
+.add-tag {
   padding-left: 5px;
   padding-right: 5px;
-  padding-top: 1px;
-  padding-bottom: 2px;
-  height: 60rpx;
-  font-size: 40rpx;
-  line-height: 140%;
+  margin-right: 40px;
+  float: right;
+  background: #d1c5fe;
+  color: grey;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
-.checked{
-  background-color: #C5D4FA
-}
+/* 
+.operating {
+  width: 90%;
+  margin-top: 20rpx;
+  background-color: #d1c5fa;
+  color: #393e46;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
 
-.noChecked{
-  background-color: white
-}
-
-
-.operating{
-  height: 8%;
-  
-}
-.scroll_left{
-  /* background-color: #F0FFFF; */
-  height: 42%;
-  width: 100%;
-}
-.scroll_right{
-  /* background-color: #F0FFFF; */
-  height: 42%;
-  width: 100%;
-}
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
+  line-height: 180%;
+} */

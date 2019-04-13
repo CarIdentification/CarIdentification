@@ -8,8 +8,13 @@ Page({
   data: {
     text: ["热门文章", "推荐文章"],
     currentTab: 0,
-    wenben: []
-
+    wenben: [],
+    //input状态
+    inputShowed: false,
+    inputVal: "",
+    //历史记录
+    history:[],
+    discernResult:[{}]
   },
 
   /**
@@ -119,6 +124,52 @@ Page({
       fail: function () {
         console.log("失败")
       }
+    })
+  },
+
+  showInput: function () {
+    var that = this;
+    console.log("index_signature: " + app.globalData.signature)
+    wx.request({
+      url: app.globalData.localhost +'/api-basicS/search/textSearchHistory',
+      data:{
+        signature:app.globalData.signature
+      },
+      success:function(e){
+        console.log(e)
+        if(e.data.stateInfo!="fail"){
+          that.setData({
+            history: e.data.entity
+          })
+        }
+
+      }
+    })
+    that.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputShowed: true,
+      inputVal: e.detail.value
+    });
+  },
+  //完成输出，开始搜索文章
+  confirm: function(e){
+    console.log(e.detail.value)
+    wx.navigateTo({
+      url: '/pages/index/search/search?msg=' + e.detail.value,
     })
   }
 })

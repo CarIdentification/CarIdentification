@@ -19,10 +19,23 @@ Page({
     //用于标记（已经选择的tag）按钮状态
     markHas: [],
     //删除的tag
-    remove:[]
+    remove:[],
     
+    selected: true,
+    selected1: false,
 
-
+  },
+  selected: function (e) {
+    this.setData({
+      selected1: false,
+      selected: true
+    })
+  },
+  selected1: function (e) {
+    this.setData({
+      selected: false,
+      selected1: true
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -79,6 +92,11 @@ Page({
   onShareAppMessage: function () {
   
   },
+  //submit添加标签
+  adding: function () {
+    
+
+  },
 
 //选中未添加的标签
   addTag: function(e){
@@ -109,6 +127,27 @@ Page({
     })
     console.log(that.data.mark)
     console.log(that.data.add)
+    
+    // 提交添加标签
+    var that = this
+    var add = that.data.add
+    add.push(app.globalData.signature)
+    // var send = JSON.stringify(mark)
+    // console.log(send)
+    wx.request({
+
+      method: 'POST',
+      url: app.globalData.localhost + '/api-basicS/personal/addTag',
+      data: add,
+      success: function (res) {
+        that.setData({
+          add: []
+        })
+        add.pop()
+        console.log(add)
+        that.onShow()
+      }
+    })
   },
 
 //选中已添加的标签
@@ -141,34 +180,8 @@ Page({
     })
     console.log(that.data.markHas)
     console.log(that.data.remove)
-  },
 
-  //submit添加标签
-  adding: function(){
-    var that = this
-    var add = that.data.add
-    add.push(app.globalData.signature)
-    // var send = JSON.stringify(mark)
-    // console.log(send)
-    wx.request({
-      
-      method:'POST',
-      url: app.globalData.localhost +'/api-basicS/personal/addTag',
-      data:  add,
-      success: function (res) {
-        that.setData({
-          add : []
-        })
-        add.pop()
-        console.log(add)
-        that.onShow()
-      }
-    })
-    
-  },
-
-  //submit删除标签
-  removing: function () {
+    // 提交删除 removing
     var that = this
     var remove = that.data.remove
     remove.push(app.globalData.signature)
@@ -177,7 +190,7 @@ Page({
     wx.request({
 
       method: 'POST',
-      url: app.globalData.localhost +'/api-basicS/personal/removeTag',
+      url: app.globalData.localhost + '/api-basicS/personal/removeTag',
       data: remove,
       success: function (res) {
         that.setData({
@@ -188,6 +201,12 @@ Page({
         that.onShow()
       }
     })
+  },
+
+  
+
+  //submit删除标签
+  removing: function () {
     
   },
 
