@@ -10,90 +10,33 @@ Page({
   data: {
     width: 0,
     widthSize: 0.9,
+    cardHeight: 910,
     animationData: {},
-    picsAnimationData:{},
-    saleAnimationData:{},
+    picsAnimationData: {},
+    saleAnimationData: {},
     property: util.property,
-    iconImg:"/resource/image/discern.png",
+    iconImg: "/resource/image/discern.png",
     indicatorDots: false,
     autoplay: false,
     current: 0,
+    current_car: 0,
+    current_info_tab: 1,
     circular: false,
-    discernResult:[{},{}],
-    expand:false,
-    reduce:true,
+    discernResult: [{}, {}],
+    expand: false,
+    reduce: true,
     latitude: "",
     longitude: ""
   },
-  scroll_:function(e){
-    var that = this;
-    if (e.detail.scrollTop > 60 && that.data.expand==false){
-      // 放大
-        this.animation.width(that.data.width + 30).step()
-        this.picAnimation.width('30vw').step()
-        this.saleAnimation.width('750rpx').step()
-        console.log("放大")
-        that.setData({
-          expand:true,
-          reduce:false,
-          animationData: this.animation.export(),
-          picsAnimationData: this.picAnimation.export(),
-          saleAnimationData: this.saleAnimation.export()
-        })
-    } else if (e.detail.scrollTop < 150 && that.data.reduce==false){
-
-        this.animation.width(that.data.width - 30).step()
-        this.picAnimation.width('27vw').step()
-      this.saleAnimation.width('690rpx').step()
-      that.setData({
-        reduce: true,
-        expand:false,
-        animationData: this.animation.export(),
-        picsAnimationData: this.picAnimation.export(),
-        saleAnimationData: this.saleAnimation.export()
-      })
-        console.log("缩小")
-    }
-  },
+  scroll_: function(e) {},
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this
-    //车辆信息
-    
-    that.displayResult()
-
-    //动画
-    const animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear',
-    })
-
-    const picAnimation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear',
-    })
-
-    const saleAnimation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear',
-    })
-    this.animation = animation
-    this.picAnimation = picAnimation
-    this.saleAnimation = saleAnimation
-
-    that.setData({
-      animationData: animation.export(),
-      picsAnimationData: picAnimation.export(),
-      saleAnimationData: saleAnimation.export()
-    })
-    
-    
-
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           windowWidth: res.windowWidth,
           width: res.windowWidth,
@@ -101,8 +44,10 @@ Page({
         })
       },
     })
+    //车辆信息
+    that.displayResult()
   },
-  uploadImg: function (i, tempFilePaths, size, last) {
+  uploadImg: function(i, tempFilePaths, size, last) {
     //显示加载框
     wx.showLoading({
       title: '识别中，请稍等',
@@ -126,7 +71,7 @@ Page({
         } else {
           wx.setStorageSync('discernResult', JSON.parse(res.data).data)
           console.log(wx.getStorageSync('discernResult'))
-          
+
           //更新数据
           wx.request({
             url: app.globalData.localhost + '/api-basicS/search/getCar',
@@ -136,11 +81,13 @@ Page({
               latitude: that.data.latitude,
               longitude: that.data.longitude
             },
-            success: function (res) {
-              that.setData({ discernResult: res.data.entity })
+            success: function(res) {
+              that.setData({
+                discernResult: res.data.entity
+              })
               that.displayResult()
             },
-            complete: function () {
+            complete: function() {
               wx.hideLoading()
             }
           })
@@ -148,7 +95,7 @@ Page({
       }
     })
   },
-  displayResult:function(){
+  displayResult: function() {
     const that = this
     var result = wx.getStorageSync('discernResult')
     //显示加载框
@@ -160,7 +107,7 @@ Page({
     //获取坐标
     wx.getLocation({
       type: 'wgs84',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude
@@ -174,25 +121,37 @@ Page({
             latitude: that.data.latitude,
             longitude: that.data.longitude
           },
-          success: function (res) {
+          success: function(res) {
             const ent = res.data.entity
             //为了显示大图手动处理出需要的url数组
-            for(let i = 0;i < ent.length;i++){
+            for (let i = 0; i < ent.length; i++) {
               ent[i].picArr = []
-              for(let j = 0;j < ent[i].carPic.length;j++){
+              ent[i].carPic = ent[i].carPic.slice(0, 9)
+              for (let j = 0; j < ent[i].carPic.length; j++) {
                 ent[i].picArr[j] = "http:" + ent[i].carPic[j].imgSrc
               }
             }
-            that.setData({ discernResult: ent })
+            that.setData({
+              discernResult: ent
+            })
+
+            // wx.createSelectorQuery().selectAll('.car_list_cell').boundingClientRect(function(rect) {
+            //   console.log(rect[0].height)
+            //   that.setData({
+            //     cardHeight: rect[0].height
+            //   })
+            // }).exec()
+
+
           },
-          complete: function () {
+          complete: function() {
             wx.hideLoading()
           }
         })
       },
     })
   },
-  getCarPhoto: function (e) {
+  getCarPhoto: function(e) {
     var that = this;
     wx.chooseImage({
       count: 1,
@@ -208,73 +167,77 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
-  }
-  ,
-  getCarResult(index,id){
+  },
+  getCarResult(index, id) {
     var that = this
     var param = {};
-    var discernResult_pics_string = "discernResult["+index+"].pics";
+    var discernResult_pics_string = "discernResult[" + index + "].pics";
     var discernResult_entity_string = "discernResult[" + index + "].carEntity";
     var discernResult_salesmans_string = "discernResult[" + index + "].salesmans";
     wx.request({
       url: 'http://' + app.globalData.localhost + '/api-basicS/search/getCar',
-      data: { id: id },
-      success: function (res) {
+      data: {
+        id: id
+      },
+      success: function(res) {
         var pics = new Array()
+        res.data.entity.carPic = res.data.entity.carPic.slice(0, 9)
         for (var i = 0; i < res.data.entity.carPic.length; i++) {
-          pics[i] = "../../../resource/image/car-pic/" + res.data.entity.carPic[i].imgSrc
+          pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
         }
         console.log(pics)
         param[discernResult_pics_string] = pics;
         param[discernResult_entity_string] = res.data.entity;
         wx.request({
           url: 'http://' + app.globalData.localhost + '/api-basicS/search/getSalesman',
-          data: { brandId: res.data.entity.carBrand },
-          success: function (e) {
+          data: {
+            brandId: res.data.entity.carBrand
+          },
+          success: function(e) {
             param[discernResult_salesmans_string] = res.data.entity;
           }
         })
@@ -282,18 +245,50 @@ Page({
     })
     that.setData(param)
   },
-  navigateToSellShop: function (e) {
+  navigateToSellShop: function(e) {
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
       url: '../../shop/shop_info/shop_info?id=' + id,
     })
   },
-  showPic: function (e) {
+  showPic: function(e) {
     // console.log(e)
     var that = this
     wx.previewImage({
-      current: "http:" + e.currentTarget.dataset.src,// 当前显示图片的http链接
+      current: "http:" + e.currentTarget.dataset.src, // 当前显示图片的http链接
       urls: that.data.discernResult[that.data.current].picArr // 需要预览的图片http链接列表
     })
   },
+  switchTab: function(e) {
+    var that = this;
+    if(e.currentTarget.dataset.tabid == 2){
+      that.setData({
+        cardHeight: 1400
+      })
+    }else{
+      that.setData({
+        cardHeight: 910
+      })
+    }
+    
+    // debugger
+    // wx.createSelectorQuery().selectAll('.car_list_cell').boundingClientRect(function (rect) {
+    //   debugger
+    //   that.setData({
+    //     cardHeight: rect[that.data.current_car].height
+    //   })
+    // }).exec()
+    that.setData({
+      current_info_tab: e.currentTarget.dataset.tabid
+    })
+  },
+  swiperChange(e) {
+    let current = e.detail.current;
+    let source = e.detail.source
+    //console.log(source);
+    console.log(current, this.data.index, this.data.cur)
+    this.setData({
+      current_car: current
+    })
+  }
 })
