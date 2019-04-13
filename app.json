@@ -25,34 +25,24 @@
     "navigationBarTitleText": "识车小程序"
   },
   "tabBar": {
-    "backgroundColor": "#C5D4FA",
-    "borderStyle": "black",
+    "backgroundColor": "white",
+    "borderStyle": "white",
     "position": "bottom",
     "list": [
       {
-        "pagePath": "pages/car/cars",
-        "iconPath": "resource/image/tabBar_car_icon1.png",
-        "selectedIconPath": "resource/image/tabBar_car_icon1.png"
+        "pagePath": "pages/car/cars"
       },
       {
-        "pagePath": "pages/issue/issue",
-        "iconPath": "resource/image/tabBar_issue_icon.png",
-        "selectedIconPath": "resource/image/tabBar_issue_icon.png"
+        "pagePath": "pages/issue/issue"
       },
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "resource/image/tabBar_index_icon1.png",
-        "selectedIconPath": "resource/image/tabBar_index_icon1.png"
+        "pagePath": "pages/index/index"
       },
       {
-        "pagePath": "pages/shop/shop",
-        "iconPath": "resource/image/tabBar_shop_icon.png",
-        "selectedIconPath": "resource/image/tabBar_shop_icon.png"
+        "pagePath": "pages/shop/shop"
       },
       {
-        "pagePath": "pages/persona/personal",
-        "iconPath": "resource/image/tabBar_person_icon2.png",
-        "selectedIconPath": "resource/image/tabBar_person_icon2.png"
+        "pagePath": "pages/persona/personal"
       }
     ]
   },

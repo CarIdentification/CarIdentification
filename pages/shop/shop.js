@@ -3,6 +3,7 @@ var bmap = require('../../libs/bmap-wx.min.js');
 const app = getApp();
 Page({
   data: {
+    navData: app.globalData.navData,
     Height: 0,
     scale: 15,
     latitude: "",
@@ -12,7 +13,9 @@ Page({
 
   onLoad: function () {
     var that = this;
-
+    that.setData({
+      'navData[3].current': 1
+    })
     wx.getSystemInfo({
       success: function (res) {
         //设置map高度，根据当前设备宽高满屏显示
@@ -135,6 +138,31 @@ Page({
     wx.navigateTo({
       url: 'shop_info/shop_info?id='+e.markerId,
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 
 })
