@@ -1,5 +1,10 @@
-
 <!--pages/car/result_car/result_car.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='container'>
   <view class='page-flex-column'>
     <swiper indicator-dots="true" autoplay="ture" circular="{{circular}}" style="width: 100vw;">

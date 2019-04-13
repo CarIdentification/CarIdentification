@@ -1,4 +1,10 @@
 <!--pages/shop/shop_info/shop_info.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='container'>
   <view class='shop_cell'>
     <image mode='aspectFill' src="{{shop_info.shopPic==null?'/resource/image/sell-shop/sell_shop_1.jpg':shop_info.shopPic}}" class="slide-image" />

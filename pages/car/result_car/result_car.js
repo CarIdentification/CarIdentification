@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     property:util.property,
     result:{},
     pics:[],
@@ -21,10 +22,9 @@ Page({
   onLoad: function (options) {
     
     var that = this
-    console.log(that.data.property)
-    // that.setData({
-    //   property:
-    // })
+    that.setData({
+      'navData[0].current': 1
+    })
     var id = options.id
     wx.getLocation({
       type: 'wgs84',
@@ -130,7 +130,32 @@ Page({
   navigateToSellShop:function(e){
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
-      url: '../../shop/shop_info/shop_info?id=' + id ,
+      url: '../../shop/shop_info/shop_info?id=' + id+'&from=0' ,
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

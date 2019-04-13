@@ -136,7 +136,7 @@ Page({
     console.log(e)
     var marker = that.data.markers[e.markerId];
     wx.navigateTo({
-      url: 'shop_info/shop_info?id='+e.markerId,
+      url: 'shop_info/shop_info?id='+e.markerId+'&from=1',
     })
   },
   gotoCars: function () {
