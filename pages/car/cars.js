@@ -22,11 +22,19 @@ Page({
       { from: 25, to: 35, text: "25-35万" }, 
       { from: 35, to: 50, text: "35-50万" }],
     brand: [
-      { id: 4,brandName: "123", src: "/resource/image/brand_pic/1.jpg" },
-      { id: 24,brandName: "123", src: "/resource/image/brand_pic/2.jpg" },
-      { id: 29,brandName: "123", src: "/resource/image/brand_pic/3.jpg" },
-      { id: 37,brandName: "123", src: "/resource/image/brand_pic/4.jpg" },
-      { id: 74,brandName: "123", src: "/resource/image/brand_pic/5.jpg" },
+      // { id: 24, brandName: "123", src: "/resource/image/brand_pic/2.jpg" },
+      // { id: 74, brandName: "123", src: "/resource/image/brand_pic/5.jpg" },
+      // { id: 29,brandName: "123", src: "/resource/image/brand_pic/3.jpg" },
+      // { id: 37,brandName: "123", src: "/resource/image/brand_pic/4.jpg" },
+      // { id: 4,brandName: "123", src: "/resource/image/brand_pic/1.jpg" },
+
+      { id: 24, brandName: "123", src: "/resource/image/brand_pic/toyota.png" },
+      { id: 74, brandName: "123", src: "/resource/image/brand_pic/honda.png" },
+      { id: 29,brandName: "123", src: "/resource/image/brand_pic/benz.png" },
+      { id: 37,brandName: "123", src: "/resource/image/brand_pic/bmw.png" },
+      { id: 4,brandName: "123", src: "/resource/image/brand_pic/audi.png" },
+
+      
       // { brandName: "123", src: "/resource/image/brand_pic/6.jpg" },
       // { brandName: "123", src: "/resource/image/brand_pic/7.jpg" },
       // { brandName: "123", src: "/resource/image/brand_pic/8.jpg" },

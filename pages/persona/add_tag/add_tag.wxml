@@ -25,3 +25,6 @@
     </block>
   </view>
 </view>
+<loading hidden="{{loadingHidden}}">
+        请稍等...
+</loading>

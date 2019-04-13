@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ownCarInfos: []
+    ownCarInfos: [],
+    loadingHidden: true
   },
   delOwnCar: function(e) {
     let that = this
@@ -47,6 +48,9 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+    that.setData({
+      loadingHidden: false
+    })
     wx.request({
       url: app.globalData.localhost + '/api-basicS/personal/getOwnCar?userId=' + wx.getStorageSync('uid'),
       // url: 'http://127.0.0.1:8763/personal/getOwnCar?userId=' + wx.getStorageSync('uid'),
@@ -61,6 +65,9 @@ Page({
       fail: function() {
         console.log("fail!!!!")
       }
+    })
+    that.setData({
+      loadingHidden: true
     })
   },
 
