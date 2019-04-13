@@ -28,49 +28,47 @@ Page({
     var id = options.id
     wx.getLocation({
       type: 'wgs84',
-      success: function(res) {
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
+      success: function(ress) {
+      
+        wx.request({
+          url: app.globalData.localhost + '/api-basicS/search/getCar',
+          data: {
+            id: id,
+            latitude: ress.latitude,
+            longitude: ress.longitude
+          },
+          success: function (res) {
+            var pics = new Array()
+            for (var i = 0; i < res.data.entity.carPic.length; i++) {
+              pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
+            }
+            console.log(pics)
+            if (res.data.entity.carPic.length > 6) {
+              for (var i = 6; i < res.data.entity.carPic.length; i++) {
+                res.data.entity.carPic[i] = null
+              }
+            }
+            res.data.entity.carPic.length = 6;
+            that.setData({
+              result: res.data.entity,
+              pics: pics
+            })
+            // wx.request({
+            //   url: app.globalData.localhost +'/api-basicS/search/getSalesman',
+            //   data:{brandId:res.data.entity.carBrand},
+            //   success:function(e){
+            //     that.setData({
+            //       salesmans:e.data.entity
+            //     })
+            //   }
+            // })
+
+
+          }
         })
       },
     })
-    wx.request({
-      url: app.globalData.localhost +'/api-basicS/search/getCar',
-      data:{
-        id:id,
-        latitude: that.data.latitude,
-        longitude: that.data.longitude
-        },
-      success:function(res){
-        var pics = new Array()
-        for (var i = 0; i < res.data.entity.carPic.length; i++) {
-          pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
-        }
-        console.log(pics)
-        if (res.data.entity.carPic.length>6){
-          for (var i = 6; i < res.data.entity.carPic.length ; i++ ){
-            res.data.entity.carPic[i] = null
-          }
-        }
-        res.data.entity.carPic.length = 6;
-        that.setData({
-          result:res.data.entity,
-          pics:pics
-        })
-        // wx.request({
-        //   url: app.globalData.localhost +'/api-basicS/search/getSalesman',
-        //   data:{brandId:res.data.entity.carBrand},
-        //   success:function(e){
-        //     that.setData({
-        //       salesmans:e.data.entity
-        //     })
-        //   }
-        // })
-        
-
-      }
-    })
+    
   },
 
   /**

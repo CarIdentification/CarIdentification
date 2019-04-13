@@ -19,6 +19,10 @@ Page({
       // url: 'http://localhost:8763/search/getShopInfo',
       data: { id:options.id },
       success: function (e) {
+      
+        if(e.data.entity.shopPic==null){
+          e.data.entity.shopPic = '/resource/image/sell-shop/sell_shop_1.jpg'
+        }
         that.setData({
           shop_info:e.data.entity,
           salesmans: e.data.entity.salesMan

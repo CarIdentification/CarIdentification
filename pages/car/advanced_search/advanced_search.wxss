@@ -136,9 +136,7 @@ view {
   width: 100%;
 }
 
-.zy-slider {
-    margin: 60rpx;
-}
+
 
 .top {
     text-align: center;
@@ -150,7 +148,7 @@ view {
 
 .zy-slider {
     position: relative;
-    margin: 30px;
+    margin: 20px 30px 0px 30px;
 }
 
 .button{
