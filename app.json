@@ -18,7 +18,8 @@
     "pages/shop/shop_info/shop_info",
     "pages/persona/own_car/own_car",
     "pages/persona/my_collection/my_collection",
-    "pages/shop/shop_map/shop_map"
+    "pages/shop/shop_map/shop_map",
+    "pages/persona/discern_history/discern_history"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

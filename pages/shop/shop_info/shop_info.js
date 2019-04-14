@@ -15,15 +15,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var param;
-    if(options.fromPage == 0){
-      param = 'navData[0].current'
+    if (options.fromPage == 0){
+      that.setData({
+        'navData[0].current': 1
+      })
     }else{
-      param = 'navData[3].current'
+      that.setData({
+        'navData[3].current': 1
+      })
     }
-    that.setData({
-      param: 1
-    })
+    
     wx.request({
       url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
       // url: 'http://localhost:8763/search/getShopInfo',
@@ -128,4 +129,10 @@ Page({
       url: '/pages/persona/personal',
     });
   },
+  shopMap: function(){
+    var that = this
+    wx.navigateTo({
+      url: '../shop_map/shop_map?latitute=' + that.data.shop_info.latitute + "&longitude=" + that.data.shop_info.longitude + "&locationDetail=" + that.data.shop_info.locationDetail + "&shopName=" + that.data.shop_info.shopName,
+    })
+  }
 })

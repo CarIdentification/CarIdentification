@@ -1,0 +1,122 @@
+<!--pages/car/result_car/result_car.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+  <block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}" />
+  </block>
+</view>
+<view class='container'>
+  <view class='page-flex-column'>
+    <view class='car_list_cell' style='width:{{width-30}}px'>
+      <!-- <view class='car_pic_list page-flex-row'>
+          <image  mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image>
+        </view> -->
+
+      <swiper circular="{{circular}}" style='width:100%'>
+        <swiper-item>
+          <image mode='aspectFill' src="http:{{result.coverPic}}" class="cover_pic" />
+        </swiper-item>
+      </swiper>
+
+      <!-- <image class='car_img' mode='aspectFit' src='/resource/image/car-pic/{{item.coverPic}}'></image> -->
+      <view style='display:flex;justify-content: flex-start;width:100%;'>
+        <view style='display:flex;flex-direction:column;flex-grow:1;margin-left:15px;'>
+          <view class='car_name' style='overflow: hidden;white-space: nowrap;width:132.75px;'>{{result.carName}}</view>
+          <view class='car_price' hidden='{{result.beginPrice == 0 && result.endPrice == 0}}'>{{result.beginPrice}} - {{result.endPrice}} 万</view>
+          <view class='car_price' hidden='{{result.beginPrice != 0 || result.endPrice != 0}}'>暂无报价</view>
+        </view>
+        <view style='display:flex;flex-direction:column;flex-grow:1;justify-content:center;align-items:center'>
+          <view hidden='{{currentHasAdd}}' bindtap='addHasCar'>
+            <view style='display:flex'>
+              <image class='icon_img' src='/resource/image/plus.png'></image>
+
+              <text style='line-height:60rpx'>加入车库</text>
+            </view>
+
+
+          </view>
+          <view hidden='{{!currentHasAdd}}' bindtap='delHasCar'>
+            <view style='display:flex'>
+              <image class='icon_img' src='/resource/image/reduce.png'></image>
+
+              <text style='line-height:60rpx'>移出车库</text>
+
+            </view>
+
+          </view>
+        </view>
+      </view>
+
+      <view class='car-info-container'>
+        <view class='car-info-navibar'>
+          <view class="{{current_info_tab == 1 ? 'car-info-navibar-item_active' : 'car-info-navibar-item'}}" bindtap='switchTab' data-tabId="1">
+            <text>基本参数</text>
+          </view>
+          <view class="{{current_info_tab == 2 ? 'car-info-navibar-item_active' : 'car-info-navibar-item'}}" bindtap='switchTab' data-tabId="2">
+            <text>销售门店</text>
+          </view>
+        </view>
+        <view class='car-info-tab' hidden='{{current_info_tab == 2}}'>
+          <view style='display:block'>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>级别：</view>
+              <view class='weui-cell__ft'>{{property.level[result.level]== undefined ? '暂无数据' : property.level[result.level]}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>结构：</view>
+              <view class='weui-cell__ft'>{{property.structure[result.structure]== undefined ? '暂无数据' : property.structure[result.structure]}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>排量：</view>
+              <view class='weui-cell__ft'>{{property.displacement[result.displacement] == undefined ? '暂无数据' : property.displacement[result.displacement]}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>座位数：</view>
+              <view class='weui-cell__ft'>{{result.seat == -1 ? '暂无数据' : result.seat}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>进气形式：</view>
+              <view class='weui-cell__ft'>{{property.air_intake[result.airIntake] == undefined ? '暂无数据' : property.air_intake[result.airIntake]}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>能源：</view>
+              <view class='weui-cell__ft'>{{property.energy[result.energy] == undefined ? '暂无数据' : property.energy[result.energy]}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>驱动方式：</view>
+              <view class='weui-cell__ft'>{{property.driving_method[result.drivingMethod] == undefined ? '暂无数据' : property.driving_method[result.drivingMethod]}}</view>
+            </view>
+            <view class='weui-cell'>
+              <view class='weui-cell__bd'>变速箱：</view>
+              <view class='weui-cell__ft'>{{property.Transmission[result.transmission] == undefined ? '暂无数据' : property.Transmission[result.transmission]}}</view>
+            </view>
+          </view>
+          <view class='pic_list'>
+            <block wx:for="{{result.carPic}}">
+              <view class='pic_cell'>
+                <image mode='aspectFill' src="http:{{item.imgSrc}}" data-src='{{item.imgSrc}}' class="slide-image" bindtap='showPic' />
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class='car-info-tab' hidden='{{current_info_tab == 1}}'>
+          <view style='' hidden='{{item.saleShops.length == 0}}'>
+            <block wx:for="{{result.saleShops}}">
+              <view class='salesman_cell' bindtap='navigateToSellShop' data-idx="{{item.id}}">
+                <view class='title'>店名：{{item.shopName}}</view>
+                <view class='title'>地址：{{item.locationDetail}}</view>
+                <view class='title'>经营品牌: {{item.brand}}</view>
+                <view class='title'>tel: {{item.tel}}</view>
+              </view>
+            </block>
+          </view>
+          <view style='text-align:center;color:#bfbfbf;' hidden='{{result.saleShops.length != 0}}'>
+            啊哦，暂无数据哦
+          </view>
+        </view>
+      </view>
+
+      <!-- <view class='title'>基本参数：</view> -->
+    </view>
+  </view>
+</view>

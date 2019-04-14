@@ -1,19 +1,28 @@
 <!--pages/shop/shop_map/shop.wxml-->
 <import src="/template/nav" />
-<view class="flex fix_nav_wp">
-<block wx:for="{{navData}}" wx:key="">
-    <template is="nav" data="{{...item}}"/>
-</block>
-</view> 
+<cover-view class="flex fix_nav_wp" style='overflow:visible'>
+  <block wx:for="{{navData}}" wx:key="">
+      <template is="cover_nav" data="{{...item}}"/>
+  </block>
+</cover-view>
+<cover-view class="nav_link" style='height:120rpx;width:120rpx;position:fixed;bottom:47rpx;z-index:11;left:316rpx;' bindtap="gotoIndex">
+  <button class="defalut_btn">
+
+    <cover-view class="plus_wp">
+      <cover-image src='/resource/image/tabBar_index_0.png' class="plus_ico"></cover-image>
+    </cover-view>
+    <!-- <cover-view class="txt txt_fb">识别</cover-view> -->
+    
+  </button> 
+</cover-view>
 <map 
   id="map" 
   longitude="{{longitude}}" 
   latitude="{{latitude}}" 
   scale="{{scale}}" 
+  markers="{{markers}}"
   bindcontroltap="controltap" 
-  markers="{{markers}}" 
   bindmarkertap="markertap" 
-  polyline="{{polyline}}" 
   bindregionchange="regionchange"
   bindtap="clicktap"
   bindcallouttap="callouttap"

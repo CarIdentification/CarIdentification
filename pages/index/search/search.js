@@ -98,7 +98,6 @@ Page({
     })
     wx.request({
       url: app.globalData.localhost +'/api-basicS/search/textSearch',
-      // url: 'http://localhost:8763/search/textSearch',
       data: {
         searchContext: value,
         signature: app.globalData.signature

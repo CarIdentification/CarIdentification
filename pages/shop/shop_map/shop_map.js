@@ -11,6 +11,7 @@ Page({
     scale: 15,
     latitude: "",
     longitude: "",
+    markers: []
   },
 
   /**
@@ -20,9 +21,22 @@ Page({
     var that = this;
     that.setData({
       'navData[3].current': 1,
-      latitude: options.latitude,
-      longitude: options.longitude
-
+      latitude: options.latitute,
+      longitude: options.longitude,
+      'markers[0]' : {
+        iconPath: '../../../resource/image/location_4.png',
+        latitude: options.latitute,
+        longitude: options.longitude,
+        width: 30,
+        height: 30,
+        callout: {
+          content: options.locationDetail,
+          padding: 5
+        },
+        label: {
+          content: options.shopName
+        }
+      }
     })
     wx.getSystemInfo({
       success: function (res) {

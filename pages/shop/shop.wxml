@@ -17,7 +17,7 @@
     
   </button> 
 </cover-view>
- <!-- <map 
+ <map 
   id="map" 
   longitude="{{longitude}}" 
   latitude="{{latitude}}" 
@@ -39,5 +39,5 @@
     <view class='text'>服务点</view>
 
   </cover-view> -->
- <!-- </map> -->
+</map>
 

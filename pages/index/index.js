@@ -204,4 +204,17 @@ Page({
       url: '/pages/persona/personal',
     });
   },
+  removeTextSearchHistory:function(){
+    var that= this
+    wx.request({
+      url: app.globalData.localhost + '/api-basicS/search/removeTextSearchHistory',
+      // url: 'http://localhost:8763' + '/search/removeTextSearchHistory',
+      data:{
+        signature: app.globalData.signature
+      },
+      success:function(res){
+        
+      }
+    })
+  }
 })
