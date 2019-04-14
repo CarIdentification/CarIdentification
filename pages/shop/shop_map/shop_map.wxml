@@ -1,0 +1,22 @@
+<!--pages/shop/shop_map/shop.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
+<map 
+  id="map" 
+  longitude="{{longitude}}" 
+  latitude="{{latitude}}" 
+  scale="{{scale}}" 
+  bindcontroltap="controltap" 
+  markers="{{markers}}" 
+  bindmarkertap="markertap" 
+  polyline="{{polyline}}" 
+  bindregionchange="regionchange"
+  bindtap="clicktap"
+  bindcallouttap="callouttap"
+  show-location style="width: 100%; height: {{view.Height}}px;">
+
+ </map>

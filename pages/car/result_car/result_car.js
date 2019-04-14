@@ -130,7 +130,7 @@ Page({
   navigateToSellShop:function(e){
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
-      url: '../../shop/shop_info/shop_info?id=' + id+'&from=0' ,
+      url: '../../shop/shop_info/shop_info?id=' + id +'&fromPage=0' ,
     })
   },
   gotoCars: function () {

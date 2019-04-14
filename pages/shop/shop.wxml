@@ -1,10 +1,6 @@
-<import src="../../template/nav" />
-<view class="flex fix_nav_wp">
-<block wx:for="{{navData}}" wx:key="">
-    <template is="nav" data="{{...item}}"/>
-</block>
-</view> 
- <map 
+<import src="/template/nav" />
+
+ <!-- <map 
   id="map" 
   longitude="{{longitude}}" 
   latitude="{{latitude}}" 
@@ -26,4 +22,9 @@
     <view class='text'>服务点</view>
 
   </cover-view> -->
- </map>
+ <!-- </map> -->
+ <cover-view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="cover_nav" data="{{...item}}"/>
+</block>
+</cover-view> 

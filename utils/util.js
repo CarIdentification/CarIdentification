@@ -126,6 +126,9 @@ function wxPromisify(fn) {
   }
 }
 
+function parseRpxToPx(rpx){
+  return rpx / 750 * wx.getSystemInfoSync().windowWidth
+}
 module.exports = {
   formatTime: formatTime,
   sendlogin:sendlogin,
@@ -133,5 +136,6 @@ module.exports = {
   getUserInfoScope: getUserInfoScope,
   property: property,
   localhost: localhost,
-  wxPromisify: wxPromisify
+  wxPromisify: wxPromisify,
+  parseRpxToPx: parseRpxToPx
 }

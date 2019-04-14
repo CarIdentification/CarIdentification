@@ -1,4 +1,4 @@
-// pages/shop/shop_info/shop_info.js
+// pages/shop/shop_map/shop.js
 const app = getApp();
 Page({
 
@@ -7,40 +7,33 @@ Page({
    */
   data: {
     navData: app.globalData.navData,
-    shop_info:{}
+    Height: 0,
+    scale: 15,
+    latitude: "",
+    longitude: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    var param;
-    if(options.fromPage == 0){
-      param = 'navData[0].current'
-    }else{
-      param = 'navData[3].current'
-    }
+    var that = this;
     that.setData({
-      param: 1
+      'navData[3].current': 1,
+      latitude: options.latitude,
+      longitude: options.longitude
+
     })
-    wx.request({
-      url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
-      // url: 'http://localhost:8763/search/getShopInfo',
-      data: { id:options.id },
-      success: function (e) {
-      
-        if(e.data.entity.shopPic==null){
-          e.data.entity.shopPic = '/resource/image/sell-shop/sell_shop_1.jpg'
-        }
+    wx.getSystemInfo({
+      success: function (res) {
+        //设置map高度，根据当前设备宽高满屏显示
         that.setData({
-          shop_info:e.data.entity,
-          salesmans: e.data.entity.salesMan
+          view: {
+            Height: res.windowHeight
+          }
         })
       }
     })
-    
-    
   },
 
   /**
@@ -90,12 +83,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  callPhone(e){
-    var that = this
-    wx.makePhoneCall({
-      phoneNumber: that.data.shop_info.telephone
-    })
   },
   gotoCars: function () {
     wx.switchTab({

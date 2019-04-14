@@ -1,5 +1,6 @@
 // 引用百度地图微信小程序JSAPI模块 
-var bmap = require('../../libs/bmap-wx.min.js'); 
+// var bmap = require('../../libs/bmap-wx.min.js'); 
+const util = require('../../utils/util.js'); 
 const app = getApp();
 Page({
   data: {
@@ -77,9 +78,9 @@ Page({
 
     
     // 新建百度地图对象 
-    var BMap = new bmap.BMapWX({
-      ak: '6uQBsdD4q2Qa1VBr37pXhLfxcoGg7B43'
-    });
+    // var BMap = new bmap.BMapWX({
+    //   ak: '6uQBsdD4q2Qa1VBr37pXhLfxcoGg7B43'
+    // });
     // 发起POI检索请求 
     // BMap.search({
     //   "query": '汽车销售',
@@ -100,9 +101,6 @@ Page({
     // }); 
   },
 
-  // regionchange(e) {
-  //   console.log("regionchange===" + e.type)
-  // },
 
   //点击merkers
   markertap(e) {
@@ -136,7 +134,7 @@ Page({
     console.log(e)
     var marker = that.data.markers[e.markerId];
     wx.navigateTo({
-      url: 'shop_info/shop_info?id='+e.markerId+'&from=1',
+      url: 'shop_info/shop_info?id=' + e.markerId +'&fromPage=1',
     })
   },
   gotoCars: function () {
