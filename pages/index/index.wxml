@@ -7,7 +7,7 @@
 </view> 
 <view style="height: 100%;" >
   <view style=''></view>
-  <view class="page__bd" style="height: 45%;">
+  <view class="page__bd" style="height: 30%;z-index:50">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
@@ -41,7 +41,7 @@
           </view>
         </view>
       </view>
-  <view class="page-flex-column">
+  <view class="page-flex-column" hidden="{{inputShowed}}">
     <view class="page-flex-row">
       <canvas canvas-id="myCanvas" style="width: 160px; height: 160px;" disable-scroll="false" bindtap='getCarPhoto'/>
     </view>

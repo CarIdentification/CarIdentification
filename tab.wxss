@@ -141,7 +141,7 @@ flex-direction: column;color:#999;position: relative;}
 .fix_nav_wp .nav_link .mp_ico{font-size: 50rpx;line-height: 80rpx}
 .fix_nav_wp .nav_link .xiaox_ico{font-size: 64rpx;line-height: 70rpx;}
 .fix_nav_wp .nav_link .my_ico{font-size: 56rpx;}
-.fix_nav_wp .on_cor .del_ico, .fix_nav_wp .on_cor .txt{color: #C5D4FA}
+.fix_nav_wp .on_cor .del_ico, .fix_nav_wp .on_cor .txt{color: black;font-weight:bold}
 /* 清楚按钮的默认样式  */
 .defalut_btn{background: transparent;border:none;overflow: visible;padding-left:0;padding-right:0;margin-left:0;margin-right:0;
 border-radius:0;}

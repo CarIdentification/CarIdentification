@@ -16,14 +16,14 @@
 </template>
 
 <template name="cover_nav">
-      <cover-view class="nav_link" bindtap="{{fn}}">
-        <button class="defalut_btn {{current== 0 ? '' : 'on_cor'}}">
+      <cover-view class="nav_link" style='overflow:visible' bindtap="{{fn}}">
+        <button class="defalut_btn {{current== 0 ? '' : 'on_cor'}}" style='overflow:visible'>
           <block wx:if="{{style == 0}}">
                 <cover-image style='height:58rpx;width:56rpx;margin-top:12rpx;' src='/resource/image/{{ico}}0.png'></cover-image>
-                <cover-view class="txt">{{name}}</cover-view>
+                <cover-view class="txt" style='line-height:38rpx;'>{{name}}</cover-view>
           </block>
-          <block wx:if="{{style == 1}}">
-                <cover-view class="plus_wp">
+          <block wx:if="{{style == 1}}" >
+                <cover-view class="plus_wp" style='overflow:visible'>
                   <cover-image src='/resource/image/{{ico}}0.png' class="plus_ico"></cover-image>
                 </cover-view>
                 <cover-view class="txt txt_fb">{{name}}</cover-view>

@@ -109,9 +109,12 @@ Page({
           issues: res.data.entity.issue,
           cars: res.data.entity.carList
         })
-        if(that.data.issues!=null){
-          WxParse.wxParse('issues[0].content', 'html', that.data.issues[0].content, that, 5);
-        }
+        // if(that.data.issues!=null){
+        //   WxParse.wxParse('issues[0].content', 'html', that.data.issues[0].content, that, 5);
+        // }
+        
+      },
+      complete:function(){
         wx.hideLoading()
       }
     })
