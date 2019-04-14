@@ -1,24 +1,21 @@
 <!--pages/shop/shop_info/shop_info.wxml-->
 <import src="/template/nav" />
 <view class="flex fix_nav_wp">
-<block wx:for="{{navData}}" wx:key="">
-    <template is="nav" data="{{...item}}"/>
-</block>
-</view> 
+  <block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}" />
+  </block>
+</view>
 <view class='container'>
   <view class='shop_cell'>
     <image mode='aspectFill' src="{{shop_info.shopPic==null?'/resource/image/sell-shop/sell_shop_1.jpg':shop_info.shopPic}}" class="slide-image" />
-    <view class='row'>
-      <!-- <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image> -->
-      <view class='column'>
+    <view class='shop_info'>
+      <view class='shop_info_detail'>
         <view class='car_name'>{{shop_info.shopName}}</view>
         <view class='address'>{{shop_info.locationDetail}}</view>
-        <view class='address'>联系电话：{{shop_info.tel}}</view>
       </view>
+      <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image>
     </view>
-
-
-    <view class='salesman_list'>
+    <view class='salesman_list' style='display:flex;justify-content: flex-start;width:100%;'>
       <block wx:for="{{salesmans}}">
         <view class='weui-cell'>
           <view class='weui-cell__hd' style='position: relative;margin-right: 10px;'>
@@ -26,7 +23,9 @@
           </view>
           <view class='weui-cell__bd'>
             <view style='font-size:15px;'>{{item.name}}</view>
-            <view style='font-size: 13px;color: #888888;'>{{item.tel}}</view>
+          </view>
+          <view class='weui-cell__ft'>
+            <image src="/resource/image/phone.png" class='salesman_phone' bindtap='callSalesmanPhone' data-tel='{{item.tel}}'></image>
           </view>
         </view>
       </block>
