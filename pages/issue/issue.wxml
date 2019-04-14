@@ -1,3 +1,9 @@
+<import src="../../template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class="container">
   <view class="main">
     <view class="page__bd" style="height: 45%;">

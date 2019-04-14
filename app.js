@@ -3,7 +3,9 @@ const util = require('/utils/util.js');
 App({
  
   onLaunch: function () {
-    
+    wx.hideTabBar({
+      
+    })
     var that = this
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -45,6 +47,39 @@ App({
     getUserInfo:false,
     signature:null,
     advanced_mess:null,
-    localhost: "https://www.kebencool.cn:8762"
+    localhost: "https://www.kebencool.cn:8762",
+    navData: [
+      {
+        name: "图鉴",  //文本
+        current: 0,    //是否是当前页，0不是  1是
+        style: 0,     //样式
+        ico: 'tabBar_car_',  //不同图标
+        fn: 'gotoCars'   //对应处理函数
+      }, {
+        name: "文章",
+        current: 0,
+        style: 0,
+        ico: 'tabBar_issue_',
+        fn: 'gotoIssue'
+      }, {
+        name: "识别",
+        current: 0,
+        style: 1,
+        ico: 'tabBar_index_',
+        fn: 'gotoIndex'
+      }, {
+        name: "店铺",
+        current: 0,
+        style: 0,
+        ico: 'tabBar_shop_',
+        fn: 'gotoShop'
+      }, {
+        name: "我的",
+        current: 0,
+        style: 0,
+        ico: 'tabBar_my_',
+        fn: 'gotoMy'
+      },
+    ],
   }
 })

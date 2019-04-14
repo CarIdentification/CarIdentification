@@ -1,6 +1,12 @@
 <!--pages/shop/shop_info/shop_info.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='container'>
-  <view class='page-flex-column'>
+  <view class='shop_cell'>
     <image mode='aspectFill' src="{{shop_info.shopPic==null?'/resource/image/sell-shop/sell_shop_1.jpg':shop_info.shopPic}}" class="slide-image" />
     <view class='row'>
       <!-- <image src="/resource/image/phone.png" class='phone' bindtap='callPhone'></image> -->
@@ -12,18 +18,18 @@
     </view>
 
 
-  </view>
-  <view class='salesman_list'>
-    <block wx:for="{{salesmans}}">
-      <view class='weui-cell'>
-        <view class='weui-cell__hd' style='position: relative;margin-right: 10px;'>
-          <image mode='aspectFill' class='personal_icon' style='width: 50px;display: block' src='{{item.personalPic}}'></image>
+    <view class='salesman_list'>
+      <block wx:for="{{salesmans}}">
+        <view class='weui-cell'>
+          <view class='weui-cell__hd' style='position: relative;margin-right: 10px;'>
+            <image mode='aspectFill' class='personal_icon' style='width: 50px;display: block' src='{{item.personalPic}}'></image>
+          </view>
+          <view class='weui-cell__bd'>
+            <view style='font-size:15px;'>{{item.name}}</view>
+            <view style='font-size: 13px;color: #888888;'>{{item.tel}}</view>
+          </view>
         </view>
-        <view class='weui-cell__bd'>
-          <view style='font-size:15px;'>{{item.name}}</view>
-          <view style='font-size: 13px;color: #888888;'>{{item.tel}}</view>
-        </view>
-      </view>
-    </block>
+      </block>
+    </view>
   </view>
 </view>

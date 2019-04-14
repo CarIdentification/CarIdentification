@@ -24,6 +24,8 @@ Page({
     selected: true,
     selected1: false,
 
+    loadingHidden: true,
+
   },
   selected: function (e) {
     this.setData({
@@ -100,7 +102,11 @@ Page({
 
 //选中未添加的标签
   addTag: function(e){
+    
     var that = this
+    that.setData({
+      loadingHidden: false
+    })
     // console.log(e.target.id)
     // console.log(that.data.mark)
     var mark = that.data.mark
@@ -153,6 +159,9 @@ Page({
 //选中已添加的标签
   removeTag: function (e) {
     var that = this
+    that.setData({
+      loadingHidden: false
+    })
     // console.log(e.target.id)
     // console.log(that.data.markHas)
 
@@ -212,7 +221,9 @@ Page({
 
   reflash:function(){
     var that = this
-
+    that.setData({
+      loadingHidden: false
+    })
     //请求未选择的标签
     wx.request({
       url: app.globalData.localhost +'/api-basicS/personal/noTags',
@@ -241,6 +252,9 @@ Page({
         that.setData({
           Has: res.data.entity[0],
           markHas: res.data.entity[1]
+        })
+        that.setData({
+          loadingHidden: true
         })
       }
     })

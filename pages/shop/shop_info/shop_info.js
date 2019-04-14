@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     shop_info:{}
   },
 
@@ -14,11 +15,24 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    var param;
+    if(options.from == 0){
+      param = 'navData[0].current'
+    }else{
+      param = 'navData[3].current'
+    }
+    that.setData({
+      param: 1
+    })
     wx.request({
       url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
       // url: 'http://localhost:8763/search/getShopInfo',
       data: { id:options.id },
       success: function (e) {
+      
+        if(e.data.entity.shopPic==null){
+          e.data.entity.shopPic = '/resource/image/sell-shop/sell_shop_1.jpg'
+        }
         that.setData({
           shop_info:e.data.entity,
           salesmans: e.data.entity.salesMan

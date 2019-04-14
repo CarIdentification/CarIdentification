@@ -3,6 +3,7 @@ const app = getApp()
 const util = require('../../utils/util.js');
 Page({
   data: {
+    navData: app.globalData.navData,
     //用户个人信息
     userInfo: {},
     hasUserInfo: false,
@@ -22,6 +23,9 @@ Page({
     
     //获取用户数据
     var that = this;
+    that.setData({
+      'navData[4].current': 1
+    })
     if (app.globalData.userInfo) {
       that.setData({
         userInfo: app.globalData.userInfo,
@@ -98,5 +102,30 @@ Page({
     wx.navigateTo({
       url: '/pages/persona/add_tag/add_tag',
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

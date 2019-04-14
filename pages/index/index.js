@@ -5,6 +5,7 @@ const util = require('../../utils/util.js');
 
 Page({
   data: {
+    navData: app.globalData.navData,
     userInfo: {},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input状态
@@ -43,9 +44,13 @@ Page({
   ,
   onLoad: function () {
     var that = this;
+    that.setData({
+      'navData[2].current' :1
+    })
     if (app.globalData.userInfo) {
       that.setData({
         userInfo: app.globalData.userInfo,
+        
       })
       
     } else if (this.data.canIUse){
@@ -173,5 +178,30 @@ Page({
     wx.navigateTo({
       url: '/pages/index/search/search?msg=' + e.detail.value,
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function(){
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

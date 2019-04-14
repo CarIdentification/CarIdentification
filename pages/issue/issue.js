@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     text: ["热门文章", "推荐文章"],
     currentTab: 0,
     wenben: [],
@@ -21,7 +22,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this
+    that.setData({
+      'navData[1].current': 1
+    })
   },
 
   /**
@@ -171,5 +175,30 @@ Page({
     wx.navigateTo({
       url: '/pages/index/search/search?msg=' + e.detail.value,
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

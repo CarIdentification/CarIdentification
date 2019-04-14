@@ -1,4 +1,10 @@
 <!--pages/persona/personal.wxml-->
+<import src="../../template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='container' >
   <!-- 个人资料 -->
   <view class="page-flex-column" style='padding-top:50rpx;background-color:rgba(197, 212, 250, 0.5);'>

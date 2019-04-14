@@ -1,4 +1,10 @@
 <!--pages/car/son_brand/son_brand.wxml-->
+<import src="../../../template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='container'>
   <scroll-view bindscroll="scroll" style="word-wrap: break-word; margin: 0px; padding: 0px;" scroll-y="true" style="height: 100%;"  class="city_list">
     <view class='brand'>

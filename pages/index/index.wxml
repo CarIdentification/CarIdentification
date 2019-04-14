@@ -1,4 +1,10 @@
 <!--index.wxml-->
+<import src="../../template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view style="height: 100%;" >
   <view style=''></view>
   <view class="page__bd" style="height: 45%;">
@@ -41,5 +47,7 @@
     </view>
    
   </view>
+</view>
+<view id="tabBar" class='my_tabBar'>
 </view>
 

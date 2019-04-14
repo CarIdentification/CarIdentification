@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     father_brand:{},
     hidden:[],
     cars:[],
@@ -18,9 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     // console.log("onload")
     var that = this
 
+    that.setData({
+      'navData[0].current': 1
+    })
     //获得父品牌
     wx.request({
       url: app.globalData.localhost +'/api-basicS/search/getBrand',
@@ -205,5 +210,30 @@ Page({
         }
       })
     }
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

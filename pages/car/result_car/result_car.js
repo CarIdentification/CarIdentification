@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     property:util.property,
     result:{},
     pics:[],
@@ -21,56 +22,53 @@ Page({
   onLoad: function (options) {
     
     var that = this
-    console.log(that.data.property)
-    // that.setData({
-    //   property:
-    // })
+    that.setData({
+      'navData[0].current': 1
+    })
     var id = options.id
     wx.getLocation({
       type: 'wgs84',
-      success: function(res) {
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
+      success: function(ress) {
+      
+        wx.request({
+          url: app.globalData.localhost + '/api-basicS/search/getCar',
+          data: {
+            id: id,
+            latitude: ress.latitude,
+            longitude: ress.longitude
+          },
+          success: function (res) {
+            var pics = new Array()
+            for (var i = 0; i < res.data.entity.carPic.length; i++) {
+              pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
+            }
+            console.log(pics)
+            if (res.data.entity.carPic.length > 6) {
+              for (var i = 6; i < res.data.entity.carPic.length; i++) {
+                res.data.entity.carPic[i] = null
+              }
+            }
+            res.data.entity.carPic.length = 6;
+            that.setData({
+              result: res.data.entity,
+              pics: pics
+            })
+            // wx.request({
+            //   url: app.globalData.localhost +'/api-basicS/search/getSalesman',
+            //   data:{brandId:res.data.entity.carBrand},
+            //   success:function(e){
+            //     that.setData({
+            //       salesmans:e.data.entity
+            //     })
+            //   }
+            // })
+
+
+          }
         })
       },
     })
-    wx.request({
-      url: app.globalData.localhost +'/api-basicS/search/getCar',
-      data:{
-        id:id,
-        latitude: that.data.latitude,
-        longitude: that.data.longitude
-        },
-      success:function(res){
-        var pics = new Array()
-        for (var i = 0; i < res.data.entity.carPic.length; i++) {
-          pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
-        }
-        console.log(pics)
-        if (res.data.entity.carPic.length>6){
-          for (var i = 6; i < res.data.entity.carPic.length ; i++ ){
-            res.data.entity.carPic[i] = null
-          }
-        }
-        res.data.entity.carPic.length = 6;
-        that.setData({
-          result:res.data.entity,
-          pics:pics
-        })
-        // wx.request({
-        //   url: app.globalData.localhost +'/api-basicS/search/getSalesman',
-        //   data:{brandId:res.data.entity.carBrand},
-        //   success:function(e){
-        //     that.setData({
-        //       salesmans:e.data.entity
-        //     })
-        //   }
-        // })
-        
-
-      }
-    })
+    
   },
 
   /**
@@ -132,7 +130,32 @@ Page({
   navigateToSellShop:function(e){
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
-      url: '../../shop/shop_info/shop_info?id=' + id ,
+      url: '../../shop/shop_info/shop_info?id=' + id+'&from=0' ,
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })
