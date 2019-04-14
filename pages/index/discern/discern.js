@@ -10,7 +10,7 @@ Page({
   data: {
     width: 0,
     widthSize: 0.9,
-    cardHeight: 910,
+    cardHeight: 2200,
     animationData: {},
     picsAnimationData: {},
     saleAnimationData: {},
@@ -26,7 +26,8 @@ Page({
     expand: false,
     reduce: true,
     latitude: "",
-    longitude: ""
+    longitude: "",
+    currentHasAdd : false
   },
   scroll_: function(e) {},
 
@@ -141,7 +142,7 @@ Page({
             //     cardHeight: rect[0].height
             //   })
             // }).exec()
-
+            that.checkCurrentInOwn();
 
           },
           complete: function() {
@@ -212,39 +213,6 @@ Page({
   onShareAppMessage: function() {
 
   },
-  getCarResult(index, id) {
-    var that = this
-    var param = {};
-    var discernResult_pics_string = "discernResult[" + index + "].pics";
-    var discernResult_entity_string = "discernResult[" + index + "].carEntity";
-    var discernResult_salesmans_string = "discernResult[" + index + "].salesmans";
-    wx.request({
-      url: 'http://' + app.globalData.localhost + '/api-basicS/search/getCar',
-      data: {
-        id: id
-      },
-      success: function(res) {
-        var pics = new Array()
-        res.data.entity.carPic = res.data.entity.carPic.slice(0, 9)
-        for (var i = 0; i < res.data.entity.carPic.length; i++) {
-          pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
-        }
-        console.log(pics)
-        param[discernResult_pics_string] = pics;
-        param[discernResult_entity_string] = res.data.entity;
-        wx.request({
-          url: 'http://' + app.globalData.localhost + '/api-basicS/search/getSalesman',
-          data: {
-            brandId: res.data.entity.carBrand
-          },
-          success: function(e) {
-            param[discernResult_salesmans_string] = res.data.entity;
-          }
-        })
-      }
-    })
-    that.setData(param)
-  },
   navigateToSellShop: function(e) {
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
@@ -256,21 +224,21 @@ Page({
     var that = this
     wx.previewImage({
       current: "http:" + e.currentTarget.dataset.src, // 当前显示图片的http链接
-      urls: that.data.discernResult[that.data.current].picArr // 需要预览的图片http链接列表
+      urls: that.data.discernResult[that.data.current_car].picArr // 需要预览的图片http链接列表
     })
   },
   switchTab: function(e) {
     var that = this;
-    if(e.currentTarget.dataset.tabid == 2){
+    if (e.currentTarget.dataset.tabid == 2) {
       that.setData({
-        cardHeight: 1400
+        cardHeight: 3300
       })
-    }else{
+    } else {
       that.setData({
-        cardHeight: 910
+        cardHeight: 2200
       })
     }
-    
+
     // debugger
     // wx.createSelectorQuery().selectAll('.car_list_cell').boundingClientRect(function (rect) {
     //   debugger
@@ -283,12 +251,101 @@ Page({
     })
   },
   swiperChange(e) {
+    const that = this;
     let current = e.detail.current;
     let source = e.detail.source
     //console.log(source);
     console.log(current, this.data.index, this.data.cur)
     this.setData({
       current_car: current
+    })
+    that.checkCurrentInOwn();
+  },
+  checkCurrentInOwn(){
+    const that = this;
+    wx.request({
+      url: app.globalData.localhost + '/api-basicS/personal/haveCar',
+      data: {
+        userId: wx.getStorageSync("uid"),
+        carId: that.data.discernResult[that.data.current_car].id
+      },
+      success: function (res) {
+        if (res.data.entity == 0) {
+          that.setData({
+            currentHasAdd : false
+          })
+        } else {
+          that.setData({
+            currentHasAdd: true
+          })
+        }
+      }
+    })
+  },
+  addHasCar(){
+    const that = this;
+    wx.request({
+      method: 'POST',
+      header: {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      url: app.globalData.localhost + '/api-basicS/personal/addOwnCar',
+      data: {
+        userId: wx.getStorageSync("uid"),
+        carId: that.data.discernResult[that.data.current_car].id
+      },
+      success: function (res) {
+        if (res.data.entity == 1) {
+          that.setData({
+            currentHasAdd: true
+          })
+          wx.showToast({
+            icon: 'none',
+            title: '加入车库成功'
+          })
+        } else {
+          that.setData({
+            currentHasAdd: false
+          })
+          wx.showToast({
+            title: '加入车库失败'
+          })
+        }
+      }
+    })
+  },
+  delHasCar(){
+    const that = this;
+    wx.request({
+      method: 'POST',
+      header: {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      url: app.globalData.localhost + '/api-basicS/personal/delOwnCar',
+      data: {
+        userId: wx.getStorageSync("uid"),
+        carId: that.data.discernResult[that.data.current_car].id
+      },
+      success: function (res) {
+        if (res.data.entity == 1) {
+          that.setData({
+            currentHasAdd: false
+          })
+          wx.showToast({
+            title: '从车库移除成功'
+          })
+        } else {
+          that.setData({
+            currentHasAdd: true
+          })
+          wx.showToast({
+            icon:'none',
+            title: '移出车库失败'
+          })
+        }
+      }
     })
   }
 })

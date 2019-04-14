@@ -74,8 +74,8 @@
 
 }
 .icon_img{
-  width: 70rpx;
-  height: 70rpx;
+  width: 60rpx;
+  height: 60rpx;
   margin-right: 20rpx
   
 }
@@ -170,6 +170,9 @@ font-size:30rpx;
 .car-info-navibar-item{
   flex-grow: 1;
   border-bottom: 1px solid #bfbfbf;
+  border-top: 1px solid #bfbfbf;
+  border-left: 1px solid #bfbfbf;
+  border-right: 1px solid #bfbfbf;
   display: flex;
   flex-direction: center;
   align-items:center;
@@ -182,6 +185,9 @@ font-size:30rpx;
 .car-info-navibar-item_active{
   flex-grow: 1;
   border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
   display: flex;
   flex-direction: center;
   align-items:center;

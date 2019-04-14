@@ -6,7 +6,7 @@
     </view>
   </view>
 
-  <swiper indicator-dots="{{indicatorDots}}" style="height:{{cardHeight + 10}}px;margin-bottom:10px;" autoplay="{{autoplay}}" current="{{current}}" circular="{{circular}}" bindchange="swiperChange" class='swiper_'>
+  <swiper indicator-dots="{{indicatorDots}}" style="height:{{cardHeight + 10}}rpx;margin-bottom:10px;" autoplay="{{autoplay}}" current="{{current}}" circular="{{circular}}" bindchange="swiperChange" class='swiper_'>
 
     <swiper-item class='swiper_cell' wx:for="{{discernResult}}">
 
@@ -29,11 +29,23 @@
             <view class='car_price' hidden='{{item.beginPrice != 0 || item.endPrice != 0}}'>暂无报价</view>
           </view>
           <view style='display:flex;flex-direction:column;flex-grow:1;justify-content:center;align-items:center'>
-            <view style='display:flex;'>
-              <image class='icon_img' src='/resource/image/plus.png'></image>
-              <!-- <image class='icon_img' src='/resource/image/reduce.png'></image> -->
-              <text style='line-height:70rpx'>加入车库</text>
-              <!-- <text style='line-height:70rpx'>移出车库</text> -->
+            <view hidden='{{currentHasAdd}}' bindtap='addHasCar'>
+              <view style='display:flex'>
+                <image class='icon_img' src='/resource/image/plus.png'></image>
+
+                <text style='line-height:60rpx'>加入车库</text>
+              </view>
+
+
+            </view>
+            <view hidden='{{!currentHasAdd}}' bindtap='delHasCar'>
+              <view style='display:flex'>
+                <image class='icon_img' src='/resource/image/reduce.png'></image>
+
+                <text style='line-height:60rpx'>移出车库</text>
+
+              </view>
+
             </view>
           </view>
         </view>
@@ -59,7 +71,7 @@
               </view>
               <view class='weui-cell'>
                 <view class='weui-cell__bd'>排量：</view>
-                <view class='weui-cell__ft'>{{property.displacement[item.displacement]}}</view>
+                <view class='weui-cell__ft'>{{property.displacement[item.displacement] == undefined ? '暂无数据' : property.displacement[item.displacement]}}</view>
               </view>
               <view class='weui-cell'>
                 <view class='weui-cell__bd'>座位数：</view>
@@ -71,7 +83,7 @@
               </view>
               <view class='weui-cell'>
                 <view class='weui-cell__bd'>能源：</view>
-                <view class='weui-cell__ft'>{{property.energy[item.energy]}}</view>
+                <view class='weui-cell__ft'>{{property.energy[item.energy] == undefined ? '暂无数据' : property.energy[item.energy]}}</view>
               </view>
               <view class='weui-cell'>
                 <view class='weui-cell__bd'>驱动方式：</view>
@@ -91,7 +103,7 @@
             </view>
           </view>
           <view class='car-info-tab' hidden='{{current_info_tab == 1}}'>
-            <view style='display:block' hidden='{{item.saleShops.length == 0}}'>
+            <view style='' hidden='{{item.saleShops.length == 0}}'>
               <block wx:for="{{item.saleShops}}">
                 <view class='salesman_cell' bindtap='navigateToSellShop' data-idx="{{item.id}}">
                   <view class='title'>店名：{{item.shopName}}</view>
@@ -101,7 +113,7 @@
                 </view>
               </block>
             </view>
-            <view style='display:block;text-align:center;color:#bfbfbf;' hidden='{{item.saleShops.length != 0}}'>
+            <view style='text-align:center;color:#bfbfbf;' hidden='{{item.saleShops.length != 0}}'>
               啊哦，暂无数据哦
             </view>
           </view>

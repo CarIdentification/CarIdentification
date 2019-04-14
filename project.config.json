@@ -16,6 +16,8 @@
 	"appid": "wx8088b0f110233984",
 	"projectname": "caridentification",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

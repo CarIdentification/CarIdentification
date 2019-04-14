@@ -94,7 +94,13 @@ Page({
   callPhone(e){
     var that = this
     wx.makePhoneCall({
-      phoneNumber: that.data.shop_info.telephone
+      phoneNumber: that.data.shop_info.tel
+    })
+  },
+  callSalesmanPhone(e){
+    var that = this
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.tel.replace('转',',')
     })
   },
   gotoCars: function () {
