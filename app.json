@@ -52,5 +52,6 @@
     "scope.userLocation": {
       "desc": "你的位置将只用于小程序内展示"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
