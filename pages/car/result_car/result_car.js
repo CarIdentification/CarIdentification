@@ -13,7 +13,10 @@ Page({
     pics:[],
     salesmans:[],
     latitude:"",
-    longitude:""
+    longitude:"",
+    current_info_tab: 1,
+    currentHasAdd:false,
+    width:0
   },
 
   /**
@@ -24,6 +27,13 @@ Page({
     var that = this
     that.setData({
       'navData[0].current': 1
+    })
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          width: res.windowWidth,
+        })
+      },
     })
     var id = options.id
     wx.getLocation({
@@ -39,33 +49,19 @@ Page({
           },
           success: function (res) {
             var pics = new Array()
+            res.data.entity.carPic = res.data.entity.carPic.slice(0,9)
             for (var i = 0; i < res.data.entity.carPic.length; i++) {
               pics[i] = "http:" + res.data.entity.carPic[i].imgSrc
             }
-            console.log(pics)
-            if (res.data.entity.carPic.length > 6) {
-              for (var i = 6; i < res.data.entity.carPic.length; i++) {
-                res.data.entity.carPic[i] = null
-              }
-            }
-            res.data.entity.carPic.length = 6;
+            
             that.setData({
               result: res.data.entity,
               pics: pics
             })
-            // wx.request({
-            //   url: app.globalData.localhost +'/api-basicS/search/getSalesman',
-            //   data:{brandId:res.data.entity.carBrand},
-            //   success:function(e){
-            //     that.setData({
-            //       salesmans:e.data.entity
-            //     })
-            //   }
-            // })
-
-
+            that.checkCurrentInOwn();
           }
         })
+        
       },
     })
     
@@ -158,4 +154,97 @@ Page({
       url: '/pages/persona/personal',
     });
   },
+  switchTab: function (e) {
+    var that = this;
+    that.setData({
+      current_info_tab: e.currentTarget.dataset.tabid
+    })
+  },
+   checkCurrentInOwn() {
+    const that = this;
+    wx.request({
+      url: app.globalData.localhost + '/api-basicS/personal/haveCar',
+      data: {
+        userId: wx.getStorageSync("uid"),
+        carId: that.data.result.id
+      },
+      success: function (res) {
+        if (res.data.entity == 0) {
+          that.setData({
+            currentHasAdd: false
+          })
+        } else {
+          that.setData({
+            currentHasAdd: true
+          })
+        }
+      }
+    })
+  },
+  addHasCar() {
+    const that = this;
+    wx.request({
+      method: 'POST',
+      header: {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      url: app.globalData.localhost + '/api-basicS/personal/addOwnCar',
+      data: {
+        userId: wx.getStorageSync("uid"),
+        carId: that.data.result.id
+      },
+      success: function (res) {
+        if (res.data.entity == 1) {
+          that.setData({
+            currentHasAdd: true
+          })
+          wx.showToast({
+            icon: 'none',
+            title: '加入车库成功'
+          })
+        } else {
+          that.setData({
+            currentHasAdd: false
+          })
+          wx.showToast({
+            title: '加入车库失败'
+          })
+        }
+      }
+    })
+  },
+  delHasCar() {
+    const that = this;
+    wx.request({
+      method: 'POST',
+      header: {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      url: app.globalData.localhost + '/api-basicS/personal/delOwnCar',
+      data: {
+        userId: wx.getStorageSync("uid"),
+        carId: that.data.result.id
+      },
+      success: function (res) {
+        if (res.data.entity == 1) {
+          that.setData({
+            currentHasAdd: false
+          })
+          wx.showToast({
+            title: '从车库移除成功'
+          })
+        } else {
+          that.setData({
+            currentHasAdd: true
+          })
+          wx.showToast({
+            icon: 'none',
+            title: '移出车库失败'
+          })
+        }
+      }
+    })
+  }
 })
