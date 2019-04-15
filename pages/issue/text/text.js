@@ -21,7 +21,7 @@ Page({
     var that = this
     var id = options.id;
     wx.request({
-      url: app.globalData.localhost +'/api-basicS/getIssue?id=' + id,
+      url: app.globalData.localhost +'/api-basicS/issue/getIssue?id=' + id,
       method: 'GET',
       success: function (res) {
         var date = res.data.createTime.slice(0,10)

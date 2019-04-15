@@ -131,15 +131,16 @@ Page({
         console.log(e)
         if(e.data.stateInfo!="fail"){
           that.setData({
-            history: e.data.entity
+            history: e.data.entity,
+            inputShowed: true
           })
         }
         
       }
     })
-    that.setData({
-      inputShowed: true
-    });
+    // that.setData({
+    //   inputShowed: true
+    // });
   },
   hideInput: function () {
     this.setData({
@@ -213,7 +214,9 @@ Page({
         signature: app.globalData.signature
       },
       success:function(res){
-        
+        that.setData({
+          history:[]
+        })
       }
     })
   }

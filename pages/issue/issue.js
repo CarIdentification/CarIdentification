@@ -96,7 +96,7 @@ Page({
   getHot:function(idx){
     var that = this
     wx.request({
-      url: app.globalData.localhost + '/api-basicS/getHotIssue',
+      url: app.globalData.localhost + '/api-basicS/issue/getHotIssue',
       method: 'GET',
       header: { 'content-type': 'application/json' },
       success: function (res) {
@@ -114,7 +114,7 @@ Page({
   getRecommend:function(idx){
     var that = this
     wx.request({
-      url: app.globalData.localhost + '/api-basicS/getRecommendIssue',
+      url: app.globalData.localhost + '/api-basicS/issue/getRecommendIssue',
       data: { signature: app.globalData.signature },
       method: 'GET',
       header: { 'content-type': 'application/json' },
@@ -146,12 +146,12 @@ Page({
             history: e.data.entity
           })
         }
-
+        that.setData({
+          inputShowed: true
+        });
       }
     })
-    that.setData({
-      inputShowed: true
-    });
+    
   },
   hideInput: function () {
     this.setData({
@@ -170,10 +170,10 @@ Page({
     });
   },
   //完成输出，开始搜索文章
-  confirm: function(e){
+  confirmInput: function(e){
     console.log(e.detail.value)
     wx.navigateTo({
-      url: '/pages/index/search/search?msg=' + e.detail.value,
+      url: '/pages/issue/issue_search/issue_search?msg=' + e.detail.value,
     })
   },
   gotoCars: function () {

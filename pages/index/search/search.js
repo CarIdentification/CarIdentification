@@ -44,12 +44,8 @@ Page({
       inputVal:msg
     })
     that.search(option.msg)
-  },
-  showInput: function () {
-    var that = this;
-    console.log("index_signature:            " + app.globalData.signature)
     wx.request({
-      url: app.globalData.localhost +'/api-basicS/search/textSearchHistory',
+      url: app.globalData.localhost + '/api-basicS/search/textSearchHistory',
       data: {
 
         signature: app.globalData.signature
@@ -64,9 +60,28 @@ Page({
 
       }
     })
-    that.setData({
-      inputShowed: true
-    });
+  },
+  showInput: function () {
+    var that = this;
+    console.log("index_signature:            " + app.globalData.signature)
+    wx.request({
+      url: app.globalData.localhost +'/api-basicS/search/textSearchHistory',
+      data: {
+
+        signature: app.globalData.signature
+      },
+      success: function (e) {
+        console.log(e)
+        if (e.data.stateInfo != "fail") {
+          that.setData({
+            history: e.data.entity,
+            inputShowed: true
+          })
+        }
+
+      }
+    })
+
   },
   hideInput: function () {
     this.setData({
@@ -98,6 +113,7 @@ Page({
     })
     wx.request({
       url: app.globalData.localhost +'/api-basicS/search/textSearch',
+      // url: 'http://localhost:8763' + '/search/textSearch',
       data: {
         searchContext: value,
         signature: app.globalData.signature
@@ -108,9 +124,6 @@ Page({
           issues: res.data.entity.issue,
           cars: res.data.entity.carList
         })
-        // if(that.data.issues!=null){
-        //   WxParse.wxParse('issues[0].content', 'html', that.data.issues[0].content, that, 5);
-        // }
         
       },
       complete:function(){
@@ -123,6 +136,21 @@ Page({
     console.log(e)
     wx.navigateTo({
       url: '../../car/result_car/result_car?id=' + e.currentTarget.id,
+    })
+  },
+  removeTextSearchHistory: function () {
+    var that = this
+    wx.request({
+      url: app.globalData.localhost + '/api-basicS/search/removeTextSearchHistory',
+      // url: 'http://localhost:8763' + '/search/removeTextSearchHistory',
+      data: {
+        signature: app.globalData.signature
+      },
+      success: function (res) {
+        that.setData({
+          history: []
+        })
+      }
     })
   }
 })
