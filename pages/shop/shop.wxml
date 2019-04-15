@@ -32,14 +32,16 @@
   show-location style="width: 100%; height: {{view.Height}}px;">
 
   
-<cover-view style='display:flex;flex-direction:column;justify-content:center;height:100%;width:0rpx;'>
+<cover-view style='display:flex;flex-direction:column;justify-content:center;height:100%;width:80rpx;z-index:10'>
   <cover-view class="left_botton">
-    <cover-view class=" {{shopType?'choose':'unchoose'}}" bindtap='chooseType' data-type='1'>
-      <cover-view class='text'>销售点</cover-view>
+    <cover-view class=" {{shopType?'choose':'unchoose'}}" bindtap='chooseType' data-type='1' style='border-radius:0px 10px 0px 0px;'>
+      <!-- <cover-view class='text'>销售点</cover-view> -->
+      <cover-image src='/resource/image/sell.png' style='width:46rpx;height:110rpx;margin:5rpx 0rpx 0rpx 15rpx;'></cover-image>
     </cover-view>
 
-    <cover-view class=" {{!shopType?'choose':'unchoose'}}"  bindtap='chooseType' data-type='0'>
-      <cover-view class='text'>服务点</cover-view>
+    <cover-view class=" {{!shopType?'choose':'unchoose'}}"  bindtap='chooseType' data-type='0' style='border-radius:0px 0px 10px 0px;'>
+      <!-- <cover-view class='text'>服务点</cover-view> -->
+      <cover-image src='/resource/image/service.png' style='width:46rpx;height:110rpx;margin:5rpx 0rpx 0rpx 15rpx;'></cover-image>
     </cover-view>
     
   </cover-view>

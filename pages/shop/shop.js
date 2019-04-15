@@ -89,7 +89,7 @@ Page({
     // 发起POI检索请求 
     BMap.search({
       "query": '汽车服务',
-      "radius": 2000,
+      "radius": 5000,
       success: function (res){
         that.setData({
           serviceMarkers: res.wxMarkerData,
