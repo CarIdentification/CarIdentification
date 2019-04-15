@@ -20,8 +20,8 @@ Page({
     })
     wx.request({
       // 编辑个人信息
-      // url: app.globalData.localhost +'/api-basicS/personal/update',
-      url: "http://localhost:8763/personal/update",
+      url: app.globalData.localhost +'/api-basicS/personal/update',
+      // url: "http://localhost:8763/personal/update",
       data: {
         // user: that.data.userInfo,
         id: wx.getStorageSync('uid'),
