@@ -7,12 +7,12 @@
 </view> 
 <view class='container' >
   <!-- 个人资料 -->
-  <view class="page-flex-column" style='padding-top:50rpx;background-color:rgba(197, 212, 250, 0.5);'>
+  <view class="page-flex-column" style='padding-top:50rpx;background-color:rgba(197, 212, 250, 0.5);margin-bottom:-80rpx;'>
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 开启图像识别 </button>
     <block wx:else>
       <image  class="userinfo-avatar page-flex-row" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname page-flex-row">{{userInfo.nickName}}</text>
-      <navigator open-type='navigate'>编辑个人信息</navigator>
+      <!-- <navigator open-type='navigate'>编辑个人信息</navigator> -->
       <view class='page-flex-row'>
         <image src='/resource/image/tip_icon.png'></image>
         <block wx:for="{{tag}}">
@@ -25,10 +25,11 @@
         <image src='/resource/image/tip_add_icon.png' bindtap='navigateTag'></image>
       </view>
     </block>
+    <view style='height:100rpx;width:20rpx'></view>
     <!-- 设置 -->
   </view>
   
-    <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells weui-cells_after-title" style='margin:0rpx 40rpx 0rpx 40rpx;border:1px solid white;border-radius:15px;box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 2px rgba(0, 0, 0, 0.19);'>
       <navigator url="./own_car/own_car" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
               <image src="/resource/image/setting_car_icon.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
@@ -50,11 +51,18 @@
           <view class="weui-cell__bd">安全中心</view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator> -->
-      <navigator url="/pages/persona/my_collection/my_collection" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator bindtap='navigateTag' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
               <image src="/resource/image/setting_collection_icon.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
           </view>
-          <view class="weui-cell__bd">收藏</view>
+          <view class="weui-cell__bd">我的标签</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="/pages/persona/my_collection/my_collection" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+              <image src="/resource/image/setting_setting_icon.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          </view>
+          <view class="weui-cell__bd">信息管理</view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
     </view>
