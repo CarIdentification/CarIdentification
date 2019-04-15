@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     width: 0,
     widthSize: 0.9,
     cardHeight: 2200,
@@ -36,6 +37,9 @@ Page({
    */
   onLoad: function(options) {
     var that = this
+    that.setData({
+      'navData[2].current': 1
+    })
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
@@ -231,7 +235,7 @@ Page({
     var that = this;
     if (e.currentTarget.dataset.tabid == 2) {
       that.setData({
-        cardHeight: 3300
+        cardHeight: 3500
       })
     } else {
       that.setData({
@@ -347,5 +351,30 @@ Page({
         }
       }
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

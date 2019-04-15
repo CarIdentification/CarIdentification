@@ -1,4 +1,4 @@
-<import src="../../template/nav" />
+<import src="/template/nav" />
 <view class="flex fix_nav_wp">
 <block wx:for="{{navData}}" wx:key="">
     <template is="nav" data="{{...item}}"/>
@@ -40,60 +40,67 @@
           </navigator>
         </view>
     </view>
-  <view class="main">
+    <view class="main" wx:if="{{issues.length!=0}}" style='margin-top:48px;'>
     
-    <view class="navbar" style='margin-top:48px;'>
+    <!-- <view class="navbar" >
         <view wx:for="{{text}}" wx:key="unique" class="item {{currentTab==index?'active':''}}" bindtap='change' data-idx="{{index}}">{{item}}</view>
-    </view>
-    <view hidden="{{currentTab!==0}}" >
-      <view wx:for="{{wenben}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
-        <view class="row-main">
-          <view class="flex-col">
-              <view class="main-title">{{item.title}}</view>
-          </view>
-          <image class="row-chevron" src="../../resource/image/chevron.png"></image>
-        </view>
-        <view class="row split card-img-big-detail-type">
-          <view class="row-main top">
-            <image class="big-rect-img" src="{{item.topicPic}}"></image>
-          </view>
-        </view>
-        <view class="row split">
-            <view class="row-main list">
-                {{item.introduce}}
+    </view> -->
+      <view>
+        <view wx:for="{{issues}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
+          <view class="row-main">
+            <view class="flex-col">
+                <view class="main-title">{{item.title}}</view>
             </view>
+            <image class="row-chevron" src="../../resource/image/chevron.png"></image>
+          </view>
+          <view class="row split card-img-big-detail-type">
+            <view class="row-main top">
+              <image class="big-rect-img" src="{{item.topicPic}}"></image>
+            </view>
+          </view>
+          <view class="row split">
+              <view class="row-main list">
+                  {{item.introduce}}
+              </view>
+          </view>
+          <view class="card-footer">
+            <text>作者：{{item.author}}</text>
+            <text>阅读量：{{item.viewCount}}</text>
+          </view> 
+          <view class='line'></view>
         </view>
-        <view class="card-footer">
-          <text>作者：{{item.author}}</text>
-          <text>阅读量：{{item.viewCount}}</text>
-        </view> 
-        <view class='line'></view>
+      </view>
+      <view hidden="{{currentTab!==1}}" class="text">
+        <view wx:for="{{wenben}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
+          <view class="row-main">
+            <view class="flex-col">
+                <view class="main-title">{{item.title}}</view>
+            </view>
+            <image class="row-chevron" src="../../resource/image/chevron.png"></image>
+          </view>
+          <view class="row split card-img-big-detail-type">
+            <view class="row-main top">
+              <image class="big-rect-img" src="{{item.topicPic}}"></image>
+            </view>
+          </view>
+          <view class="row split">
+              <view class="row-main list">
+                  {{item.introduce}}
+              </view>
+          </view>
+          <view class="card-footer">
+            <text>作者：{{item.author}}</text>
+            <text>阅读量：{{item.viewCount}}</text>
+          </view> 
+          <view class='line'></view>
+        </view>
       </view>
     </view>
-    <view hidden="{{currentTab!==1}}" class="text">
-      <view wx:for="{{wenben}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
-        <view class="row-main">
-          <view class="flex-col">
-              <view class="main-title">{{item.title}}</view>
-          </view>
-          <image class="row-chevron" src="../../resource/image/chevron.png"></image>
-        </view>
-        <view class="row split card-img-big-detail-type">
-          <view class="row-main top">
-            <image class="big-rect-img" src="{{item.topicPic}}"></image>
-          </view>
-        </view>
-        <view class="row split">
-            <view class="row-main list">
-                {{item.introduce}}
-            </view>
-        </view>
-        <view class="card-footer">
-          <text>作者：{{item.author}}</text>
-          <text>阅读量：{{item.viewCount}}</text>
-        </view> 
-        <view class='line'></view>
+    <view class="page-flex-row"wx:if="{{issues.length==0}}"  style='margin-top: 100px;margin-bottom: 120rpx;'>
+      <view class='page-flex-column'>
+        <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
+        <text>暂无结果...</text>
       </view>
+          
     </view>
-  </view>
 </view>

@@ -23,11 +23,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     var that = this
-    that.setData({
-      'navData[0].current': 1
-    })
+    if(options.fromPage==0){
+      that.setData({
+        'navData[0].current': 1
+      })
+    }else{
+      that.setData({
+        'navData[2].current': 1
+      })
+    }
+    
+  
     wx.getSystemInfo({
       success: function (res) {
         that.setData({

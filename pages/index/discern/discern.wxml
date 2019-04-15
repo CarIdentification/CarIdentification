@@ -1,3 +1,9 @@
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <scroll-view scroll-y='true' class='dis_container' bindscroll='scroll_' style="height: {{winHeight}}px;">
   <view class='rediscern_but_view'>
     <view class='rediscern_but' bindtap='getCarPhoto'>

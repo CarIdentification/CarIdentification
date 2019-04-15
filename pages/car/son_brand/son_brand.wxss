@@ -9,26 +9,32 @@ display: block;
 /* line-height: 40px; */
 height: 50rpx;
 /* padding-left: 15px; */
-font-size: 34rpx;
+font-size: 30rpx;
 background: #efeff4;
 color: #666;
+    margin:0rpx 20rpx;
+border-radius:5px;
 }
 
 .list_tit_second {
 display: flex;
-padding-left: 15px; 
 font-size: 34rpx;
 background:  #efeff4;
 color: #666;
 flex-flow: wrap row;
-margin:10rpx 10rpx
+margin:0rpx 20rpx 10rpx 20rpx;
+border-radius:0px 0px 10px 10px;
+
 
 }
 
 .brand-pic{
-  width: 20vw;
-  height: 20vw;
-  /* background-color: yellow; */
+  width:18vw;
+  height:18vw;
+  border-radius:5px;
+  margin:10rpx 00rpx;
+
+
 }
 
 .list_con {
@@ -49,6 +55,8 @@ position: relative;
   flex-flow: wrap row;
   border-bottom-style:inset;
   border-bottom-width:5rpx;
+  padding:10rpx 20rpx;
+
 }
 .brand{
   display:flex;
@@ -70,6 +78,7 @@ position: relative;
 .son_brand_pic{
   width: 15vw;
   height: 15vw;
-  margin:5rpx 5rpx;
+  margin:10rpx 10rpx;
+  border-radius:5px;
 
 }

@@ -1,6 +1,5 @@
 /* pages/index/search/search.wxss */
 .scroll_container{
-  background-color:#efeff4;
   /* height: 200%; */
   display:flex;
   /* justify-content:center; */
@@ -50,6 +49,8 @@
 .carModules {
   width: 100%;
   height: 100%;
+  background-color:#efeff4;
+
 }
 
 .text-cell{
@@ -126,6 +127,7 @@
   height: 130rpx;
   margin-right: 30rpx;
   margin-top: 30rpx;
+  border-radius: 10rpx
 }
 
 .car-text{

@@ -34,7 +34,7 @@
       <!-- </view> -->
       <view id='123' class="brand-list">
         <block style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brands}}" wx:for-index="idx" wx:for-item="brandName">
-          <text span="" style="word-wrap: break-word; margin: 0px; padding-left: 3%;" id="{{idx}}" class="list_tit">{{idx}}</text>
+          <text span="" style="word-wrap: break-word; padding-left: 3%;" id="{{idx}}" class="list_tit">{{idx}}</text>
           <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{brandName}}">
             <view id="{{item.id}}" class='brand-flex' bindtap='sonBrand'>
               <image lazy-load="true" class="brand-pic" src='{{item.imgUrl}}'></image>

@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     cars: [],
-    mark: 0,
+    // mark: 0,
   },
 
   /**
@@ -15,7 +16,10 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    var mark = options.mark
+    // var mark = options.mark
+    that.setData({
+      'navData[0].current': 1
+    })
     wx.request({
       method: 'POST',
       dataType: "json",
@@ -28,7 +32,7 @@ Page({
       success: function(res) {
         that.setData({
           cars: res.data.entity,
-          mark: mark
+          // mark: mark
         })
       }
     })
@@ -84,7 +88,38 @@ Page({
   },
   showCarMess: function(e) {
     wx.navigateTo({
-      url: '../result_car/result_car?id=' + e.currentTarget.id,
+      url: '../result_car/result_car?id=' + e.currentTarget.id+'&fromPage=0',
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
+  getCarInfo(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../result_car/result_car?id=' + e.currentTarget.id + '&fromPage=0',
+    })
+  },
 })

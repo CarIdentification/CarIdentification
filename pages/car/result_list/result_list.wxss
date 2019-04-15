@@ -24,3 +24,31 @@ font-size:38rpx;
 margin:0rpx 30rpx;
 
 }
+
+.car-cell{
+  margin-bottom: 5rpx;
+  background-color: #fff;
+  height: 180rpx;
+}
+
+.car-pic{
+  width: 130rpx;
+  height: 130rpx;
+  margin-right: 30rpx;
+  margin-top: 30rpx;
+  border-radius:5px;
+
+}
+.car-text{
+  margin-top: 30rpx;
+  font-size: 14px;
+  width: 70%;
+  text-align: left;
+  align-items:flex-start;
+  line-height: 180%
+}
+.grey-text {
+  font-size: 28rpx;
+  color: gray;
+  margin-top: 18rpx;
+}

@@ -34,7 +34,7 @@
   padding-left:20rpx;
   display:flex;
   flex-direction: column;
-  padding:7rpx 0rpx 0rpx 30rpx;
+  padding:7rpx 0rpx 0rpx 20rpx;
 
 }
 

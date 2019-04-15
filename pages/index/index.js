@@ -177,7 +177,7 @@ Page({
     //   }
     // })
     wx.navigateTo({
-      url: '/pages/index/search/search?msg=' + e.detail.value,
+      url: '/pages/index/search/search?msg=' + e.detail.value+'&fromPage=1',
     })
   },
   gotoCars: function () {

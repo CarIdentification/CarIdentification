@@ -171,7 +171,7 @@ Page({
   getCarMess:function(e){
     console.log(e)
     wx.navigateTo({
-      url: '../result_car/result_car?id='+e.currentTarget.id,
+      url: '../result_car/result_car?id='+e.currentTarget.id+'&fromPage=0',
     })
   },
   downCar:function(e){

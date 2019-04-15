@@ -28,10 +28,10 @@ Page({
       // { id: 37,brandName: "123", src: "/resource/image/brand_pic/4.jpg" },
       // { id: 4,brandName: "123", src: "/resource/image/brand_pic/1.jpg" },
 
-      { id: 24, brandName: "123", src: "/resource/image/brand_pic/toyota.png" },
-      { id: 74, brandName: "123", src: "/resource/image/brand_pic/honda.png" },
-      { id: 29,brandName: "123", src: "/resource/image/brand_pic/benz.png" },
-      { id: 37,brandName: "123", src: "/resource/image/brand_pic/bmw.png" },
+      { id: 27, brandName: "123", src: "/resource/image/brand_pic/toyota.png" },
+      { id: 72, brandName: "123", src: "/resource/image/brand_pic/honda.png" },
+      { id: 30,brandName: "123", src: "/resource/image/brand_pic/benz.png" },
+      { id: 49,brandName: "123", src: "/resource/image/brand_pic/bmw.png" },
       { id: 4,brandName: "123", src: "/resource/image/brand_pic/audi.png" },
 
       

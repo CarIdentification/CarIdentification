@@ -6,6 +6,7 @@ var WxParse = require('../../../wxParse/wxParse.js')
 
 Page({
   data: {
+    navData: app.globalData.navData,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -37,13 +38,22 @@ Page({
     }
   }
   ,
-  onLoad: function (option) {
+  onLoad: function (options) {
     var that = this;
-    var msg = option.msg;
-    that.setData({
-      inputVal:msg
-    })
-    that.search(option.msg)
+    var msg = options.msg;
+    if(options.fromPage=="1"){
+      that.setData({
+        inputVal: msg,
+        'navData[2].current': 1
+      })
+    }else{
+      that.setData({
+        inputVal: msg,
+        'navData[0].current': 1
+      })
+    }
+    
+    that.search(options.msg)
     wx.request({
       url: app.globalData.localhost + '/api-basicS/search/textSearchHistory',
       data: {
@@ -135,7 +145,7 @@ Page({
   getCarInfo(e){
     console.log(e)
     wx.navigateTo({
-      url: '../../car/result_car/result_car?id=' + e.currentTarget.id,
+      url: '../../car/result_car/result_car?id=' + e.currentTarget.id+'&fromPage=2',
     })
   },
   removeTextSearchHistory: function () {
@@ -152,5 +162,30 @@ Page({
         })
       }
     })
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

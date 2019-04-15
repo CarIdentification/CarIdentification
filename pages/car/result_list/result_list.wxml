@@ -1,12 +1,58 @@
-<!--pages/car/result_list/result_list.wxml-->
-<view class='container'>
-  <scroll-view bindscroll="scroll" style="word-wrap: break-word; margin: 0px; padding: 0px;" scroll-y="true" style="height: 100%;"  class="city_list">
-    <block span="" style="word-wrap: break-word; margin: 0px; padding: 0px;" wx:for="{{cars}}">
-      <view id="{{item.id}}" class='brand-flex' bindtap='showCarMess'>
-        <image lazy-load="true" class="brand-pic" src='http:{{item.coverPic}}'></image>
-        <view span="" style="word-wrap: break-word;" class="list_con" >{{item.carName}}</view>
-      </view>
-    </block>
-  </scroll-view>
+<!--pages/index/search/search.wxml-->
+<import src="/wxParse/wxParse.wxml"/>
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
+<view class='container'wx:if="{{cars.length!=0}}">
+  <view class='scroll_container' style='background-color:#efeff4;' >
+     <!-- <view class='text-bg' style='margin-top: 48px;'>文章</view>  -->
+    <!-- 搜索文章板块 -->
+    <!-- <view class='textModules' style='margin-top: 48px;'> -->
+      <!-- <block wx:for="{{text}}"> -->
+        <!-- <view class='text-cell'> -->
+          <!-- <view class='text-title'> -->
+            <!-- <text >{{issues[0].title}}</text> -->
+          <!-- </view> -->
+          <!-- <image class='text-img' mode='aspectFill' src='/resource/image/car-pic/pic1.jpg'></image> -->
+          <!-- <view class='text-content'> -->
+            <!-- <text>margin不起作用多出现在Firefox浏览器下，最常见的原因就是浮动影响，还是就是margin重叠，或者是padding与margin的重叠，还是就是margin重叠，或者是padding与margin的重叠</text> -->
+            <!-- <text>{{issues[0].content}}</text> -->
+            <!-- <template is="wxParse" data="{{wxParseData:issues[0].content.nodes}}"/> -->
+          <!-- </view> -->
+          <!-- <view class='text-read'> -->
+            <!-- <text>{{issues[0].viewCount}}</text> -->
+            <!-- <image src='/resource/image/read_icon.png'></image> -->
+            
+          <!-- </view> -->
+        <!-- </view> -->
+      <!-- </block> -->
+    <!-- </view> -->
+    <!-- <view style='z-index:1'>
+      <button class='text-button'>更多文章...</button>
+    </view> -->
+    <!-- 搜索汽车板块 -->
+    <!-- <view class='text-bg'>汽车</view> -->
+    <view class='carModules' style='margin-bottom: 120rpx;'>
+      <block wx:for="{{cars}}">
+        <view id='{{item.id}}' class='car-cell page-flex-row' bindtap='getCarInfo'>
+          <image mode='aspectFill' class='car-pic' src='http:{{item.coverPic}}'></image>
+          <view class='page-flex-column car-text'>
+            <text>{{item.carName}}</text>
+            <text>{{item.beginPrice}}万-{{item.endPrice}}万</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    
+  </view>
+  
 </view>
-
+<view class="page-flex-row"wx:if="{{cars.length==0}}"  style='margin-top: 100rpx;margin-bottom: 120rpx;'>
+    <view class='page-flex-column'>
+      <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
+      <text>暂无结果...</text>
+    </view>
+  </view>

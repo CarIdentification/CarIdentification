@@ -1,7 +1,7 @@
 /* pages/car/cars.wxss */
 
 .pri {
-  height: 44%;
+  height: 480rpx;
 }
 
 .brand {
@@ -61,6 +61,7 @@
   height: 20px;
   line-height: 20px;
   font-size: 38rpx;
+
 }
 
 .title button {
@@ -98,9 +99,12 @@
   /* line-height: 40px; */
   height: 50rpx;
   padding-left: 15px;
-  font-size: 34rpx;
+  font-size: 30rpx;
   background: #efeff4;
   color: #666;
+    margin:0rpx 20rpx;
+border-radius:5px;
+
 }
 
 .list_con {
@@ -168,6 +172,8 @@
   display: flex;
   /* justify-content:center; */
   flex-flow: wrap row;
+  margin-left:20rpx;
+
 }
 
 ::-webkit-scrollbar {
