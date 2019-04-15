@@ -31,13 +31,20 @@
   bindcallouttap="callouttap"
   show-location style="width: 100%; height: {{view.Height}}px;">
 
-  <cover-view class='left_botton choose'>
-    <cover-view class='text'>销售点</cover-view>
+  
+<cover-view style='display:flex;flex-direction:column;justify-content:center;height:100%;width:0rpx;'>
+  <cover-view class="left_botton">
+    <cover-view class=" {{shopType?'choose':'unchoose'}}" bindtap='chooseType' data-type='1'>
+      <cover-view class='text'>销售点</cover-view>
+    </cover-view>
 
+    <cover-view class=" {{!shopType?'choose':'unchoose'}}"  bindtap='chooseType' data-type='0'>
+      <cover-view class='text'>服务点</cover-view>
+    </cover-view>
+    
   </cover-view>
-  <!-- <cover-view class='left_botton {{}}'>
-    <view class='text'>服务点</view>
-
-  </cover-view> -->
+</cover-view>
 </map>
+
+
 

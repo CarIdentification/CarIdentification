@@ -1,5 +1,5 @@
 // 引用百度地图微信小程序JSAPI模块 
-// var bmap = require('../../libs/bmap-wx.min.js'); 
+var bmap = require('../../libs/bmap-wx.min.js'); 
 const util = require('../../utils/util.js'); 
 const app = getApp();
 Page({
@@ -9,7 +9,10 @@ Page({
     scale: 15,
     latitude: "",
     longitude: "",
-    markers:[]
+    markers:[],
+    serviceMarkers:[],
+    sellMarkers:[],
+    shopType:true
   },
 
   onLoad: function () {
@@ -57,7 +60,8 @@ Page({
                 callout: {
                   content: res.data.entity[i].locationDetail,
                   // content: "aaa",
-                  padding: 5
+                  padding: 10,
+                  borderRadius :5
                 },
                 label: {
                   content: res.data.entity[i].shopName
@@ -67,6 +71,7 @@ Page({
             }
             that.setData({
               markers : mar,
+              sellMarkers: mar,
               latitude : ress.latitude,
               longitude : ress.longitude
             })
@@ -78,27 +83,27 @@ Page({
 
     
     // 新建百度地图对象 
-    // var BMap = new bmap.BMapWX({
-    //   ak: '6uQBsdD4q2Qa1VBr37pXhLfxcoGg7B43'
-    // });
+    var BMap = new bmap.BMapWX({
+      ak: '6uQBsdD4q2Qa1VBr37pXhLfxcoGg7B43'
+    });
     // 发起POI检索请求 
-    // BMap.search({
-    //   "query": '汽车销售',
-    //   "radius": 2000,
-    //   success: function (res){
-    //     that.setData({
-    //       markers: res.wxMarkerData,
-    //       latitude: res.wxMarkerData[0].latitude,
-    //       longitude: res.wxMarkerData[0].longitude,
-    //     })
-    //   },
-    //   // 此处需要在相应路径放置图片文件 
-    //   iconPath: '../../resource/image/location_4.png',
-    //   // 此处需要在相应路径放置图片文件 
-    //   iconTapPath: '../../resource/image/shop_location.png',
-    //   width: 30,
-    //   height: 30,
-    // }); 
+    BMap.search({
+      "query": '汽车服务',
+      "radius": 2000,
+      success: function (res){
+        that.setData({
+          serviceMarkers: res.wxMarkerData,
+          // latitude: res.wxMarkerData[0].latitude,
+          // longitude: res.wxMarkerData[0].longitude,
+        })
+      },
+      // 此处需要在相应路径放置图片文件 
+      iconPath: '../../resource/image/location_4.png',
+      // 此处需要在相应路径放置图片文件 
+      iconTapPath: '../../resource/image/shop_location.png',
+      width: 30,
+      height: 30,
+    }); 
   },
 
 
@@ -130,12 +135,15 @@ Page({
   // },
   callouttap(e){
     var that = this
-    //进入详情页
-    console.log(e)
-    var marker = that.data.markers[e.markerId];
-    wx.navigateTo({
-      url: 'shop_info/shop_info?id=' + e.markerId +'&fromPage=1',
-    })
+    if(that.data.shopType){
+      //进入详情页
+      console.log(e)
+      var marker = that.data.markers[e.markerId];
+      wx.navigateTo({
+        url: 'shop_info/shop_info?id=' + e.markerId + '&fromPage=1',
+      })
+    }
+    
   },
   gotoCars: function () {
     wx.switchTab({
@@ -162,5 +170,23 @@ Page({
       url: '/pages/persona/personal',
     });
   },
+  chooseType: function(e){
+    var that = this
+    if(e.currentTarget.dataset.type == 1 ){
+      if (!that.data.shopType){
+        that.setData({
+          shopType:true,
+          markers: that.data.sellMarkers
+        })
+      }
+    }else{
+      if (that.data.shopType) {
+        that.setData({
+          shopType:false,
+          markers: that.data.serviceMarkers
+        })
+      }
+    }
+  }
 
 })
