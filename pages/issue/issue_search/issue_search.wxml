@@ -1,106 +1,74 @@
 <import src="/template/nav" />
 <view class="flex fix_nav_wp">
-<block wx:for="{{navData}}" wx:key="">
-    <template is="nav" data="{{...item}}"/>
-</block>
-</view> 
+  <block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}" />
+  </block>
+</view>
 <view class="container">
-<!-- 搜索栏 -->
-    <view class='fixed'>
-      <view class="weui-search-bar ">
-        <view class="weui-search-bar__form">
-            <view class="weui-search-bar__box">
-                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindblur='hideInput' bindinput="inputTyping" bindconfirm='confirmInput' bindfocus='showInput'/>
-                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-                    <icon type="clear" size="14"></icon>
-                </view>
-            </view>
-            <!-- <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+  <!-- 搜索栏 -->
+  <view class='fixed'>
+    <view class="weui-search-bar ">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindblur='hideInput' bindinput="inputTyping" bindconfirm='confirmInput' bindfocus='showInput' />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <!-- <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
                 <icon class="weui-icon-search" type="search" size="14"></icon>
                 <view class="weui-search-bar__text">搜索</view>
             </label> -->
-        </view>
-          <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view> 
       </view>
-      <!-- 历史纪录 -->
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <!-- 历史纪录 -->
 
-        <view class="weui-cells searchbar-result" wx:if="{{inputShowed}}">
-          <block wx:for="{{history}}">
-            <navigator open-type='redirect' url="/pages/issue/issue_search/issue_search?msg={{item.content}}" class="weui-cell" hover-class="weui-cell_active" style='font-size:small'>
-              <view class="weui-cell__bd">
-                <view>{{item.content}}</view>
-              </view>
-            </navigator>
-          </block>
-          <navigator url="" class="weui-cell" hover-class="weui-cell_active" style='font-size:small'>
-            <view class="weui-cell__bd">
-              <view style='color:skyblue' bindtap='removeTextSearchHistory'>删除历史记录</view>
-            </view>
-          </navigator>
+    <view class="weui-cells searchbar-result" wx:if="{{inputShowed}}">
+      <block wx:for="{{history}}">
+        <navigator open-type='redirect' url="/pages/issue/issue_search/issue_search?msg={{item.content}}" class="weui-cell" hover-class="weui-cell_active" style='font-size:small'>
+          <view class="weui-cell__bd">
+            <view>{{item.content}}</view>
+          </view>
+        </navigator>
+      </block>
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active" style='font-size:small'>
+        <view class="weui-cell__bd">
+          <view style='color:skyblue' bindtap='removeTextSearchHistory'>删除历史记录</view>
         </view>
+      </navigator>
     </view>
-    <view class="main" wx:if="{{issues.length!=0}}" style='margin-top:48px;'>
-    
-    <!-- <view class="navbar" >
-        <view wx:for="{{text}}" wx:key="unique" class="item {{currentTab==index?'active':''}}" bindtap='change' data-idx="{{index}}">{{item}}</view>
-    </view> -->
-      <view>
-        <view wx:for="{{issues}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
-          <view class="row-main">
-            <view class="flex-col">
-                <view class="main-title">{{item.title}}</view>
-            </view>
-            <image class="row-chevron" src="../../resource/image/chevron.png"></image>
-          </view>
-          <view class="row split card-img-big-detail-type">
-            <view class="row-main top">
-              <image class="big-rect-img" src="{{item.topicPic}}"></image>
-            </view>
-          </view>
-          <view class="row split">
-              <view class="row-main list">
-                  {{item.introduce}}
+  </view>
+  </view>
+  <view class="main" wx:if="{{issues.length!=0}}" style='margin-top:48px;'>
+    <view>
+      <view wx:for="{{issues}}" wx:key="id" bindtap='looktext' data-idx="{{item.id}}">
+        <view class="cu-card case ">
+          <view class="cu-item shadow-lg">
+            <view class="image">
+              <image src="{{item.topicPic}}" ></image>
+              <view class="cu-bar bg-shadeBottom">
+                <text class="text-cut ">{{item.title}}</text>
               </view>
-          </view>
-          <view class="card-footer">
-            <text>作者：{{item.author}}</text>
-            <text>阅读量：{{item.viewCount}}</text>
-          </view> 
-          <view class='line'></view>
-        </view>
-      </view>
-      <view hidden="{{currentTab!==1}}" class="text">
-        <view wx:for="{{wenben}}" wx:key="id" class='content' bindtap='looktext' data-idx="{{item.id}}">
-          <view class="row-main">
-            <view class="flex-col">
-                <view class="main-title">{{item.title}}</view>
             </view>
-            <image class="row-chevron" src="../../resource/image/chevron.png"></image>
-          </view>
-          <view class="row split card-img-big-detail-type">
-            <view class="row-main top">
-              <image class="big-rect-img" src="{{item.topicPic}}"></image>
-            </view>
-          </view>
-          <view class="row split">
-              <view class="row-main list">
-                  {{item.introduce}}
+            <view class="flex solid-bottom padding-sm justify-between">
+              <view class="text-df">
+                作者：{{item.author}}
               </view>
+              <view class="text-df">
+                阅读量：{{item.viewCount}}
+              </view>
+            </view>
           </view>
-          <view class="card-footer">
-            <text>作者：{{item.author}}</text>
-            <text>阅读量：{{item.viewCount}}</text>
-          </view> 
-          <view class='line'></view>
         </view>
       </view>
     </view>
-    <view class="page-flex-row"wx:if="{{issues.length==0}}"  style='margin-top: 100px;margin-bottom: 120rpx;'>
+    <view class="page-flex-row" wx:if="{{issues.length==0}}" style='margin-top: 100px;margin-bottom: 120rpx;'>
       <view class='page-flex-column'>
         <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
         <text>暂无结果...</text>
       </view>
-          
+
     </view>
-</view>
+  </view>
