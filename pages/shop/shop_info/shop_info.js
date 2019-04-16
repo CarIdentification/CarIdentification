@@ -15,22 +15,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    if (options.fromPage == 0){
-      that.setData({
-        'navData[0].current': 1
-      })
-    }else{
-      that.setData({
-        'navData[3].current': 1
-      })
-    }
-    
     wx.request({
       url: app.globalData.localhost + '/api-basicS/search/getShopInfo',
       // url: 'http://localhost:8763/search/getShopInfo',
       data: { id:options.id },
       success: function (e) {
-      
         if(e.data.entity.shopPic==null){
           e.data.entity.shopPic = '/resource/image/sell-shop/sell_shop_1.jpg'
         }
@@ -40,8 +29,6 @@ Page({
         })
       }
     })
-    
-    
   },
 
   /**

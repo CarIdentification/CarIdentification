@@ -1,5 +1,11 @@
 <!--pages/persona/own_car/own_car.wxml-->
 <!--pages/issue/text/text.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='navigation {{pageVariable.isFloat == true ? "float-navigation":""}}"'>拥有车型</view>
 <view class="owncar-container">
   <view wx:for="{{ownCarInfos}}">

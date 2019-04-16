@@ -27,7 +27,7 @@
 
   <view class="weui-cells searchbar-result" wx:if="{{inputShowed}}">
     <block wx:for="{{history}}">
-      <navigator open-type='redirect' url="/pages/issue/issue_search/issue_search?msg={{item.content}}" class="weui-cell" hover-class="weui-cell_active" style='font-size:small'>
+      <navigator open-type='navigate' url="/pages/issue/issue_search/issue_search?msg={{item.content}}" class="weui-cell" hover-class="weui-cell_active" style='font-size:small'>
         <view class="weui-cell__bd">
           <view>{{item.content}}</view>
         </view>

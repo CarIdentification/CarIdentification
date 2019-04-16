@@ -1,4 +1,10 @@
 <!--pages/persona/add_tag/add_tag.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view>
 <view class="body">
   <view class="nav bc_white">
     <view class="{{selected?'red':'default'}}" bindtap="selected">全部标签</view>

@@ -24,6 +24,7 @@ Page({
       url: app.globalData.localhost +'/api-basicS/issue/getIssue?id=' + id,
       method: 'GET',
       success: function (res) {
+       
         var date = res.data.createTime.slice(0,10)
         var pic =  "../"+ res.data.topicPic
         WxParse.wxParse('articleContent', 'html', res.data.content, that, 5);
@@ -32,6 +33,7 @@ Page({
           date:date,
           pic: pic
         })
+        console.log(res.data)
       },
       fail: function () {
         console.log("失败")

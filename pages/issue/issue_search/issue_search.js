@@ -217,8 +217,9 @@ Page({
   //完成输出，开始搜索文章
   confirmInput: function (e) {
     console.log(e.detail.value)
-    wx.navigateTo({
-      url: '/pages/index/search/search?msg=' + e.detail.value,
+    
+    wx.redirectTo({
+      url: '/pages/issue/issue_search/issue_search?msg=' + e.detail.value,
     })
   },
   gotoCars: function () {
@@ -246,4 +247,19 @@ Page({
       url: '/pages/persona/personal',
     });
   },
+  removeTextSearchHistory: function () {
+    var that = this
+    wx.request({
+      url: app.globalData.localhost + '/api-basicS/search/removeTextSearchHistory',
+      // url: 'http://localhost:8763' + '/search/removeTextSearchHistory',
+      data: {
+        signature: app.globalData.signature
+      },
+      success: function (res) {
+        that.setData({
+          history: []
+        })
+      }
+    })
+  }
 })

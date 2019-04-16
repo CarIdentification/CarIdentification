@@ -40,14 +40,13 @@
       </navigator>
     </view>
   </view>
-  </view>
   <view class="main" wx:if="{{issues.length!=0}}" style='margin-top:48px;'>
     <view>
       <view wx:for="{{issues}}" wx:key="id" bindtap='looktext' data-idx="{{item.id}}">
         <view class="cu-card case ">
           <view class="cu-item shadow-lg">
             <view class="image">
-              <image src="{{item.topicPic}}" ></image>
+              <image src="{{item.topicPic}}"></image>
               <view class="cu-bar bg-shadeBottom">
                 <text class="text-cut ">{{item.title}}</text>
               </view>
@@ -63,12 +62,13 @@
           </view>
         </view>
       </view>
-    </view>
-    <view class="page-flex-row" wx:if="{{issues.length==0}}" style='margin-top: 100px;margin-bottom: 120rpx;'>
-      <view class='page-flex-column'>
-        <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
-        <text>暂无结果...</text>
-      </view>
 
     </view>
   </view>
+  <view class="page-flex-row" wx:if="{{issues.length==0}}" style='margin-top: 100px;margin-bottom: 120rpx;'>
+    <view class='page-flex-column'>
+      <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
+      <text>暂无结果...</text>
+    </view>
+  </view>
+</view>

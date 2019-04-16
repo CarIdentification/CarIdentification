@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     historyInfos: [],
   },
 
@@ -15,6 +16,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    that.setData({
+      'navData[4].current': 1
+    })
     wx.request({
       //url: app.globalData.localhost + '/api-basicS/issue/getHotIssue',
       url: app.globalData.localhost + '/api-basicS/searchHistory/picList',
@@ -86,5 +90,30 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })

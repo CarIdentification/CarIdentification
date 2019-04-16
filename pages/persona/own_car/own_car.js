@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navData: app.globalData.navData,
     ownCarInfos: [],
     loadingHidden: true
   },
@@ -49,7 +50,8 @@ Page({
   onLoad: function(options) {
     let that = this
     that.setData({
-      loadingHidden: false
+      loadingHidden: false,
+      'navData[4].current': 1
     })
     wx.request({
       url: app.globalData.localhost + '/api-basicS/personal/getOwnCar?userId=' + wx.getStorageSync('uid'),
@@ -118,5 +120,30 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+  gotoCars: function () {
+    wx.switchTab({
+      url: '/pages/car/cars'
+    });
+  },
+  gotoIndex: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  gotoIssue: function () {
+    wx.switchTab({
+      url: '/pages/issue/issue',
+    });
+  },
+  gotoShop: function () {
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    });
+  },
+  gotoMy: function () {
+    wx.switchTab({
+      url: '/pages/persona/personal',
+    });
+  },
 })
