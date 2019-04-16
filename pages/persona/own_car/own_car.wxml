@@ -25,3 +25,10 @@
 <loading hidden="{{loadingHidden}}">
         请稍等...
 </loading>
+<view class="page-flex-row" wx:if="{{ownCarInfos.length==0}}" style='margin-top: 100px;margin-bottom: 120rpx;'>
+      <view class='page-flex-column'>
+        <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
+        <text>你还没添加过车型哦...</text>
+      </view>
+
+    </view>
