@@ -1,5 +1,5 @@
 /* pages/persona/own_car/own_car.wxss */
-@import "/wxParse/wxParse.wxss";
+/* @import "/wxParse/wxParse.wxss"; */
 .navigation{
   font-weight: bold;
   font-size: 25px;

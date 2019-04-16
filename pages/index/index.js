@@ -23,7 +23,7 @@ Page({
     const ctx = wx.createCanvasContext('myCanvas')
     // Draw coordinates
     ctx.arc(80, 80, 80, 0, 2 * Math.PI)
-    ctx.setFillStyle('#C5D4FA')
+    ctx.setFillStyle('rgba(197, 212, 250, 0.5)')
     ctx.fill()
     //识别相机logo
     ctx.drawImage("/resource/image/discern.png", 55,55, 55,55)

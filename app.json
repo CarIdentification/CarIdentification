@@ -25,7 +25,7 @@
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "识车小程序"
+    "navigationBarTitleText": "随识车"
   },
   "tabBar": {
     "backgroundColor": "white",
