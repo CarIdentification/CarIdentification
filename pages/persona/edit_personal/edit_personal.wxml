@@ -1,2 +1,10 @@
-<!--pages/persona/edit_personal/edit_personal.wxml-->
-<text>pages/persona/edit_personal/edit_personal.wxml</text>
+<!--pages/persona/personal/edit_personal/edit_personal.wxml-->
+
+<view class='prop-container'>
+  <picker bindchange='editGender' value='{{userInfo.gender}}' range='{{sexArr}}'>
+    <view>
+      <view class="prop-name">性别</view>
+      <view class="prop-val">{{sexArr[userInfo.gender]}}</view>
+    </view>
+  </picker>
+</view>

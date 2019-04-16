@@ -1,1 +1,15 @@
-/* pages/persona/edit_personal/edit_personal.wxss */
+/* pages/persona/personal/edit_personal/edit_personal.wxss */
+
+.prop-container{
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.prop-name{
+  float: left;
+}
+
+.prop-val{
+  float: right;
+}
