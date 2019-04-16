@@ -1,9 +1,18 @@
 /* pages/persona/personal/edit_personal/edit_personal.wxss */
 
+.title{
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .prop-container{
-  padding: 10px;
+  padding: 7px;
   font-size: 20px;
   font-weight: bold;
+  margin: 20px;
+
 }
 
 .prop-name{
