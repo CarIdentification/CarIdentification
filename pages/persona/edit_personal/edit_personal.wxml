@@ -1,30 +1,39 @@
 <!--pages/persona/personal/edit_personal/edit_personal.wxml-->
+<import src="/template/nav" />
+<view class="flex fix_nav_wp">
+<block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}"/>
+</block>
+</view> 
 <view class='title'>我的信息</view>
-<view class="prop-container">
-  <view class="prop-name">昵称</view>
-  <view class="prop-val">{{userInfo.nickName}}</view>
-</view>
 
-<view class="prop-container">
-  <view class="prop-name">国家</view>
-  <view class="prop-val">{{userInfo.country}}</view>
-</view>
+<view class='page-flex-column' class='myView'>
+  <view class="prop-container">
+    <view class="prop-name">昵称</view>
+    <view class="prop-val">{{userInfo.nickName}}</view>
+  </view>
 
-<view class="prop-container">
-  <view class="prop-name">省份</view>
-  <view class="prop-val">{{userInfo.province}}</view>
-</view>
+  <view class="prop-container">
+    <view class="prop-name">国家</view>
+    <view class="prop-val">{{userInfo.country}}</view>
+  </view>
 
-<view class="prop-container">
-  <view class="prop-name">城市</view>
-  <view class="prop-val">{{userInfo.city}}</view>
-</view>
-<view class='prop-container'>
+  <view class="prop-container">
+    <view class="prop-name">省份</view>
+    <view class="prop-val">{{userInfo.province}}</view>
+  </view>
 
-  <picker bindchange='editGender' value='{{userInfo.gender}}' range='{{sexArr}}'>
-    <view>
-      <view class="prop-name">性别</view>
-      <view class="prop-val">{{sexArr[userInfo.gender]}}</view>
-    </view>
-  </picker>
+  <view class="prop-container">
+    <view class="prop-name">城市</view>
+    <view class="prop-val">{{userInfo.city}}</view>
+  </view>
+  <view class='prop-container'>
+
+    <picker bindchange='editGender' value='{{userInfo.gender}}' range='{{sexArr}}'>
+      <view>
+        <view class="prop-name">性别</view>
+        <view class="prop-val">{{sexArr[userInfo.gender]}}</view>
+      </view>
+    </picker>
+  </view>
 </view>

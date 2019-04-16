@@ -2,16 +2,19 @@
 
 .title{
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .prop-container{
-  padding: 7px;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 20px;
+  /* padding:7px; */
+font-size:35rpx;
+/* font-weight:bold; */
+margin:40rpx;
+width:630rpx;
+height:30rpx;
+
 
 }
 
@@ -21,4 +24,12 @@
 
 .prop-val{
   float: right;
+}
+
+.myView{
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 2px rgba(0, 0, 0, 0.19);
+  margin:10rpx 30rpx 10rpx 30rpx;
+border-radius:10px;
+height: 350rpx
+
 }
