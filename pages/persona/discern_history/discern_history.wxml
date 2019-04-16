@@ -1,2 +1,12 @@
-<!--pages/persona/discern_history/discern_history.wxml-->
-<text>pages/persona/discern_history/discern_history.wxml</text>
+<view wx:for="{{historyInfos}}">
+  <view class="cu-card">
+    <view class="cu-item shadow-lg">
+      <view class="image cover-pic">
+        <image src="https://www.kebencool.cn:8762{{item.pic1}}"></image>
+      </view>
+      <view class="text-sm flex justify-end padding-right-sm">
+        识别时间：{{item.createTime}}
+      </view>
+    </view>
+  </view> 
+</view>

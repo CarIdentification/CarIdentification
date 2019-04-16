@@ -72,6 +72,7 @@ Page({
     })
 
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -134,7 +135,7 @@ Page({
   looktext: function (e) {
     var id = e.currentTarget.dataset.idx
     wx.navigateTo({
-      url: './text/text?id=' + id,
+      url: '/pages/issue/text/text?id=' + id,
     })
   },
   getHot: function (idx) {
