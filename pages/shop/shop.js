@@ -20,12 +20,16 @@ Page({
     that.setData({
       'navData[3].current': 1
     })
+    var less = 0
+    if(wx.getStorageSync("sysInfo").platform == "android"){
+      less = util.parseRpxToPx(120)
+    }
     wx.getSystemInfo({
       success: function (res) {
         //设置map高度，根据当前设备宽高满屏显示
         that.setData({
           view: {
-            Height: res.windowHeight
+            Height: res.windowHeight - less
           }
         })
       }

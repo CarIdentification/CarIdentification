@@ -44,6 +44,14 @@ const reLogin = (that,app) =>{
 }
 //让用户设置个人信息权限
 const getUserInfoScope = (that, app) =>{
+  wx.getSystemInfo({
+    success: function(res) {
+      wx.setStorage({
+        key: 'sysInfo',
+        data: res,
+      })
+    },
+  })
   wx.getUserInfo({
     success: function (res) {
       console.log("util.js-拥有权限")
