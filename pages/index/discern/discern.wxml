@@ -1,9 +1,9 @@
 <import src="/template/nav" />
 <view class="flex fix_nav_wp">
-<block wx:for="{{navData}}" wx:key="">
-    <template is="nav" data="{{...item}}"/>
-</block>
-</view> 
+  <block wx:for="{{navData}}" wx:key="">
+    <template is="nav" data="{{...item}}" />
+  </block>
+</view>
 <scroll-view scroll-y='true' class='dis_container' bindscroll='scroll_' style="height: {{winHeight}}px;">
   <view class='rediscern_but_view'>
     <view class='rediscern_but' bindtap='getCarPhoto'>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <swiper indicator-dots="{{indicatorDots}}" style="height:{{cardHeight + 10}}rpx;margin-bottom:10px;" autoplay="{{autoplay}}" current="{{current}}" circular="{{circular}}" bindchange="swiperChange" class='swiper_'>
+  <swiper hidden='{{discernResult.length == 0}}' indicator-dots="{{indicatorDots}}" style="height:{{cardHeight + 10}}rpx;margin-bottom:10px;" autoplay="{{autoplay}}" current="{{current}}" circular="{{circular}}" bindchange="swiperChange" class='swiper_'>
 
     <swiper-item class='swiper_cell' wx:for="{{discernResult}}">
 
@@ -130,4 +130,11 @@
     </swiper-item>
 
   </swiper>
+  <view class="page-flex-row" wx:if="{{discernResult.length==0}}" style='margin-top: 100px;margin-bottom: 120rpx;'>
+    <view class='page-flex-column'>
+      <image style='width:250rpx;height:250rpx' src='/resource/image/not_result.png'></image>
+      <text>好像无法找到相似的车型，请换个姿势拍照或过段时间再试</text>
+    </view>
+  </view>
+
 </scroll-view>

@@ -23,7 +23,7 @@ Page({
     current_car: 0,
     current_info_tab: 1,
     circular: false,
-    discernResult: [{}, {}],
+    discernResult: [],
     expand: false,
     reduce: true,
     latitude: "",
@@ -91,8 +91,6 @@ Page({
                 discernResult: res.data.entity
               })
               that.displayResult()
-            },
-            complete: function() {
               wx.hideLoading()
             }
           })
@@ -108,6 +106,13 @@ Page({
       title: '识别中，请稍等',
       mask: true,
     })
+    if (result.length == 0) {
+      that.setData({
+        discernResult: []
+      })
+      wx.hideLoading();
+      return;
+    }
     //异步请求识别数据
     //获取坐标
     wx.getLocation({
@@ -117,7 +122,6 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
-
         wx.request({
           url: app.globalData.localhost + '/api-basicS/search/getCar',
           // url: 'http://localhost:8763/search/getCar',
@@ -139,17 +143,7 @@ Page({
             that.setData({
               discernResult: ent
             })
-
-            // wx.createSelectorQuery().selectAll('.car_list_cell').boundingClientRect(function(rect) {
-            //   console.log(rect[0].height)
-            //   that.setData({
-            //     cardHeight: rect[0].height
-            //   })
-            // }).exec()
             that.checkCurrentInOwn();
-
-          },
-          complete: function() {
             wx.hideLoading()
           }
         })
